@@ -1,0 +1,78 @@
+{
+  "lesson": "07-tensorrt-llm-blackwell",
+  "title": "TensorRT-LLM on Blackwell with FP8 and NVFP4",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Roughly what is the per-million-tokens cost gap the lesson reports between Blackwell + TRT-LLM + Dynamo and H100 + vLLM on a comparable 120B-class workload?",
+      "options": [
+        "About 1.1x",
+        "About 2x",
+        "About 7x",
+        "About 100x"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Why does the lesson recommend keeping KV cache in FP8 rather than NVFP4 on Blackwell?",
+      "options": [
+        "FP8 is the only precision NVLink 5 supports",
+        "KV cache spans a wide dynamic range; FP4 quantization causes catastrophic accuracy loss in attention scores",
+        "FP8 uses less memory than FP4",
+        "NVFP4 KV cache is not yet supported in any engine"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Which Blackwell feature does TRT-LLM exploit so models can be loaded without a post-training conversion step?",
+      "options": [
+        "Day-0 FP4 weights shipped by model providers",
+        "INT2 weights via bitsandbytes",
+        "FP64 attention",
+        "BF16 KV cache"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "What is the dominant tradeoff of choosing the TRT-LLM stack per the lesson?",
+      "options": [
+        "It only works at small scale",
+        "It locks you into NVIDIA hardware — no AMD, no Intel, no ARM",
+        "It requires fully autonomous remediation",
+        "It cannot serve MoE models"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Which precision combination does the lesson describe as the typical Blackwell config?",
+      "options": [
+        "Weights NVFP4, activations NVFP4, KV cache FP8, attention accumulator FP32",
+        "Everything in BF16",
+        "Weights INT8, activations FP32, KV cache INT4",
+        "Weights FP4, KV cache FP4, attention in INT8"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "For reasoning-heavy workloads where NVFP4 weight conversion drops MATH accuracy a few points, what does the lesson advise?",
+      "options": [
+        "Ship NVFP4 anyway because the cost win dominates",
+        "Validate task quality on your eval set per model; teams often use FP8 weights + FP4 activations or stay on H200 with FP8 throughout",
+        "Switch to AMD MI300X",
+        "Disable speculative decoding"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}
