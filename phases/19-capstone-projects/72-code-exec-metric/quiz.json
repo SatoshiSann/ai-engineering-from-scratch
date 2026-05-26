@@ -64,15 +64,15 @@
     },
     {
       "stage": "post",
-      "question": "What does output_overflow track, and why is the cap 256 KB?",
+      "question": "How does the runner surface an output overflow, and why is the cap 256 KB?",
       "options": [
-        "Stdout from the subprocess; large enough to capture results, small enough to fit comfortably in pipe buffers and host memory",
+        "Stdout from the subprocess is streamed; once the 256 KB running total is crossed the child is killed and the task is recorded as exit_code=error with detail \"output overflow\"",
         "Stderr only; size matches the OS pipe default",
         "The candidate source size, capped so generated code stays small",
         "The score value, expressed as a percentage with two decimals"
       ],
       "correct": 0,
-      "explanation": "The cap protects the host. Candidate code that writes a flood of stdout (often an infinite loop in a print statement) gets killed and recorded as output_overflow."
+      "explanation": "The cap protects the host. Candidate code that floods stdout gets killed mid-stream; the runner normalises the result under exit_code=error with detail \"output overflow\" rather than minting a new exit code."
     }
   ]
 }

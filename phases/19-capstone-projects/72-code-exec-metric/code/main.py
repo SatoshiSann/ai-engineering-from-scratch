@@ -14,9 +14,11 @@ import json
 import math
 import os
 import re
+import select
 import subprocess
 import sys
 import tempfile
+import time
 from dataclasses import dataclass, field
 from typing import Iterable
 
@@ -152,23 +154,75 @@ def run_candidate(code: str, assertions: list[str], timeout_s: float = DEFAULT_T
     timeout_s = min(max(0.1, float(timeout_s)), MAX_TIMEOUT_S)
     script = _build_runner(code, assertions)
     try:
-        proc = subprocess.run(
+        proc = subprocess.Popen(
             [sys.executable, "-I", "-c", script],
-            capture_output=True,
-            timeout=timeout_s,
-            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
         )
-    except subprocess.TimeoutExpired:
-        return ExecResult(0.0, EXIT_TIMEOUT, 0, len(assertions), detail=f"timeout after {timeout_s:.2f}s")
     except Exception as exc:
         return ExecResult(0.0, EXIT_ERROR, 0, len(assertions), detail=f"spawn error: {exc!r}")
 
-    stdout = proc.stdout or ""
-    if len(stdout.encode("utf-8", errors="ignore")) > OUTPUT_CAP_BYTES:
+    with proc:
+        deadline = time.monotonic() + timeout_s
+        stdout_chunks: list[bytes] = []
+        stdout_bytes = 0
+        overflow = False
+        timed_out = False
+        fd = proc.stdout
+        assert fd is not None
+        os.set_blocking(fd.fileno(), False)
+        try:
+            while True:
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    timed_out = True
+                    break
+                try:
+                    r, _, _ = select.select([fd], [], [], min(remaining, 0.1))
+                except (OSError, ValueError):
+                    break
+                if r:
+                    chunk = fd.read(8192)
+                    if chunk is None:
+                        continue
+                    if chunk == b"":
+                        break
+                    stdout_bytes += len(chunk)
+                    if stdout_bytes > OUTPUT_CAP_BYTES:
+                        overflow = True
+                        break
+                    stdout_chunks.append(chunk)
+                elif proc.poll() is not None:
+                    tail = fd.read()
+                    if tail:
+                        stdout_bytes += len(tail)
+                        if stdout_bytes > OUTPUT_CAP_BYTES:
+                            overflow = True
+                        else:
+                            stdout_chunks.append(tail)
+                    break
+        finally:
+            if proc.poll() is None:
+                proc.kill()
+                try:
+                    proc.wait(timeout=1.0)
+                except subprocess.TimeoutExpired:
+                    pass
+            try:
+                stderr_bytes = proc.stderr.read() if proc.stderr else b""
+            except Exception:
+                stderr_bytes = b""
+
+    if timed_out:
+        return ExecResult(0.0, EXIT_TIMEOUT, 0, len(assertions),
+                          detail=f"timeout after {timeout_s:.2f}s")
+    if overflow:
         return ExecResult(0.0, EXIT_ERROR, 0, len(assertions), detail="output overflow")
+    stdout = b"".join(stdout_chunks).decode("utf-8", errors="replace")
     if proc.returncode != 0:
+        stderr_text = stderr_bytes.decode("utf-8", errors="replace") if stderr_bytes else ""
         return ExecResult(0.0, EXIT_ERROR, 0, len(assertions),
-                          detail=f"subprocess exit {proc.returncode}: {(proc.stderr or '')[:200]}")
+                          detail=f"subprocess exit {proc.returncode}: {stderr_text[:200]}")
     try:
         status = json.loads(stdout) if stdout else {}
     except json.JSONDecodeError:
@@ -201,10 +255,10 @@ def pass_at_k(n: int, c: int, k: int) -> float:
         raise ValueError("n, c >= 0 and k > 0")
     if c > n:
         raise ValueError("c cannot exceed n")
-    if n - c < k:
-        return 1.0
     if k > n:
         return float(c > 0)
+    if n - c < k:
+        return 1.0
     log_prob = 0.0
     for i in range(k):
         log_prob += math.log(n - c - i) - math.log(n - i)

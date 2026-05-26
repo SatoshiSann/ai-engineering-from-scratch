@@ -43,7 +43,7 @@ The score is a fraction in `[0, 1]`. A task with three assertions where two pass
 
 ## The denylist
 
-The denylist is import-based. Before running candidate code, the runner script rewrites imports of dangerous modules to a stub that raises `ImportError("denied")`. The list is deliberately conservative: `os.system`, `subprocess`, `socket`, `requests`, `urllib`, `ctypes`, `shutil`, `pathlib` rewrite paths, `multiprocessing`, `threading.Thread.start`.
+The denylist is import-based. Before running candidate code, the runner script rewrites imports of dangerous modules to a stub that raises `ImportError("denied")`. The list is deliberately conservative: `os.system`, `subprocess`, `socket`, `requests`, `urllib`, `urllib.request`, `urllib.error`, `urllib.parse`, `ctypes`, `shutil`, `http.client`, `asyncio.subprocess`.
 
 We do not pretend this is bulletproof. Determined adversarial code can escape any in-process sandbox in Python. The denylist is a backstop. The wall-clock timeout and the output cap are the load-bearing controls.
 
@@ -69,7 +69,7 @@ The timeout is configurable per task through `task.metadata.timeout_s`. Long-run
 
 ## Output cap
 
-The subprocess can flood stdout, exhausting host memory. The runner caps captured output at 256 KB per process. If the cap is hit, the process is killed and the task is recorded as `output_overflow`. This shows up in practice when a generation accidentally writes an infinite loop that prints.
+The subprocess can flood stdout, exhausting host memory. The runner streams stdout into a buffer and kills the child as soon as the running total crosses 256 KB. The result is recorded as `exit_code = error` with the detail string `"output overflow"`. This shows up in practice when a generation accidentally writes an infinite loop that prints.
 
 ## Pass-at-k
 
@@ -98,7 +98,7 @@ The runner returns one of five outcomes per task:
 - `assertion_fail` when the code ran but at least one assertion failed.
 - `syntax_error` when the code did not import or had a SyntaxError.
 - `timeout` when the wall clock expired.
-- `error` for any other crash, including denylist hits and output overflow.
+- `error` for any other crash, including denylist hits and output overflow (overflow surfaces with detail `"output overflow"`).
 
 The score is still a fraction. The exit code is metadata. Downstream lessons can decide whether to count a timeout as zero or as missing data.
 
