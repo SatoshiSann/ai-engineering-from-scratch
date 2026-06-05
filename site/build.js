@@ -478,8 +478,16 @@ function syncReadme(lessons) {
         `<b>${fmt(s.pageViews30d)}</b> page views in the last ${s.period} &nbsp;·&nbsp; ` +
         `as of ${s.updated}</sub></p>\n` +
         '<!-- STATS:END -->';
-      md = md.replace(/<!-- STATS:START[\s\S]*?<!-- STATS:END -->/, block);
-    } catch (_) {}
+      const statsRe = /<!-- STATS:START[\s\S]*?<!-- STATS:END -->/;
+      if (statsRe.test(md)) {
+        md = md.replace(statsRe, block);
+      } else {
+        // Self-heal: re-insert the block if the markers were removed/mangled
+        md = md.replace(/\n## How this works/, `\n${block}\n\n## How this works`);
+      }
+    } catch (err) {
+      console.warn(`⚠️  README stats sync skipped: ${err.message}`);
+    }
   }
 
   if (md !== before) {
