@@ -18,6 +18,14 @@ const GLOSSARY_PATH = path.join(REPO_ROOT, 'glossary', 'terms.md');
 const OUTPUT_PATH = path.join(__dirname, 'data.js');
 
 const GITHUB_BASE = 'https://github.com/rohitg00/ai-engineering-from-scratch/tree/main/';
+const SITE_ORIGIN = 'https://aiengineeringfromscratch.com';
+
+// GITHUB_BASE lesson url -> site path "phases/<phase>/<lesson>"
+function lessonPath(url) {
+  if (!url) return null;
+  const m = url.match(/(phases\/[^/]+\/[^/]+)\/?$/);
+  return m ? m[1] : null;
+}
 
 // ─── Parse ROADMAP.md for lesson statuses ────────────────────────────
 function parseRoadmap(content) {
@@ -454,6 +462,62 @@ const ARTIFACTS = ${JSON.stringify(artifacts, null, 2)};
 
   syncCounts(totalLessons, phases.length, artifacts.length);
   syncReadme(totalLessons);
+  writeSitemap(phases, glossaryTerms.length);
+  writeLlms(phases, glossaryTerms.length, artifacts.length);
+}
+
+// ─── sitemap.xml from the same PHASES the site renders ───────────────────
+function writeSitemap(phases, glossaryCount) {
+  const today = new Date().toISOString().slice(0, 10);
+  const urls = [
+    { loc: '/', priority: '1.0', freq: 'weekly' },
+    { loc: '/catalog.html', priority: '0.8', freq: 'weekly' },
+    { loc: '/prereqs.html', priority: '0.7', freq: 'monthly' },
+  ];
+  if (glossaryCount > 0) urls.push({ loc: '/glossary.html', priority: '0.6', freq: 'monthly' });
+  for (const phase of phases) {
+    for (const l of phase.lessons) {
+      const p = lessonPath(l.url);
+      if (p) urls.push({ loc: '/lesson.html?path=' + p, priority: '0.6', freq: 'monthly' });
+    }
+  }
+  const body = urls.map(u =>
+    `  <url>\n    <loc>${SITE_ORIGIN}${u.loc}</loc>\n` +
+    `    <lastmod>${today}</lastmod>\n    <changefreq>${u.freq}</changefreq>\n` +
+    `    <priority>${u.priority}</priority>\n  </url>`).join('\n');
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n` +
+    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`;
+  fs.writeFileSync(path.join(__dirname, 'sitemap.xml'), xml, 'utf8');
+  console.log(`   wrote sitemap.xml (${urls.length} URLs)`);
+}
+
+// ─── llms.txt: a link-rich map of the curriculum for AI agents ───────────
+function writeLlms(phases, glossaryCount, artifactCount) {
+  let total = 0;
+  phases.forEach(p => { total += p.lessons.filter(l => lessonPath(l.url)).length; });
+  let out = `# AI Engineering from Scratch\n\n`;
+  out += `> A free, open-source curriculum that builds every core AI algorithm by hand — ${total} lessons across ${phases.length} phases, from linear algebra to autonomous agents. Python, TypeScript, Rust, Julia.\n\n`;
+  out += `Canonical site: ${SITE_ORIGIN}\n`;
+  out += `Source: https://github.com/rohitg00/ai-engineering-from-scratch\n`;
+  out += `Glossary terms: ${glossaryCount} · Reusable outputs (prompts/skills/agents): ${artifactCount}\n\n`;
+  for (const phase of phases) {
+    out += `## Phase ${phase.id}: ${phase.name}\n`;
+    if (phase.desc) out += `${phase.desc}\n`;
+    out += `\n`;
+    for (const l of phase.lessons) {
+      const p = lessonPath(l.url);
+      if (!p) continue;
+      const note = l.summary ? ` — ${l.summary}` : '';
+      out += `- [${l.name}](${SITE_ORIGIN}/lesson.html?path=${p})${note}\n`;
+    }
+    out += `\n`;
+  }
+  out += `## Optional\n`;
+  out += `- [Catalog](${SITE_ORIGIN}/catalog.html) — full searchable lesson index\n`;
+  out += `- [Roadmap](${SITE_ORIGIN}/prereqs.html) — prerequisite ordering across phases\n`;
+  if (glossaryCount > 0) out += `- [Glossary](${SITE_ORIGIN}/glossary.html) — plain-language definitions of ${glossaryCount} terms\n`;
+  fs.writeFileSync(path.join(__dirname, 'llms.txt'), out, 'utf8');
+  console.log(`   wrote llms.txt`);
 }
 
 // ─── Regenerate README stats block + lessons badge from source ───────────
