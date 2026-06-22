@@ -1,3 +1,12 @@
+<!--
+  ⚠️ 日本語版 README — 英語版 README.md を Claude (AI) が翻訳したものです。
+  ・翻訳対象はルート README のナレーション部分(見出し・説明文)のみです。
+  ・「Contents(目次)」内の各フェーズのレッスン一覧テーブルは、意図的に英語のまま残しています。
+  ・英語版オリジナル(upstream)の README.md に更新が入った場合は、変更が入った見出し・段落・表だけを
+    再翻訳してこのファイルへ反映してください(レッスン一覧テーブルは引き続き英語のまま据え置き)。
+  ・原文: https://github.com/rohitg00/ai-engineering-from-scratch の README.md
+-->
+
 <p align="center">
   <img src="assets/banner.svg" alt="AI Engineering from Scratch — reference manual banner" width="100%">
 </p>
@@ -10,49 +19,47 @@
   <a href="https://aiengineeringfromscratch.com"><img src="https://img.shields.io/badge/web-aiengineeringfromscratch.com-3553ff?style=flat-square&labelColor=fafaf5" alt="Website"></a>
 </p>
 
-## From the creator of [Agent Memory - #1 Persistent memory ⭐](https://github.com/rohitg00/agentmemory) <a href="https://github.com/rohitg00/agentmemory/stargazers"><img src="https://img.shields.io/github/stars/rohitg00/agentmemory?style=flat-square&labelColor=fafaf5&color=3553ff" alt="GitHub stars"></a> which naturally works with any agents or chat assistants.
+## [Agent Memory - #1 Persistent memory ⭐](https://github.com/rohitg00/agentmemory) <a href="https://github.com/rohitg00/agentmemory/stargazers"><img src="https://img.shields.io/github/stars/rohitg00/agentmemory?style=flat-square&labelColor=fafaf5&color=3553ff" alt="GitHub stars"></a> の作者による教材 — あらゆるエージェントやチャットアシスタントと自然に連携します。
 
 ```
 ░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒
 ```
 
-> **84% of students already use AI tools. Only 18% feel prepared to use them
-> professionally.** This curriculum closes that gap.
+> **学生の 84% がすでに AI ツールを使っている。しかし、それを実務レベルで使いこなせると
+> 感じている人はわずか 18%。** この教材はそのギャップを埋めます。
 >
-> 503 lessons. 20 phases. ~320 hours. Python, TypeScript, Rust, Julia. Every lesson ships
-> a reusable artifact: a prompt, a skill, an agent, an MCP server. Free, open source, MIT.
+> 503 レッスン。20 フェーズ。約 320 時間。Python、TypeScript、Rust、Julia。すべてのレッスンが
+> 再利用可能な成果物(プロンプト、スキル、エージェント、MCP サーバー)を生み出します。無料・オープンソース・MIT ライセンス。
 >
-> You don't just learn AI. You build it. End-to-end. By hand.
+> AI を学ぶだけではありません。自分の手で、端から端まで作り上げます。
 
 <!-- STATS:START (generated from site/stats.json by build.js — do not edit by hand) -->
 <p align="center"><sub><b>150,639</b> readers &nbsp;·&nbsp; <b>241,669</b> page views in the last 30 days &nbsp;·&nbsp; as of 2026-06-07</sub></p>
 <!-- STATS:END -->
 
-## How this works
+## この教材の仕組み
 
-Most AI material teaches in scattered pieces. A paper here, a fine-tuning post there, a
-flashy agent demo somewhere else. The pieces rarely line up. You ship a chatbot but can't
-explain its loss curve. You hook a function to an agent but can't say what attention does
-inside the model that's calling it.
+ほとんどの AI 教材は、知識を断片的に教えます。ここに論文が 1 本、あそこにファインチューニングの記事が 1 本、
+さらに別の場所には派手なエージェントのデモ。断片同士がかみ合うことはめったにありません。チャットボットを
+リリースできても、その損失曲線を説明できない。エージェントに関数をつなげても、それを呼び出しているモデルの
+内部でアテンションが何をしているのかを言えない。
 
-This curriculum is the spine. 20 phases, 503 lessons, four languages: Python, TypeScript,
-Rust, Julia. Linear algebra at one end, autonomous swarms at the other. Every algorithm
-gets built from raw math first. Backprop. Tokenizer. Attention. Agent loop. By the time
-PyTorch shows up, you already know what it's doing under the hood.
+この教材はその背骨になります。20 フェーズ、503 レッスン、4 つの言語(Python、TypeScript、Rust、Julia)。
+一方の端には線形代数、もう一方の端には自律的なスウォーム。すべてのアルゴリズムを、まず生の数式から組み立てます。
+バックプロパゲーション。トークナイザー。アテンション。エージェントループ。PyTorch が登場する頃には、それが
+裏側で何をしているのかをあなたはすでに理解しています。
 
-Each lesson runs the same loop: read the problem, derive the math, write the code, run
-the test, keep the artifact. No five-minute videos, no copy-paste deploys, no hand-holding.
-Free, open source, and built to run on your own laptop.
+どのレッスンも同じループで進みます。問題を読み、数式を導出し、コードを書き、テストを走らせ、成果物を残す。
+5 分の動画も、コピペでのデプロイも、手取り足取りの説明もありません。無料・オープンソースで、自分のノート PC 上で動くように作られています。
 
 ```
 ░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒
 ```
 
-## The shape of the curriculum
+## カリキュラムの全体像
 
-Twenty phases stack on top of each other. Math is the floor. Agents and production are the roof.
-Skip ahead if you already know the lower layers, but don't skip and then wonder why something at
-the top is breaking.
+20 のフェーズが積み重なっています。数学が土台、エージェントと本番運用が屋根です。下層をすでに理解しているなら
+先に進んで構いません。ただし、飛ばしておいて上層で何かが壊れたときに理由がわからない、ということにはならないように。
 
 ```mermaid
 %%{init: {'theme':'base','themeVariables':{'primaryColor':'#fafaf5','primaryTextColor':'#1a1a1a','primaryBorderColor':'#3553ff','lineColor':'#3553ff','fontFamily':'JetBrains Mono','fontSize':'12px'}}}%%
@@ -84,21 +91,21 @@ flowchart TB
 ░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒
 ```
 
-## The shape of a lesson
+## レッスンの構造
 
-Each lesson lives in its own folder, with the same structure across the entire curriculum:
+各レッスンはそれぞれ専用のフォルダに収められ、カリキュラム全体を通じて同じ構造になっています:
 
 ```
 phases/<NN>-<phase-name>/<NN>-<lesson-name>/
-├── code/      runnable implementations (Python, TypeScript, Rust, Julia)
+├── code/      実行可能な実装(Python、TypeScript、Rust、Julia)
 ├── docs/
-│   └── en.md  lesson narrative
-└── outputs/   prompts, skills, agents, or MCP servers this lesson produces
+│   └── en.md  レッスンの解説
+└── outputs/   このレッスンが生み出すプロンプト・スキル・エージェント・MCP サーバー
 ```
 
-Every lesson follows six beats. The *Build It / Use It* split is the spine — you implement the
-algorithm from scratch first, then run the same thing through the production library. You
-understand what the framework is doing because you wrote the smaller version yourself.
+どのレッスンも 6 つの拍子(ビート)で構成されます。中でも *Build It / Use It*(自分で作る / 使ってみる)の
+切り分けが背骨です。まずアルゴリズムをスクラッチで実装し、その後まったく同じことを本番ライブラリで動かします。
+小さい版を自分の手で書いたからこそ、フレームワークが何をしているのかを理解できるのです。
 
 ```mermaid
 %%{init: {'theme':'base','themeVariables':{'primaryColor':'#fafaf5','primaryTextColor':'#1a1a1a','primaryBorderColor':'#3553ff','lineColor':'#3553ff','fontFamily':'JetBrains Mono','fontSize':'13px'}}}%%
@@ -110,15 +117,14 @@ flowchart LR
   U --> S["SHIP IT<br/><sub>prompt · skill · agent · MCP</sub>"]
 ```
 
-## Getting started
+## はじめ方
 
-Three ways in. Pick one.
+入り口は 3 つ。1 つ選んでください。
 
-**Option A — read.** Open any completed lesson on
-[aiengineeringfromscratch.com](https://aiengineeringfromscratch.com) or expand a phase under
-[Contents](#contents). No setup, no cloning.
+**Option A — 読む。** [aiengineeringfromscratch.com](https://aiengineeringfromscratch.com) で完成済みの
+レッスンを開くか、[Contents(目次)](#contents) からフェーズを展開します。セットアップもクローンも不要です。
 
-**Option B — clone and run.**
+**Option B — クローンして実行する。**
 
 ```bash
 git clone https://github.com/rohitg00/ai-engineering-from-scratch.git
@@ -126,42 +132,41 @@ cd ai-engineering-from-scratch
 python phases/01-math-foundations/01-linear-algebra-intuition/code/vectors.py
 ```
 
-**Option C — find your level *(recommended)*.** Skip ahead intelligently. Inside Claude, Cursor, Codex, OpenClaw, Hermes, or any agent with the curriculum skills installed:
+**Option C — 自分のレベルを見つける *(推奨)*。** 賢く先に進みましょう。Claude、Cursor、Codex、OpenClaw、Hermes など、カリキュラムのスキルをインストールした任意のエージェント内で:
 
 ```bash
 /find-your-level
 ```
 
-Ten questions. Maps your knowledge to a starting phase, builds a personalized path with hour
-estimates. After each phase:
+10 個の質問で、あなたの知識を開始フェーズにマッピングし、所要時間の見積もり付きのパーソナライズされた学習パスを構築します。各フェーズの後には:
 
 ```bash
-/check-understanding 3        # quiz yourself on phase 3
+/check-understanding 3        # フェーズ 3 の理解度をクイズで確認
 ls phases/03-deep-learning-core/05-loss-functions/outputs/
 # ├── prompt-loss-function-selector.md
 # └── prompt-loss-debugger.md
 ```
 
-### Prerequisites
+### 前提条件
 
-- You can write code (any language; Python helps).
-- You want to understand how AI **actually works**, not just call APIs.
+- コードが書ける(言語は問いません。Python が使えると有利)。
+- API を呼ぶだけでなく、AI が **実際にどう動いているのか** を理解したい。
 
-### Built-in agent skills (Claude, Cursor, Codex, OpenClaw, Hermes)
+### 組み込みのエージェントスキル(Claude、Cursor、Codex、OpenClaw、Hermes)
 
-| Skill | What it does |
+| スキル | 内容 |
 |---|---|
-| [`/find-your-level`](.claude/skills/find-your-level/SKILL.md) | Ten-question placement quiz. Maps your knowledge to a starting phase and produces a personalized path with hour estimates. |
-| [`/check-understanding <phase>`](.claude/skills/check-understanding/SKILL.md) | Per-phase quiz, eight questions, with feedback and specific lessons to review. |
+| [`/find-your-level`](.claude/skills/find-your-level/SKILL.md) | 10 問のプレースメントクイズ。あなたの知識を開始フェーズにマッピングし、所要時間の見積もり付きのパーソナライズされた学習パスを生成します。 |
+| [`/check-understanding <phase>`](.claude/skills/check-understanding/SKILL.md) | フェーズごとのクイズ(8 問)。フィードバックと、復習すべき具体的なレッスンを提示します。 |
 
 ```
 ░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒
 ```
 
-## Every lesson ships something
+## すべてのレッスンが「成果物」を生み出す
 
-Other curricula end with *"congratulations, you learned X."* Each lesson here ends with a
-**reusable tool** you can install or paste into your daily workflow.
+ほかのカリキュラムは *「おめでとう、X を学びました」* で終わります。この教材の各レッスンは、インストールしたり
+日々のワークフローに貼り付けたりできる **再利用可能なツール** で終わります。
 
 <table>
 <tr>
@@ -171,26 +176,25 @@ Other curricula end with *"congratulations, you learned X."* Each lesson here en
 <th align="left" width="25%"><img src="site/assets/figures/001-d-mcp-servers.svg" width="96" height="96" alt="FIG_001.D MCP servers"/><br/><sub>FIG_001 · D</sub><br/><b>MCP SERVERS</b></th>
 </tr>
 <tr>
-<td valign="top">Paste into any AI assistant for expert-level help on a narrow task.</td>
-<td valign="top">Drop into Claude, Cursor, Codex, OpenClaw, Hermes, or any agent that reads <code>SKILL.md</code>.</td>
-<td valign="top">Deploy as autonomous workers — you wrote the loop yourself in Phase 14.</td>
-<td valign="top">Plug into any MCP-compatible client. Built end-to-end in Phase 13.</td>
+<td valign="top">任意の AI アシスタントに貼り付けて、狭いタスクに対する専門家レベルの支援を得られます。</td>
+<td valign="top">Claude、Cursor、Codex、OpenClaw、Hermes など <code>SKILL.md</code> を読む任意のエージェントに組み込めます。</td>
+<td valign="top">自律的なワーカーとしてデプロイ — そのループは Phase 14 で自分の手で書きます。</td>
+<td valign="top">任意の MCP 互換クライアントに接続。Phase 13 で端から端まで構築します。</td>
 </tr>
 </table>
 
-> Install the lot with `python3 scripts/install_skills.py`. Real tools, not homework.
-> By the end of the curriculum, you have a portfolio of 503 artifacts you actually
-> understand because you built them.
+> すべてまとめてインストールするには `python3 scripts/install_skills.py`。宿題ではなく、本物のツールです。
+> カリキュラムを終える頃には、自分で作ったからこそ本当に理解している 503 個の成果物のポートフォリオが手に入ります。
 
-### FIG_002 · A worked sample
+### FIG_002 · 実例
 
-Phase 14, lesson 1: the agent loop. ~120 lines of pure Python, no dependencies.
+Phase 14 のレッスン 1: エージェントループ。依存関係なしの純粋な Python、約 120 行。
 
 <table>
 <tr>
 <td valign="top" width="50%">
 
-**`code/agent_loop.py`** &nbsp; <sub><i>build it</i></sub>
+**`code/agent_loop.py`** &nbsp; <sub><i>自分で作る</i></sub>
 
 ```python
 def run(query, tools):
@@ -209,7 +213,7 @@ def run(query, tools):
 </td>
 <td valign="top" width="50%">
 
-**`outputs/skill-agent-loop.md`** &nbsp; <sub><i>ship it</i></sub>
+**`outputs/skill-agent-loop.md`** &nbsp; <sub><i>出荷する</i></sub>
 
 ```markdown
 ---
@@ -240,9 +244,11 @@ the agent went wrong and explain why...
 
 <a id="contents"></a>
 
-## Contents
+## Contents(目次)
 
-Twenty phases. Click any phase to expand its lesson list.
+20 のフェーズ。各フェーズをクリックするとレッスン一覧が展開されます。
+<!-- 注: 以下の各フェーズのレッスン一覧テーブルは意図的に英語のまま残しています。 -->
+<!-- Note: the lesson tables below are intentionally kept in English. -->
 
 <a id="phase-0"></a>
 ### Phase 0: Setup & Tooling `12 lessons`
@@ -936,165 +942,156 @@ Each Phase 14 workbench lesson (31-42) ships a `mission.md` briefing the agent b
 ░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒
 ```
 
-## The toolkit
+## ツールキット
 
-Every lesson produces a reusable artifact. By the end you have:
+すべてのレッスンが再利用可能な成果物を生み出します。終える頃には、次のものが手に入ります:
 
 ```
 outputs/
-├── prompts/      prompt templates for every AI task
-└── skills/       SKILL.md files for AI coding agents
+├── prompts/      あらゆる AI タスク向けのプロンプトテンプレート
+└── skills/       AI コーディングエージェント向けの SKILL.md ファイル
 ```
 
-Install them with `npx skills add`. Plug them into Claude, Cursor, Codex,
-OpenClaw, Hermes, or any agent that reads a SKILL.md / AGENTS.md directory.
-Real tools, not homework.
+`npx skills add` でインストールできます。Claude、Cursor、Codex、OpenClaw、Hermes など、
+SKILL.md / AGENTS.md ディレクトリを読む任意のエージェントに組み込めます。宿題ではなく、本物のツールです。
 
-### Install every course skill into your agent
+### コース内の全スキルをエージェントにインストールする
 
-The repo ships 388 skills and 99 prompts under `phases/**/outputs/`.
+このリポジトリは `phases/**/outputs/` 配下に 388 個のスキルと 99 個のプロンプトを同梱しています。
 
-**Recommended: install via [skills.sh](https://skills.sh).** No clone, no Python,
-detects your agent's skills directory automatically:
+**推奨: [skills.sh](https://skills.sh) 経由でインストール。** クローン不要・Python 不要で、
+エージェントのスキルディレクトリを自動検出します:
 
 ```bash
-npx skills add rohitg00/ai-engineering-from-scratch                       # every skill
-npx skills add rohitg00/ai-engineering-from-scratch --skill agent-loop    # one skill
-npx skills add rohitg00/ai-engineering-from-scratch --phase 14            # one phase
+npx skills add rohitg00/ai-engineering-from-scratch                       # すべてのスキル
+npx skills add rohitg00/ai-engineering-from-scratch --skill agent-loop    # スキル 1 つ
+npx skills add rohitg00/ai-engineering-from-scratch --phase 14            # フェーズ 1 つ
 ```
 
-`skills` writes to whichever directory your agent picks up: `.claude/skills/`,
-`.cursor/skills/`, `.codex/skills/`, OpenClaw's skills folder, Hermes's bundle
-path, or any SKILL.md-aware tool. One command, every agent.
+`skills` は、エージェントが認識するディレクトリ(`.claude/skills/`、`.cursor/skills/`、
+`.codex/skills/`、OpenClaw のスキルフォルダ、Hermes のバンドルパス、その他 SKILL.md 対応ツール)に
+書き込みます。コマンド 1 つで、すべてのエージェントに対応します。
 
-**Advanced: offline / custom layout via `scripts/install_skills.py`.** Requires
-cloning the repo. Useful when you need tag filters, dry-runs, or a non-default
-layout:
+**上級者向け: `scripts/install_skills.py` でオフライン / カスタムレイアウト。** リポジトリのクローンが
+必要です。タグフィルタ、ドライラン、デフォルト以外のレイアウトが必要なときに便利です:
 
 ```bash
-python3 scripts/install_skills.py <target>                                 # every skill, default --layout skills (nested)
-python3 scripts/install_skills.py <target> --layout skills                 # same as above, explicit
-python3 scripts/install_skills.py <target> --type all                      # skills + prompts + agents
-python3 scripts/install_skills.py <target> --phase 14                      # one phase only
-python3 scripts/install_skills.py <target> --tag rag                       # filter by tag
-python3 scripts/install_skills.py <target> --layout flat                   # flat files
-python3 scripts/install_skills.py <target> --dry-run                       # preview without writing
-python3 scripts/install_skills.py <target> --force                         # overwrite existing files
+python3 scripts/install_skills.py <target>                                 # 全スキル。デフォルトは --layout skills(ネスト)
+python3 scripts/install_skills.py <target> --layout skills                 # 上と同じ(明示指定)
+python3 scripts/install_skills.py <target> --type all                      # スキル + プロンプト + エージェント
+python3 scripts/install_skills.py <target> --phase 14                      # 特定フェーズのみ
+python3 scripts/install_skills.py <target> --tag rag                       # タグで絞り込み
+python3 scripts/install_skills.py <target> --layout flat                   # フラットなファイル配置
+python3 scripts/install_skills.py <target> --dry-run                       # 書き込まずにプレビュー
+python3 scripts/install_skills.py <target> --force                         # 既存ファイルを上書き
 ```
 
-`<target>` is the skills directory for your agent (examples:
-`~/.claude/skills/`, `~/.cursor/skills/`, `~/.config/openclaw/skills/`,
-`.skills/`, or any path your agent reads).
+`<target>` はエージェントのスキルディレクトリです(例:
+`~/.claude/skills/`、`~/.cursor/skills/`、`~/.config/openclaw/skills/`、
+`.skills/`、またはエージェントが読む任意のパス)。
 
-By default the script refuses to overwrite an existing destination and exits
-with code 1 after listing every colliding path. Use `--dry-run` to preview
-collisions or `--force` to overwrite. Every non-dry-run run writes a
-`manifest.json` in the target with the full inventory grouped by type and
-phase. Pick the layout your agent reads:
+デフォルトでは、スクリプトは既存の出力先を上書きせず、衝突するすべてのパスを列挙したうえで終了コード 1 で
+終了します。`--dry-run` で衝突をプレビュー、`--force` で上書きできます。ドライランでない実行は毎回、
+種別とフェーズごとに分類した全インベントリを `manifest.json` として出力先に書き込みます。エージェントが
+読むレイアウトを選んでください:
 
-| `--layout`  | Path written |
+| `--layout`  | 書き込まれるパス |
 |---|---|
-| `skills`    | `<target>/<name>/SKILL.md` (nested convention, supported by Claude / Cursor / Codex / OpenClaw / Hermes) |
+| `skills`    | `<target>/<name>/SKILL.md`(ネスト方式。Claude / Cursor / Codex / OpenClaw / Hermes が対応) |
 | `by-phase`  | `<target>/phase-NN/<name>.md` |
 | `flat`      | `<target>/<name>.md` |
 
-### Drop the agent workbench into your own repo
+### エージェントワークベンチを自分のリポジトリに導入する
 
-The Phase 14 capstone ships a reusable Agent Workbench pack (AGENTS.md, schemas,
-init / verify / handoff scripts). Scaffold it into any repo with:
+Phase 14 のキャップストーンは、再利用可能な Agent Workbench パック(AGENTS.md、スキーマ、
+init / verify / handoff スクリプト)を同梱しています。任意のリポジトリへ次のコマンドで足場を作れます:
 
 ```bash
-python3 scripts/scaffold_workbench.py path/to/your-repo            # full pack + seeds
-python3 scripts/scaffold_workbench.py path/to/your-repo --minimal  # skip docs/
-python3 scripts/scaffold_workbench.py path/to/your-repo --dry-run  # preview only
-python3 scripts/scaffold_workbench.py path/to/your-repo --force    # overwrite
+python3 scripts/scaffold_workbench.py path/to/your-repo            # フルパック + シード
+python3 scripts/scaffold_workbench.py path/to/your-repo --minimal  # docs/ をスキップ
+python3 scripts/scaffold_workbench.py path/to/your-repo --dry-run  # プレビューのみ
+python3 scripts/scaffold_workbench.py path/to/your-repo --force    # 上書き
 ```
 
-You get the seven workbench surfaces wired up, a starter `task_board.json`,
-and a fresh `agent_state.json` at `schema_version: 1`. From there: edit the
-task, edit `AGENTS.md`, run `scripts/init_agent.py`, hand the contract to
-your agent. The pack source lives at
-`phases/14-agent-engineering/42-agent-workbench-capstone/outputs/agent-workbench-pack/`.
+7 つのワークベンチ面が配線され、初期状態の `task_board.json` と、`schema_version: 1` の新しい
+`agent_state.json` が用意されます。あとは、タスクを編集し、`AGENTS.md` を編集し、`scripts/init_agent.py`
+を実行し、その契約をエージェントに渡すだけです。パックのソースは
+`phases/14-agent-engineering/42-agent-workbench-capstone/outputs/agent-workbench-pack/` にあります。
 
-### Browse the entire course as JSON
+### コース全体を JSON として閲覧する
 
-`scripts/build_catalog.py` walks every phase, every lesson, every artifact on
-disk and writes `catalog.json` at the repo root. One file, every course truth.
+`scripts/build_catalog.py` は、ディスク上のすべてのフェーズ・レッスン・成果物を走査し、リポジトリ直下に
+`catalog.json` を書き出します。1 つのファイルに、コースのすべての事実が収まります。
 
 ```bash
-python3 scripts/build_catalog.py               # writes <repo>/catalog.json
-python3 scripts/build_catalog.py --stdout      # to stdout, do not touch repo
+python3 scripts/build_catalog.py               # <repo>/catalog.json を書き出す
+python3 scripts/build_catalog.py --stdout      # 標準出力へ。リポジトリは変更しない
 python3 scripts/build_catalog.py --out path/to/file.json
 ```
 
-The catalog is filesystem-derived, not README-derived, so counts always match
-what is actually on disk. Use it for site builds, downstream tooling, or to
-verify the README counts have not drifted. Schema is documented at the top of
-the script.
+このカタログは README 由来ではなくファイルシステム由来なので、件数は常にディスク上の実体と一致します。
+サイトのビルド、下流ツール、あるいは README の件数がずれていないかの検証に使えます。スキーマはスクリプトの
+冒頭に記載されています。
 
-A GitHub Action (`.github/workflows/curriculum.yml`) rebuilds `catalog.json`
-on every PR and fails the build if the committed file is stale. After editing
-any lesson, run `python3 scripts/build_catalog.py` and commit the result, or
-CI will reject the PR. The same workflow runs `audit_lessons.py` in
-warn-only mode (so existing drift does not block contributors).
+GitHub Action(`.github/workflows/curriculum.yml`)は PR ごとに `catalog.json` を再生成し、コミット
+されたファイルが古い場合はビルドを失敗させます。レッスンを編集したら `python3 scripts/build_catalog.py`
+を実行して結果をコミットしてください。さもないと CI が PR を拒否します。同じワークフローは `audit_lessons.py`
+を warn-only モードでも実行します(既存のずれが貢献者をブロックしないように)。
 
-### Smoke-check every lesson's Python code
+### 各レッスンの Python コードをスモークチェックする
 
-`scripts/lesson_run.py` byte-compiles every `.py` file under each lesson's
-`code/` directory. Default mode is syntax-check only — no execution, no API
-keys, no heavy ML deps required. Catches the regressions contributors
-introduce most often (bad indentation, broken f-strings, stray edits).
+`scripts/lesson_run.py` は、各レッスンの `code/` ディレクトリ配下のすべての `.py` ファイルをバイトコンパイル
+します。デフォルトは構文チェックのみ — 実行も API キーも重い ML 依存も不要です。貢献者が最も入れがちな
+リグレッション(不正なインデント、壊れた f 文字列、紛れ込んだ編集)を検出します。
 
 ```bash
-python3 scripts/lesson_run.py                  # syntax-check the whole curriculum
-python3 scripts/lesson_run.py --phase 14       # one phase only
-python3 scripts/lesson_run.py --json           # JSON report on stdout
-python3 scripts/lesson_run.py --strict         # exit 1 if any lesson fails
-python3 scripts/lesson_run.py --execute        # actually run, 10s timeout per lesson
+python3 scripts/lesson_run.py                  # カリキュラム全体を構文チェック
+python3 scripts/lesson_run.py --phase 14       # 特定フェーズのみ
+python3 scripts/lesson_run.py --json           # JSON レポートを標準出力へ
+python3 scripts/lesson_run.py --strict         # 失敗があれば終了コード 1
+python3 scripts/lesson_run.py --execute        # 実際に実行。レッスンごとに 10 秒のタイムアウト
 ```
 
-`--execute` runs each lesson's `code/main.py` (or the first `.py` file) with a
-10-second timeout. Lessons whose entry file starts with a `# requires: pkg1,
-pkg2` comment listing non-stdlib deps are skipped with reason `needs <deps>`.
-The script is opt-in and not wired into CI.
+`--execute` は各レッスンの `code/main.py`(または最初の `.py` ファイル)を 10 秒のタイムアウト付きで実行
+します。エントリファイルの先頭に、非標準ライブラリの依存を列挙した `# requires: pkg1, pkg2` コメントがある
+レッスンは、理由 `needs <deps>` でスキップされます。このスクリプトはオプトインで、CI には組み込まれていません。
 
-Stdlib only, Python 3.10+. Set `LINK_CHECK_SKIP=domain1,domain2` to override
-the default skip-list (`twitter.com`, `x.com`, `linkedin.com`,
-`instagram.com`, `medium.com` — domains that aggressively block automated
-HEAD/GET).
+標準ライブラリのみ、Python 3.10 以上。`LINK_CHECK_SKIP=domain1,domain2` を設定すると、デフォルトの
+スキップリスト(`twitter.com`、`x.com`、`linkedin.com`、`instagram.com`、`medium.com` — 自動の
+HEAD/GET を強くブロックするドメイン)を上書きできます。
 
-## Where to start
+## どこから始めるか
 
-| Background | Start at | Estimated time |
+| 背景 | 開始フェーズ | 推定時間 |
 |---|---|---|
-| New to programming and AI | Phase 0 — Setup | ~306 hours |
-| Know Python, new to ML | Phase 1 — Math Foundations | ~270 hours |
-| Know ML, new to deep learning | Phase 3 — Deep Learning Core | ~200 hours |
-| Know deep learning, want LLMs and agents | Phase 10 — LLMs from Scratch | ~100 hours |
-| Senior engineer, only want agent engineering | Phase 14 — Agent Engineering | ~60 hours |
+| プログラミングも AI も初めて | Phase 0 — Setup | 約 306 時間 |
+| Python は分かるが ML は初めて | Phase 1 — Math Foundations | 約 270 時間 |
+| ML は分かるがディープラーニングは初めて | Phase 3 — Deep Learning Core | 約 200 時間 |
+| ディープラーニングは分かる。LLM とエージェントを学びたい | Phase 10 — LLMs from Scratch | 約 100 時間 |
+| シニアエンジニア。エージェントエンジニアリングだけ学びたい | Phase 14 — Agent Engineering | 約 60 時間 |
 
 ```
 ░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒
 ```
 
-## Why this matters now
+## いま、なぜこれが重要なのか
 
 <table>
 <tr>
-<th align="left" width="50%"><sub>FIG_003 · A</sub><br/><b>THE INDUSTRY SIGNAL</b></th>
-<th align="left" width="50%"><sub>FIG_003 · B</sub><br/><b>FOUNDATIONAL PAPERS COVERED</b></th>
+<th align="left" width="50%"><sub>FIG_003 · A</sub><br/><b>業界からのシグナル</b></th>
+<th align="left" width="50%"><sub>FIG_003 · B</sub><br/><b>カバーする基礎論文</b></th>
 </tr>
 <tr>
 <td valign="top">
 
-> *"The hottest new programming language is English."*<br/>
+> *「いま最もホットな新しいプログラミング言語は英語だ。」*<br/>
 > — **Andrej Karpathy** ([tweet](https://x.com/karpathy/status/1617979122625712128))
 
-> *"Software engineering is being remade in front of our eyes."*<br/>
-> — **Boris Cherny**, creator of Claude Code
+> *「ソフトウェアエンジニアリングは、私たちの目の前で作り変えられつつある。」*<br/>
+> — **Boris Cherny**(Claude Code の作者)
 
-> *"Models will keep getting better. The skill that compounds is **knowing what to build**."*<br/>
-> — Industry consensus, 2026
+> *「モデルは今後も良くなり続ける。複利で効いてくるスキルは **何を作るべきかを知っていること** だ。」*<br/>
+> — 業界の総意、2026
 
 </td>
 <td valign="top">
@@ -1116,59 +1113,58 @@ HEAD/GET).
 ░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒
 ```
 
-## Contributing
+## コントリビュート
 
-| Goal | Read |
+| 目的 | 読むもの |
 |---|---|
-| Contribute a lesson or fix | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| Fork for your team or school | [FORKING.md](FORKING.md) |
-| Lesson template | [LESSON_TEMPLATE.md](LESSON_TEMPLATE.md) |
-| Track progress | [ROADMAP.md](ROADMAP.md) |
-| Glossary | [glossary/terms.md](glossary/terms.md) |
-| Code of conduct | [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) |
+| レッスンの追加や修正を貢献する | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| チームや学校向けにフォークする | [FORKING.md](FORKING.md) |
+| レッスンのテンプレート | [LESSON_TEMPLATE.md](LESSON_TEMPLATE.md) |
+| 進捗を追う | [ROADMAP.md](ROADMAP.md) |
+| 用語集 | [glossary/terms.md](glossary/terms.md) |
+| 行動規範 | [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) |
 
-Before submitting a lesson, run the invariant check:
+レッスンを提出する前に、不変条件チェックを実行してください:
 
 ```bash
-python3 scripts/audit_lessons.py           # full curriculum
-python3 scripts/audit_lessons.py --phase 14  # single phase
-python3 scripts/audit_lessons.py --json    # CI-friendly output
+python3 scripts/audit_lessons.py           # カリキュラム全体
+python3 scripts/audit_lessons.py --phase 14  # 単一フェーズ
+python3 scripts/audit_lessons.py --json    # CI 向けの出力
 ```
 
-Exit code is non-zero when any rule fails. Rules (L001–L010) validate directory
-shape, `docs/en.md` presence + H1, `code/` non-emptiness, `quiz.json` schema
-(rejects the legacy `q/choices/answer` keys that caused issue #102), and
-relative links inside lesson docs.
+いずれかのルールに失敗すると終了コードが非ゼロになります。ルール(L001〜L010)は、ディレクトリ構造、
+`docs/en.md` の存在と H1、`code/` が空でないこと、`quiz.json` のスキーマ(issue #102 の原因となった
+レガシーな `q/choices/answer` キーを拒否)、レッスンドキュメント内の相対リンクを検証します。
 
 ```
 ░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒
 ```
 
-## Sponsor the work
+## この活動を支援する
 
-Free, MIT-licensed, 503 lessons. The curriculum is maintained on sponsorship alone. Cash only.
+無料・MIT ライセンス・503 レッスン。このカリキュラムはスポンサーシップだけで維持されています。現金のみ。
 
-**Reach (verified 2026-05-14):** 55,593 monthly visitors · 90,709 page views · 7.5K stars ·
-Twitter/X is the #1 acquisition channel.
+**リーチ(2026-05-14 時点で確認):** 月間 55,593 訪問者 · 90,709 ページビュー · 7.5K スター ·
+Twitter/X が獲得チャネルの第 1 位。
 
-**Current sponsors:** [CodeRabbit](https://coderabbit.link/rohit-ghumare) · [iii](https://iii.dev?utm_source=ai-engineering-from-scratch&utm_medium=readme&utm_campaign=sponsor)
+**現在のスポンサー:** [CodeRabbit](https://coderabbit.link/rohit-ghumare) · [iii](https://iii.dev?utm_source=ai-engineering-from-scratch&utm_medium=readme&utm_campaign=sponsor)
 
-| Tier | $/mo | What you get |
+| ティア | $/月 | 得られるもの |
 |------|------|---|
-| Backer | $25 | Name in BACKERS.md |
-| Bronze | $250 | Text-only row in README sponsor block + launch-day tweet |
-| Silver | $750 | Small logo in README + listed as one supported provider in API lessons |
-| Gold | $2,000 | Medium logo in README + sponsor page + quarterly X / LinkedIn co-feature |
-| Platinum | $5,000 | Hero logo above the fold + one dedicated integration lesson, max 1 partner |
+| Backer | $25 | BACKERS.md に名前を掲載 |
+| Bronze | $250 | README のスポンサー欄にテキストのみの行 + ローンチ日のツイート |
+| Silver | $750 | README に小さめのロゴ + API レッスンで対応プロバイダの 1 つとして掲載 |
+| Gold | $2,000 | README に中サイズのロゴ + スポンサーページ + 四半期ごとの X / LinkedIn 共同フィーチャー |
+| Platinum | $5,000 | ファーストビューにヒーローロゴ + 専用の連携レッスン 1 本(パートナーは最大 1 社) |
 
-Full rate card, hard rules, pricing anchors, and reach data: [SPONSORS.md](SPONSORS.md).
-Sign up via [GitHub Sponsors](https://github.com/sponsors/rohitg00).
+レートカード全体、厳格なルール、価格の基準、リーチデータ: [SPONSORS.md](SPONSORS.md)。
+[GitHub Sponsors](https://github.com/sponsors/rohitg00) からお申し込みください。
 
 ```
 ░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒░░░▒▒▒
 ```
 
-## Star history
+## スター履歴
 
 <a href="https://star-history.com/#rohitg00/ai-engineering-from-scratch&Date">
   <picture>
@@ -1177,14 +1173,13 @@ Sign up via [GitHub Sponsors](https://github.com/sponsors/rohitg00).
   </picture>
 </a>
 
-If this manual helped you, star the repo. It keeps the project alive.
+このマニュアルが役に立ったら、リポジトリにスターを付けてください。それがプロジェクトを生かし続けます。
 
-## License
+## ライセンス
 
-MIT. Use it however you want — fork it, teach it, sell it, ship it. Attribution appreciated,
-not required.
+MIT。フォークする、教える、売る、製品にする — どう使っても構いません。クレジット表記は歓迎しますが、必須ではありません。
 
-Maintained by [Rohit Ghumare](https://github.com/rohitg00) and the community.
+メンテナー: [Rohit Ghumare](https://github.com/rohitg00) とコミュニティ。
 
 <sub>
   <a href="https://x.com/ghumare64">@ghumare64</a> &nbsp;·&nbsp;
