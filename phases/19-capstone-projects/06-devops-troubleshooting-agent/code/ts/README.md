@@ -1,49 +1,46 @@
-# Capstone 06 - DevOps Troubleshooting Agent (TypeScript)
+# Capstone 06 - DevOps トラブルシューティングエージェント（TypeScript）
 
-Slack-integration skeleton for the on-call agent in `../main.py`. Exposes a
-slash-command endpoint and an interactivity (button-click) endpoint, both gated
-by Slack's HMAC-SHA256 request signature plus a 5-minute replay window.
-Destructive remediations only run after the Slack card is approved.
+`../main.py` のオンコールエージェント向け Slack 統合スケルトン。
+スラッシュコマンドエンドポイントとインタラクティビティ（ボタンクリック）エンドポイントを公開し、
+どちらも Slack の HMAC-SHA256 リクエスト署名および 5 分間のリプレイウィンドウで保護されています。
+破壊的な修復操作は、Slack カードが承認された後にのみ実行されます。
 
-## Layout
+## レイアウト
 
 ```text
 ts/
   package.json
   tsconfig.json
   src/
-    index.ts          # entrypoint, demo + HTTP server
-    server.ts         # hono app, /slack/command + /slack/interactivity
-    slack_verify.ts   # HMAC v0 verification + timing-safe compare
-    agent.ts          # mocked hypothesis ranker
-    blocks.ts         # Block Kit response builder
-    types.ts          # Hypothesis, AgentReport, SlackResponse, OutboundCall
+    index.ts          # エントリポイント、デモ + HTTP サーバー
+    server.ts         # hono アプリ、/slack/command + /slack/interactivity
+    slack_verify.ts   # HMAC v0 検証 + タイミングセーフ比較
+    agent.ts          # モック仮説ランカー
+    blocks.ts         # Block Kit レスポンスビルダー
+    types.ts          # Hypothesis、AgentReport、SlackResponse、OutboundCall
   tests/
     slack_verify.test.ts
     agent.test.ts
     server.test.ts
 ```
 
-## Run
+## 実行方法
 
 ```bash
 npm install
 npm run typecheck
 npm test
-npm start          # one self-check pass, exits 0
-npm run serve      # interactive HTTP server on 127.0.0.1:<port>
+npm start          # セルフチェックを1回実行して終了コード 0 で終了
+npm run serve      # 127.0.0.1:<port> でインタラクティブ HTTP サーバーを起動
 ```
 
-Set `SLACK_SIGNING_SECRET=...` to override the placeholder secret. The
-interactive server prints the chosen port (random when `PORT` is unset).
+プレースホルダーのシークレットを上書きするには `SLACK_SIGNING_SECRET=...` を設定してください。
+インタラクティブサーバーは選択されたポートを表示します（`PORT` が未設定の場合はランダムなポート番号になります）。
 
-## Tests
+## テスト
 
-`node --test` runner via tsx. Coverage:
+tsx 経由の `node --test` ランナー。カバレッジ内容:
 
-- Slack signature verification: valid signature passes, tampered signature is
-  rejected, stale timestamp (>5 min skew) is rejected, non-numeric timestamp is
-  rejected, length-mismatch path is exercised before constant-time compare.
-- Mock agent: OOM keyword path, CrashLoop keyword path, fallback path.
-- Server: `/health`, `/slack/command` happy/tampered/stale paths,
-  `/slack/interactivity` approve action.
+- Slack 署名検証: 有効な署名は通過、改ざんされた署名は拒否、古いタイムスタンプ（5 分以上のずれ）は拒否、数値でないタイムスタンプは拒否、定数時間比較の前に長さ不一致パスを検証。
+- モックエージェント: OOM キーワードパス、CrashLoop キーワードパス、フォールバックパス。
+- サーバー: `/health`、`/slack/command` の正常/改ざん/古いパス、`/slack/interactivity` の承認アクション。

@@ -1,5 +1,5 @@
-# Phase 3: Deep Learning Core
+# フェーズ3: ディープラーニングの核心
 
-> Neural networks from first principles. No frameworks until you build one yourself.
+> ニューラルネットワークを基礎から学ぶ。自分で構築するまでフレームワークは使わない。
 
-See [ROADMAP.md](../../ROADMAP.md) for the full lesson plan.
+全レッスン計画は [ROADMAP.md](../../ROADMAP.md) を参照。

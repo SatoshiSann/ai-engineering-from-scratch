@@ -1,46 +1,46 @@
-# Forking Guide
+# フォークガイド
 
-This course is MIT licensed. You're free to fork it and adapt it for your needs. Here's how to do it well.
+このコースは MIT ライセンスです。自由にフォークして、必要に応じてカスタマイズできます。うまく活用するための方法を紹介します。
 
-## For Teams
+## チーム向け
 
-Want to use this as internal training? Fork and customize:
+社内トレーニングとして活用したい場合は、フォークしてカスタマイズしてください：
 
-1. Fork the repository
-2. Remove phases your team doesn't need
-3. Add company-specific examples and data
-4. Add internal tool integrations to the outputs
-5. Keep the attribution — it helps the community grow
+1. リポジトリをフォークする
+2. チームに不要なフェーズを削除する
+3. 会社固有の例やデータを追加する
+4. アウトプットに社内ツールの統合を追加する
+5. クレジット表記を残す — コミュニティの成長に役立ちます
 
-## For Schools & Universities
+## 学校・大学向け
 
-Want to use this as course material?
+授業教材として活用したい場合：
 
-1. Fork the repository
-2. Map phases to your semester schedule
-3. Add grading rubrics to exercises
-4. Add your own assignments and exams
-5. Consider contributing improvements back upstream
+1. リポジトリをフォークする
+2. フェーズを学期スケジュールに対応させる
+3. 演習に採点ルーブリックを追加する
+4. 独自の課題や試験を追加する
+5. 改善点をアップストリームに貢献することを検討する
 
-## For Bootcamps
+## ブートキャンプ向け
 
-Running a paid bootcamp? That's fine under MIT.
+有料ブートキャンプを運営している場合も、MIT ライセンスの下で問題ありません。
 
-1. Fork and structure for your cohort timeline
-2. Add video content, live sessions, mentorship
-3. The code and docs are yours to build on
-4. Consider sponsoring the project or contributing back
+1. フォークしてコーホートのタイムラインに合わせて構成する
+2. 動画コンテンツ、ライブセッション、メンターシップを追加する
+3. コードとドキュメントは自由に活用できます
+4. プロジェクトのスポンサーになるか、貢献することを検討する
 
-## For Other Languages
+## 他のプログラミング言語向け
 
-Want to teach this curriculum in a different programming language?
+このカリキュラムを別のプログラミング言語で教えたい場合：
 
-1. Fork the repository
-2. Re-implement code examples in your language
-3. Keep the lesson structure and documentation
-4. Submit a PR to link your fork from the main README
+1. リポジトリをフォークする
+2. コード例を使用する言語で再実装する
+3. レッスン構造とドキュメントを維持する
+4. メインの README からフォークをリンクする PR を提出する
 
-## Keeping Your Fork Updated
+## フォークを最新の状態に保つ
 
 ```bash
 git remote add upstream https://github.com/rohitg00/ai-engineering-from-scratch.git
@@ -49,9 +49,9 @@ git fetch upstream
 git merge upstream/main
 ```
 
-## Attribution
+## クレジット表記
 
-Not required by MIT, but appreciated:
+MIT では必須ではありませんが、歓迎されます：
 
 ```
 Based on AI Engineering from Scratch

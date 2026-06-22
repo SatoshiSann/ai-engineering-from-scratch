@@ -1,40 +1,39 @@
-# LLM observability dashboard (TypeScript skeleton)
+# LLM 可観測性ダッシュボード（TypeScript スケルトン）
 
-Multi-file TypeScript skeleton for the LLM observability dashboard capstone.
-A Hono server accepts OpenTelemetry GenAI spans, holds them in a 10k ring
-buffer, and renders p50/p95/p99 latency and per-model cost.
+LLM 可観測性ダッシュボード・キャップストーン用のマルチファイル TypeScript スケルトン。
+Hono サーバーが OpenTelemetry GenAI スパンを受信し、10k リングバッファに保持した上で、p50/p95/p99 レイテンシおよびモデルごとのコストをレンダリングします。
 
-## Layout
+## ファイル構成
 
-- `src/index.ts` — entry point, seeds synthetic spans and optionally serves HTTP.
-- `src/server.ts` — Hono routes for `/trace`, `/`, `/dashboard`, `/dashboard.json`, `/healthz`.
-- `src/spans.ts` — `RingBuffer` and `ObservabilityStore` (10k spans by default).
-- `src/rollup.ts` — `percentile` and `rollUpByModel`.
-- `src/pricing.ts` — 2026 per-model prices and cost helpers.
-- `src/types.ts` — shared types.
-- `tests/*.test.ts` — `node --test` style tests via `tsx`.
+- `src/index.ts` — エントリポイント。合成スパンをシードし、オプションで HTTP を提供します。
+- `src/server.ts` — `/trace`、`/`、`/dashboard`、`/dashboard.json`、`/healthz` の Hono ルート。
+- `src/spans.ts` — `RingBuffer` と `ObservabilityStore`（デフォルト 10k スパン）。
+- `src/rollup.ts` — `percentile` と `rollUpByModel`。
+- `src/pricing.ts` — 2026 年のモデルごとの価格とコスト計算ヘルパー。
+- `src/types.ts` — 共通型定義。
+- `tests/*.test.ts` — `tsx` 経由の `node --test` スタイルテスト。
 
-## Install
+## インストール
 
 ```bash
 npm install
 ```
 
-## Run
+## 実行
 
 ```bash
-npm start         # seeds 1200 synthetic spans and prints the rollup
-npm run serve     # also serves the HTTP ingest + dashboard on PORT (default 8011)
+npm start         # 1200 件の合成スパンをシードしてロールアップを表示します
+npm run serve     # HTTP インジェスト＋ダッシュボードを PORT（デフォルト 8011）で起動します
 ```
 
-## Verify
+## 検証
 
 ```bash
 npm run typecheck
 npm test
 ```
 
-## Spec references
+## 仕様リファレンス
 
-- Source lesson: `phases/19-capstone-projects/11-llm-observability-dashboard/docs/en.md`
-- [OpenTelemetry GenAI semantic conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/)
+- ソースレッスン: `phases/19-capstone-projects/11-llm-observability-dashboard/docs/en.md`
+- [OpenTelemetry GenAI セマンティック規約](https://opentelemetry.io/docs/specs/semconv/gen-ai/)

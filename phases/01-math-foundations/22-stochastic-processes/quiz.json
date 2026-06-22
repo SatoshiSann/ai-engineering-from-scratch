@@ -2,63 +2,63 @@
   "questions": [
     {
       "stage": "pre",
-      "question": "What is the Markov property?",
+      "question": "マルコフ性（Markov property）とは何ですか？",
       "options": [
-        "The process always returns to its starting state",
-        "The next state depends only on the current state, not on the history of previous states",
-        "All states are equally likely at every step",
-        "The process must have a finite number of states"
+        "プロセスが必ず開始状態に戻るという性質",
+        "次の状態が現在の状態にのみ依存し、過去の状態の履歴には依存しないという性質",
+        "すべてのステップで、すべての状態が等確率で発生するという性質",
+        "プロセスの状態数が有限でなければならないという性質"
       ],
       "correct": 1,
-      "explanation": "The Markov property (memorylessness) means P(X_{t+1} = j | X_t = i, X_{t-1}, ...) = P(X_{t+1} = j | X_t = i). The future depends only on where you are, not how you got there. This enables compact representation via a transition matrix."
+      "explanation": "マルコフ性（無記憶性）は P(X_{t+1} = j | X_t = i, X_{t-1}, ...) = P(X_{t+1} = j | X_t = i) と定義されます。未来はあなたが現在どこにいるかだけに依存し、どうやってそこに来たかには依存しません。これにより、遷移行列による簡潔な記述が可能になります。"
     },
     {
       "stage": "pre",
-      "question": "In a 1D random walk, how does the expected distance from the origin scale with the number of steps n?",
+      "question": "1次元のランダムウォークにおいて、原点からの期待される距離はステップ数 n に対してどのように変化しますか？",
       "options": [
-        "Linearly: proportional to n",
-        "As the square root: proportional to sqrt(n)",
-        "Logarithmically: proportional to log(n)",
-        "It stays constant regardless of n"
+        "線形：n に比例する",
+        "平方根：sqrt(n) に比例する",
+        "対数的：log(n) に比例する",
+        "n にかかわらず一定である"
       ],
       "correct": 1,
-      "explanation": "Each step is +/-1 with equal probability. The variance after n steps is n, so the standard deviation (typical distance from origin) is sqrt(n). After 10,000 steps, the expected distance is about 100, not 10,000."
+      "explanation": "各ステップは等確率で +/-1 です。n ステップ後の分散は n となるため、標準偏差（原点からの代表的な距離）は sqrt(n) となります。10,000 ステップ後の期待距離は約 100 であり、10,000 ではありません。"
     },
     {
       "stage": "post",
-      "question": "What is the stationary distribution of a Markov chain?",
+      "question": "マルコフ連鎖の定常分布とは何ですか？",
       "options": [
-        "The initial distribution of states",
-        "The distribution that does not change under the transition matrix: pi * P = pi",
-        "The distribution of states after exactly one transition",
-        "The uniform distribution over all states"
+        "状態の初期分布",
+        "遷移行列を適用しても変化しない分布：pi * P = pi",
+        "ちょうど 1 回の遷移の後の状態分布",
+        "すべての状態にわたる一様分布"
       ],
       "correct": 1,
-      "explanation": "The stationary distribution pi satisfies pi * P = pi — applying the transition matrix leaves it unchanged. It represents the long-run fraction of time spent in each state. For an irreducible, aperiodic chain, any initial distribution converges to pi."
+      "explanation": "定常分布 pi は pi * P = pi を満たします。つまり遷移行列を適用しても分布が変化しません。これは各状態で過ごす時間の長期的な割合を表します。既約かつ非周期的な連鎖では、どのような初期分布から始めても pi に収束します。"
     },
     {
       "stage": "post",
-      "question": "In Langevin dynamics x_{t+1} = x_t - dt * grad(U) + sqrt(2*T*dt) * z, what happens as temperature T approaches 0?",
+      "question": "ランジュバン動力学 x_{t+1} = x_t - dt * grad(U) + sqrt(2 * T * dt) * z において、温度 T が 0 に近づくと何が起こりますか？",
       "options": [
-        "The process becomes a pure random walk",
-        "The process becomes pure gradient descent (deterministic optimization)",
-        "The process diverges to infinity",
-        "The process freezes at the initial position"
+        "プロセスが純粋なランダムウォークになる",
+        "プロセスが純粋な勾配降下法（決定論的な最適化）になる",
+        "プロセスが無限大へ発散する",
+        "プロセスが初期位置で凍結される"
       ],
       "correct": 1,
-      "explanation": "At T = 0, the noise term sqrt(2*T*dt)*z vanishes, leaving x_{t+1} = x_t - dt * grad(U), which is standard gradient descent. At high T, the noise dominates and the process is nearly a random walk. Intermediate T balances exploration and exploitation."
+      "explanation": "T = 0 では、ノイズ項 sqrt(2*T*dt)*z が消失し、x_{t+1} = x_t - dt * grad(U) という標準的な勾配降下法の式になります。高温ではノイズが支配的になりランダムウォークに近づきます。中間の T は、探索と活用のバランスをとる役割を果たします。"
     },
     {
       "stage": "post",
-      "question": "In a diffusion model, what does the forward process do to a data sample over T steps?",
+      "question": "拡散モデルにおいて、順方向プロセスは T ステップかけてデータサンプルに何を行いますか？",
       "options": [
-        "It sharpens the image by removing noise at each step",
-        "It gradually adds Gaussian noise until the sample becomes pure noise, following a Markov chain",
-        "It compresses the image to a lower resolution",
-        "It applies learned transformations to generate new data"
+        "各ステップでノイズを除去することで、画像を鮮明にする",
+        "マルコフ連鎖に従って、サンプルが純粋なノイズになるまで徐々にガウスノイズを加える",
+        "画像をより低い解像度へと圧縮する",
+        "学習された変換を適用して、新しいデータを生成する"
       ],
       "correct": 1,
-      "explanation": "The forward process is a Markov chain: x_t = sqrt(alpha_t) * x_{t-1} + sqrt(1 - alpha_t) * noise. After T steps, x_T is approximately N(0, I) — pure Gaussian noise. The reverse process (learned by a neural network) then denoises step-by-step to generate new data."
+      "explanation": "順方向プロセスは x_t = sqrt(alpha_t) * x_{t-1} + sqrt(1 - alpha_t) * noise というマルコフ連鎖です。T ステップ後、x_T はほぼ N(0, I)（純粋なガウスノイズ）になります。その後、ニューラルネットワークによって学習された逆方向プロセスが、ステップごとにデノイズ（ノイズ除去）を行うことで新しいデータを生成します。"
     }
   ]
 }

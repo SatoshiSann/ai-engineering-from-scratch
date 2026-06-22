@@ -1,133 +1,133 @@
-# Lesson Template
+# レッスンテンプレート
 
-Use this template when creating a new lesson. Copy the folder structure and fill in the content.
+新しいレッスンを作成する際にこのテンプレートを使用してください。フォルダ構造をコピーし、内容を記入してください。
 
-## Folder Structure
+## フォルダ構造
 
 ```
 NN-lesson-name/
 ├── code/
-│   ├── main.py            (primary implementation)
-│   ├── main.ts            (TypeScript version, if applicable)
-│   ├── main.rs            (Rust version, if applicable)
-│   └── main.jl            (Julia version, if applicable)
+│   ├── main.py            (メイン実装)
+│   ├── main.ts            (TypeScript版、該当する場合)
+│   ├── main.rs            (Rust版、該当する場合)
+│   └── main.jl            (Julia版、該当する場合)
 ├── notebook/
-│   └── lesson.ipynb       (Jupyter notebook for experimentation)
+│   └── lesson.ipynb       (実験用Jupyterノートブック)
 ├── docs/
-│   └── en.md              (lesson documentation)
+│   └── en.md              (レッスンドキュメント)
 └── outputs/
-    ├── prompt-*.md         (prompts produced by this lesson)
-    └── skill-*.md          (skills produced by this lesson)
+    ├── prompt-*.md         (このレッスンで生成されるプロンプト)
+    └── skill-*.md          (このレッスンで生成されるスキル)
 ```
 
-## Documentation Format (docs/en.md)
+## ドキュメント形式 (docs/en.md)
 
 ```markdown
-# [Lesson Title]
+# [レッスンタイトル]
 
-> [One-line motto — the core idea that sticks]
+> [一行のモットー — 記憶に残るコアアイデア]
 
-**Type:** Build | Learn
-**Languages:** Python, TypeScript, Rust, Julia (list what's used)
-**Prerequisites:** [List prior lessons needed]
-**Time:** ~[estimated time] minutes
+**タイプ:** Build | Learn
+**言語:** Python, TypeScript, Rust, Julia（使用するものを列挙）
+**前提条件:** [必要な先行レッスンを列挙]
+**所要時間:** 約[推定時間]分
 
-## The Problem
+## 問題
 
-[2-3 paragraphs. What can't you do without this? Why should you care?
-Make it concrete — show a scenario where not knowing this hurts.]
+[2〜3段落。これがなければ何ができないか？なぜ重要なのか？
+具体的に示す — これを知らないと困るシナリオを見せる。]
 
-## The Concept
+## コンセプト
 
-[Explain with diagrams and intuition. No code yet.
-Use ASCII diagrams, tables, or link to visuals in the web app.
-Build mental models before implementation.]
+[図解と直感で説明する。まだコードは書かない。
+ASCIIダイアグラム、テーブル、またはウェブアプリのビジュアルへのリンクを使用する。
+実装の前にメンタルモデルを構築する。]
 
-## Build It
+## 実装
 
-[Step-by-step implementation from scratch.
-Start with the simplest version, then add complexity.
-Every code block should be runnable on its own.]
+[スクラッチからのステップバイステップ実装。
+最もシンプルなバージョンから始め、徐々に複雑にする。
+すべてのコードブロックは単独で実行可能であること。]
 
-### Step 1: [Name]
+### ステップ1: [名前]
 
-[Explanation]
+[説明]
 
-    [code block]
+    [コードブロック]
 
-### Step 2: [Name]
+### ステップ2: [名前]
 
-[Explanation]
+[説明]
 
-    [code block]
+    [コードブロック]
 
-[...continue...]
+[...続く...]
 
-## Use It
+## 活用する
 
-[Now show how frameworks/libraries do the same thing.
-Compare your from-scratch version to the library version.
-This proves the concept and introduces practical tools.]
+[フレームワーク／ライブラリが同じことをどのように行うかを示す。
+スクラッチ版とライブラリ版を比較する。
+コンセプトを証明し、実用的なツールを紹介する。]
 
-## Ship It
+## 成果物
 
-[What reusable artifact does this lesson produce?
-Could be a prompt, a skill, an agent, an MCP server, or a tool.
-Include it here and save it in the outputs/ folder.]
+[このレッスンで生成される再利用可能な成果物は何か？
+プロンプト、スキル、エージェント、MCPサーバー、またはツールになり得る。
+ここに含め、outputs/フォルダに保存する。]
 
-## Exercises
+## 演習
 
-1. [Easy — reinforce the core concept]
-2. [Medium — apply it to a different problem]
-3. [Hard — extend or combine with prior lessons]
+1. [簡単 — コアコンセプトを強化する]
+2. [中級 — 別の問題に適用する]
+3. [難しい — 拡張するか先行レッスンと組み合わせる]
 
-## Key Terms
+## 主要用語
 
-| Term | What people say | What it actually means |
+| 用語 | よく言われること | 実際の意味 |
 |------|----------------|----------------------|
-| [term] | [common misconception] | [actual definition] |
+| [用語] | [よくある誤解] | [実際の定義] |
 
-## Further Reading
+## 参考資料
 
-- [Resource 1](url) — [why it's worth reading]
-- [Resource 2](url) — [why it's worth reading]
+- [リソース1](url) — [読む価値がある理由]
+- [リソース2](url) — [読む価値がある理由]
 ```
 
-## Code File Guidelines
+## コードファイルガイドライン
 
-- Code must run without errors
-- No comments — code should be self-explanatory
-- Use the language that fits best for the topic
-- Include a `requirements.txt` or equivalent if there are dependencies
-- Start simple, build up complexity
-- Every function and class should have a clear purpose
+- コードはエラーなく実行できること
+- コメントなし — コードは自己説明的であること
+- トピックに最も適した言語を使用する
+- 依存関係がある場合は `requirements.txt` または同等のファイルを含める
+- シンプルに始め、複雑さを積み上げる
+- すべての関数とクラスは明確な目的を持つこと
 
-## Output File Format
+## 出力ファイル形式
 
-### Prompts
+### プロンプト
 
 ```markdown
 ---
 name: prompt-name
-description: What this prompt does
-phase: [phase number]
-lesson: [lesson number]
+description: このプロンプトが行うこと
+phase: [フェーズ番号]
+lesson: [レッスン番号]
 ---
 
-[Prompt content]
+[プロンプト内容]
 ```
 
-### Skills
+### スキル
 
 ```markdown
 ---
 name: skill-name
-description: What this skill teaches
+description: このスキルが教えること
 version: 1.0.0
-phase: [phase number]
-lesson: [lesson number]
-tags: [relevant, tags]
+phase: [フェーズ番号]
+lesson: [レッスン番号]
+tags: [関連, タグ]
 ---
 
-[Skill content]
+[スキル内容]
 ```

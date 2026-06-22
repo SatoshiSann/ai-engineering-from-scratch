@@ -1,46 +1,46 @@
-# Changelog
+# 変更履歴
 
-What's new in the curriculum. Most recent first.
+カリキュラムの新着情報。最新のものから順に記載。
 
-Format loosely follows [Keep a Changelog](https://keepachangelog.com/). Each entry names the phase, lesson, and what changed, so learners can jump straight to the delta.
+形式は [Keep a Changelog](https://keepachangelog.com/) に概ね準拠。各エントリにはフェーズ、レッスン、変更内容を記載しており、学習者は差分に直接ジャンプできます。
 
-## [Unreleased]
+## [未リリース]
 
-### Added
-- `scripts/scaffold-lesson.sh` — scaffolder that creates `phases/NN-phase/NN-lesson/` with the full folder structure and a `docs/en.md` skeleton prefilled from `LESSON_TEMPLATE.md`.
-- `.github/PULL_REQUEST_TEMPLATE.md` — contributor checklist (code runs, no code comments, built-from-scratch-first, atomic per-lesson commit, markdown-link ROADMAP row).
-- `.github/ISSUE_TEMPLATE/bug_report.md` and `new_lesson_proposal.md` — structured intake for bug reports and lesson pitches.
-- This `CHANGELOG.md`.
+### 追加
+- `scripts/scaffold-lesson.sh` — `phases/NN-phase/NN-lesson/` をフォルダ構造ごと作成し、`LESSON_TEMPLATE.md` から事前入力された `docs/en.md` スケルトンを生成するスキャフォルダー。
+- `.github/PULL_REQUEST_TEMPLATE.md` — コントリビューターチェックリスト（コード動作確認、コードコメントなし、スクラッチからの実装優先、レッスン単位のアトミックコミット、ROADMAP 行のマークダウンリンク）。
+- `.github/ISSUE_TEMPLATE/bug_report.md` および `new_lesson_proposal.md` — バグ報告とレッスン提案のための構造化インテーク。
+- この `CHANGELOG.md`。
 
-## 2026-04 — Phase 4: Computer Vision complete
+## 2026-04 — フェーズ4: コンピュータービジョン 完成
 
-### Added
-- All 28 Phase 4 lessons, covering image fundamentals through multi-modal vision (VLMs, 3D, video, self-supervised).
-- Phase 4 rows in `ROADMAP.md` linked as markdown to the lesson folders, so the website surfaces them.
+### 追加
+- フェーズ4の全28レッスン。画像の基礎からマルチモーダルビジョン（VLM、3D、動画、自己教師あり学習）まで網羅。
+- `ROADMAP.md` にフェーズ4の行をレッスンフォルダへのマークダウンリンクとして追加し、ウェブサイトに表示されるようにした。
 
-### Fixed
-- Phase 4 precision pass across 15+ lessons:
-  - `phase-4/02`: shape calculator specifies RF/stride handling for adaptive pool, flatten, and linear.
-  - `phase-4/03`: backbone selector description lists all covered families; head guidance added for OCR, medical, industrial.
-  - `phase-4/04`: classification diagnostics use quantitative thresholds per failure mode; `n/a` declared for undefined metrics; guard for fewer than 3 classes.
-  - `phase-4/06`: detection metric reader uses `AP@0.5` (not `mAP@0.5`); per-class recall declared optional; anchor designer clarifies stride truncation and single-anchor-per-level path.
-  - `phase-4/10`: sampler picker declares `unet_forward_ms` as an input; ControlNet guard promoted to rule 0.
-  - `phase-4/14`: ViT inspector aligned with refusal rule — port attempts are audited, not endorsed.
-  - `phase-4/24`: open-vocab stack picker has explicit rule precedence and license-filter semantics; concept designer resolves step-5/rule-80 conflict.
-  - `phase-4/25`: VLM docs `_merge` raises descriptive `ValueError` on placeholder mismatch; CMER normalises internally.
-  - `phase-4/27`: `synthetic_frames` clips GT boxes to frame H/W.
-  - `phase-4/28`: `rope_3d` validates dim split; dropped unused `F` import from DiT block example.
+### 修正
+- フェーズ4の15以上のレッスンに対する精度向上パス:
+  - `phase-4/02`: シェイプ計算器で、adaptive pool・flatten・linear に対する RF/ストライド処理を明示。
+  - `phase-4/03`: バックボーンセレクターの説明に対応するすべてのファミリーを列挙し、OCR・医療・産業向けのヘッドガイダンスを追加。
+  - `phase-4/04`: 分類診断で各障害モードに定量的な閾値を使用し、未定義のメトリクスには `n/a` を宣言、クラス数3未満のガードを追加。
+  - `phase-4/06`: 検出メトリクスリーダーで `AP@0.5`（`mAP@0.5` ではない）を使用し、クラス別再現率をオプションとして宣言、アンカーデザイナーでストライドの切り捨てとシングルアンカー・パー・レベルのパスを明確化。
+  - `phase-4/10`: サンプラーピッカーで `unet_forward_ms` を入力として宣言し、ControlNet ガードをルール0に昇格。
+  - `phase-4/14`: ViT インスペクターを拒否ルールに合わせて修正 — ポート試行は監査対象であり、推奨されない。
+  - `phase-4/24`: オープン語彙スタックピッカーに明示的なルール優先順位とライセンスフィルターのセマンティクスを追加し、コンセプトデザイナーのステップ5/ルール80の競合を解決。
+  - `phase-4/25`: VLM ドキュメントの `_merge` がプレースホルダー不一致時に説明的な `ValueError` を発生させるよう修正し、CMER が内部で正規化するよう変更。
+  - `phase-4/27`: `synthetic_frames` が GT ボックスをフレームの H/W にクリップするよう修正。
+  - `phase-4/28`: `rope_3d` が次元分割を検証するよう修正し、DiT ブロック例から未使用の `F` インポートを削除。
 
-## 2026-Q1 and earlier
+## 2026-Q1 以前
 
-### Added
-- Phase 0 (Setup & Tooling): all 12 lessons.
-- Phase 1 (Math Foundations): all 22 lessons.
-- Phase 2 (ML Fundamentals): all 18 lessons.
-- Phase 3 (Deep Learning Core): core lessons through perceptron, backprop, optimizers.
-- Built-in Claude Code skills: `find-your-level` (placement quiz) and `check-understanding` (per-phase quiz).
-- Website at `aiengineeringfromscratch.com`: catalog, per-lesson pages, roadmap, 277-term glossary.
-- Initial scaffolding for all 20 phases (`phases/00-*` through `phases/19-*`).
-- `LESSON_TEMPLATE.md`, `CONTRIBUTING.md`, `ROADMAP.md`, `README.md`.
+### 追加
+- フェーズ0（セットアップ & ツール）: 全12レッスン。
+- フェーズ1（数学の基礎）: 全22レッスン。
+- フェーズ2（ML の基礎）: 全18レッスン。
+- フェーズ3（ディープラーニングのコア）: パーセプトロン、バックプロパゲーション、最適化アルゴリズムまでのコアレッスン。
+- 組み込み Claude Code スキル: `find-your-level`（配置クイズ）および `check-understanding`（フェーズ別クイズ）。
+- `aiengineeringfromscratch.com` ウェブサイト: カタログ、レッスン別ページ、ロードマップ、277語の用語集。
+- 全20フェーズの初期スキャフォールディング（`phases/00-*` から `phases/19-*`）。
+- `LESSON_TEMPLATE.md`、`CONTRIBUTING.md`、`ROADMAP.md`、`README.md`。
 
-[Unreleased]: https://github.com/rohitg00/ai-engineering-from-scratch/compare/HEAD...HEAD
+[未リリース]: https://github.com/rohitg00/ai-engineering-from-scratch/compare/HEAD...HEAD

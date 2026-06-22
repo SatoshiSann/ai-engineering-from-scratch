@@ -2,66 +2,66 @@
   {
     "id": "ml-intro-pre-1",
     "stage": "pre",
-    "question": "In supervised learning, what does the model receive during training?",
+    "question": "教師あり学習において、訓練中にモデルが受け取るものは何ですか？",
     "options": [
-      "Only input data with no labels",
-      "Input-output pairs where the correct answer is provided",
-      "A reward signal for each action taken",
-      "A set of rules written by a human expert"
+      "ラベルのない入力データのみ",
+      "正解が提供されている入力と出力のペア",
+      "実行された各アクションに対する報酬信号",
+      "人間の専門家によって書かれたルールのセット"
     ],
     "correct": 1,
-    "explanation": "Supervised learning trains on input-output pairs (labeled data). The model learns to map inputs to known correct outputs."
+    "explanation": "教師あり学習は、入力と出力のペア（ラベル付きデータ）を用いて訓練されます。モデルは、入力を既知の正しい出力へとマッピングする方法を学びます。"
   },
   {
     "id": "ml-intro-pre-2",
     "stage": "pre",
-    "question": "What is the purpose of splitting data into training and test sets?",
+    "question": "データを訓練セットとテストセットに分割する目的は何ですか？",
     "options": [
-      "To make training faster by using less data",
-      "To have backup data in case the training data is lost",
-      "To evaluate whether the model generalizes to data it has never seen during training",
-      "To balance the classes in the dataset"
+      "使うデータを減らして、訓練を速くするため",
+      "訓練データを失った場合に備えて、バックアップデータを持つため",
+      "訓練中に一度も見なかったデータに対して、モデルが正しく予測できる（一般化できる）かを確認するため",
+      "データセット内の各クラスのバランスを整えるため"
     ],
     "correct": 2,
-    "explanation": "The test set measures generalization. If you evaluate on training data, you measure memorization, not learning."
+    "explanation": "テストセットは一般化能力を測定するために使われます。訓練データで評価を行ってしまうと、学習ではなく「丸暗記（記憶）」を測っていることになります。"
   },
   {
     "id": "ml-intro-post-1",
     "stage": "post",
-    "question": "A model gets 98% accuracy on training data but 55% on test data. What is this an example of?",
+    "question": "モデルが訓練データでは 98% の精度を出したのに対し、テストデータでは 55% でした。これは何の例ですか？",
     "options": [
-      "Underfitting: the model is too simple",
-      "Overfitting: the model memorized training noise instead of learning general patterns",
-      "Data drift: the test distribution changed",
-      "Good generalization: the model learned the true patterns"
+      "学習不足 (Underfitting)：モデルが単純すぎる",
+      "過学習 (Overfitting)：モデルが一般的なパターンではなく、訓練データのノイズを記憶してしまった",
+      "データドリフト (Data drift)：テストデータの分布が変わってしまった",
+      "良好な一般化：モデルが真のパターンを学習した"
     ],
     "correct": 1,
-    "explanation": "A large gap between training accuracy (high) and test accuracy (low) is the hallmark of overfitting. The model memorized the training data."
+    "explanation": "訓練精度（高い）とテスト精度（低い）の間に大きな差があるのは、過学習の典型的な特徴です。モデルは訓練データを丸暗記してしまいました。"
   },
   {
     "id": "ml-intro-post-2",
     "stage": "post",
-    "question": "An e-commerce site wants to group customers into segments based on purchase behavior without any predefined labels. Which type of ML is this?",
+    "question": "あるECサイトが、あらかじめ決められたラベルなしに、購買行動に基づいて顧客をいくつかのセグメントに分けたいと考えています。これはどのタイプの機械学習ですか？",
     "options": [
-      "Supervised learning (classification)",
-      "Supervised learning (regression)",
-      "Unsupervised learning (clustering)",
-      "Reinforcement learning"
+      "教師あり学習（分類）",
+      "教師あり学習（回帰）",
+      "教師なし学習（クラスタリング）",
+      "強化学習"
     ],
     "correct": 2,
-    "explanation": "Finding natural groupings in data without predefined labels is clustering, which is a form of unsupervised learning."
+    "explanation": "あらかじめ決められたラベルなしにデータの中から自然なグループ分けを見つけるのは「クラスタリング」であり、教師なし学習の一種です。"
   },
   {
     "id": "ml-intro-post-3",
     "stage": "post",
-    "question": "Which scenario is NOT a good use case for machine learning?",
+    "question": "機械学習のユースケースとして適切「ではない」シナリオはどれですか？",
     "options": [
-      "Predicting customer churn from historical behavior data",
-      "Detecting fraudulent transactions in a stream of millions of payments",
-      "Converting temperatures from Celsius to Fahrenheit",
-      "Classifying images of skin lesions as benign or malignant"
+      "過去の行動データから顧客の離脱を予測する",
+      "数百万件の支払いの流れの中から不正な取引を検出する",
+      "温度を摂氏（℃）から華氏（?）に変換する",
+      "皮膚病変の画像を良性か悪性かに分類する"
     ],
     "correct": 2,
-    "explanation": "Celsius to Fahrenheit is a fixed formula (F = 9/5 * C + 32). Simple, well-defined rules do not need ML. ML adds complexity with no benefit."
+    "explanation": "摂氏から華氏への変換は固定された数式（F = 9/5 * C + 32）で決まります。単純で明確に定義されたルールがある場合、機械学習は不要です。機械学習を導入してもメリットがなく、複雑さが増すだけです。"
   }
 ]

@@ -1,11 +1,8 @@
-# Capstone 08 - Production RAG Chatbot (TypeScript)
+# キャップストーン 08 - 本番対応 RAG チャットボット（TypeScript）
 
-Chat UI skeleton that streams a citation-anchored response over Server-Sent
-Events. Pairs with the Python pipeline in `../main.py`. Conversation state lives
-in an in-process Map keyed by `sessionId`, so the same session id can drive
-multi-turn dialogues.
+Server-Sent Events 経由で引用リンク付きレスポンスをストリーミングするチャット UI のスケルトンです。`../main.py` の Python パイプラインと連携します。会話状態は `sessionId` をキーとするプロセス内 Map に保持されるため、同じセッション ID でマルチターンの対話を行うことができます。
 
-## Layout
+## レイアウト
 
 ```text
 ts/
@@ -23,7 +20,7 @@ ts/
     server.test.ts
 ```
 
-## Run
+## 実行方法
 
 ```bash
 npm install
@@ -33,18 +30,15 @@ npm start          # one self-check pass, exits 0
 npm run serve      # interactive HTTP server on 127.0.0.1:<port>
 ```
 
-The interactive server picks a free port when `PORT` is unset, mounts the chat
-HTML client on `/`, and streams via `GET /chat/stream?sessionId=...&q=...`. The
-demo client uses `EventSource` and listens for `session`, `citations`, `token`,
-and `done` events.
+インタラクティブサーバーは `PORT` が未設定の場合に空きポートを自動選択し、`/` にチャット HTML クライアントをマウントして `GET /chat/stream?sessionId=...&q=...` 経由でストリーミングを行います。デモクライアントは `EventSource` を使用し、`session`、`citations`、`token`、`done` イベントをリッスンします。
 
-## Tests
+## テスト
 
-`node --test` runner via tsx. Coverage:
+tsx 経由の `node --test` ランナーを使用。カバレッジ範囲:
 
-- SessionStore: create, lookup, append, list, no-op on missing id.
-- SSE encoder + parser round-trip; retrieval boost by jurisdiction tag;
-  tokenizer fallback + "See also" tail.
-- Server: `/`, `/health`, `/chat/stream` happy path (session + citations +
-  token + done), 400 on missing q, multi-turn session persistence,
-  `/sessions` listing.
+- SessionStore: 作成、ルックアップ、追記、一覧取得、存在しない ID への無操作。
+- SSE エンコーダー + パーサーのラウンドトリップ; 管轄タグによる検索ブースト;
+  トークナイザーフォールバック + "See also" 末尾テキスト。
+- サーバー: `/`、`/health`、`/chat/stream` の正常系（session + citations +
+  token + done）、q パラメータ欠如時の 400 エラー、マルチターンのセッション永続化、
+  `/sessions` 一覧取得。

@@ -1,5 +1,5 @@
-# Phase 4: Computer Vision
+# フェーズ 4: コンピュータビジョン
 
-> From pixels to understanding — image, video, and 3D.
+> ピクセルから理解へ — 画像、動画、3D。
 
-See [ROADMAP.md](../../ROADMAP.md) for the full lesson plan.
+全レッスン計画については [ROADMAP.md](../../ROADMAP.md) を参照してください。

@@ -1,11 +1,11 @@
-# Glossary
+# 用語集
 
-Two resources to cut through the noise:
+混乱を整理するための2つのリソース:
 
-- **[terms.md](terms.md)** - 60+ AI terms explained. What people say vs what it actually means.
-- **[myths.md](myths.md)** - 20 common AI misconceptions busted with what's actually going on.
+- **[terms.md](terms.md)** - AI用語60以上を解説。よく言われることと実際の意味の違い。
+- **[myths.md](myths.md)** - AIに関するよくある誤解20個を、実際のところと合わせて解説。
 
-Each term entry follows the pattern:
-- **What people say** - the common (often wrong) understanding
-- **What it actually means** - the real definition
-- **Why it's called that** - origin of the name (when interesting)
+各用語のエントリは以下のパターンに従っています:
+- **よく言われること** - 一般的な（しばしば誤った）理解
+- **実際の意味** - 正しい定義
+- **そう呼ばれる理由** - 名前の由来（興味深い場合）

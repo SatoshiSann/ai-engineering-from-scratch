@@ -1,28 +1,26 @@
-# Lesson 12 - Video Understanding Pipeline (TypeScript UI)
+# レッスン 12 - 動画理解パイプライン（TypeScript UI）
 
-TypeScript half of the capstone. The Python side (`code/main.py`) owns the
-multi-vector index and temporal grounding. This project ships the dashboard
-half: a Hono app over the four pipeline stages (chunk, embed, index, qa).
+キャップストーンの TypeScript 側。Python 側（`code/main.py`）がマルチベクターインデックスと時間的グラウンディングを担当する。このプロジェクトはダッシュボード側を提供する：パイプラインの4ステージ（chunk、embed、index、qa）を管理する Hono アプリ。
 
-## Layout
+## ディレクトリ構成
 
 ```text
 src/
-  index.ts     entry: demo (default) or HTTP server (--serve)
-  server.ts    Hono routes (/, /jobs, /job/:id) + HTML index
-  jobs.ts     JobStore + fixture seeder
-  stages.ts    stage advance + overall status
-  types.ts     Stage, StageState, Job
+  index.ts     エントリポイント: デモ（デフォルト）または HTTP サーバー（--serve）
+  server.ts    Hono ルート（/, /jobs, /job/:id）+ HTML インデックス
+  jobs.ts     JobStore + フィクスチャシーダー
+  stages.ts    ステージの進行 + 全体ステータス
+  types.ts     Stage、StageState、Job
 tests/
-  stages.test.ts  job state transitions + store
+  stages.test.ts  ジョブ状態遷移 + ストア
 ```
 
-## Run
+## 実行方法
 
 ```bash
 npm install
 npm run typecheck
 npm test
-npm start              # self-terminating demo
-npm run serve          # HTTP server on :8123
+npm start              # 自動終了デモ
+npm run serve          # :8123 で HTTP サーバー起動
 ```

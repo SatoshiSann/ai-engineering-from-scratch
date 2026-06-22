@@ -1,33 +1,29 @@
-# Lesson 16 - GitHub Issue-to-PR Agent (TypeScript webhook receiver)
+# レッスン16 - GitHub Issue から PR を作成するエージェント（TypeScript webhook 受信サーバー）
 
-TypeScript half of the capstone. Python side ships the agent loop and
-dispatcher; YAML side ships the Actions workflow. This project is the GitHub
-App webhook receiver: HMAC verify the raw body, route on event type, dispatch
-a stub agent for `issues.opened`.
+キャップストーンの TypeScript 担当部分。Python 側はエージェントループとディスパッチャーを提供し、YAML 側は Actions ワークフローを提供する。このプロジェクトは GitHub App の webhook 受信サーバーであり、生のリクエストボディを HMAC で検証し、イベントタイプに応じてルーティングし、`issues.opened` に対してスタブエージェントをディスパッチする。
 
-## Layout
+## レイアウト
 
 ```text
 src/
-  index.ts    entry: demo (default) or HTTP server (--serve)
-  server.ts   Hono webhook receiver (POST /webhook)
-  verify.ts   X-Hub-Signature-256 HMAC, timing-safe
-  router.ts   event-type routing (ping, issues, pull_request)
-  agent.ts    stub agent + audit log
-  types.ts    payload + audit shapes
+  index.ts    エントリーポイント: デモ（デフォルト）または HTTP サーバー（--serve）
+  server.ts   Hono webhook 受信サーバー（POST /webhook）
+  verify.ts   X-Hub-Signature-256 HMAC、タイミングセーフ
+  router.ts   イベントタイプのルーティング（ping、issues、pull_request）
+  agent.ts    スタブエージェント + 監査ログ
+  types.ts    ペイロードと監査の型定義
 tests/
-  verify.test.ts  signature pass, tampered, router pathing
+  verify.test.ts  署名の検証成功・改ざん検出・ルーターのパステスト
 ```
 
-## Run
+## 実行方法
 
 ```bash
 npm install
 npm run typecheck
 npm test
-npm start            # self-terminating demo (in-process replays)
-npm run serve        # HTTP server on :8081
+npm start            # 自動終了するデモ（プロセス内リプレイ）
+npm run serve        # :8081 番ポートで HTTP サーバー起動
 ```
 
-The HMAC secret is read from `GH_WEBHOOK_SECRET` (default `demo-shared-secret`
-for the demo).
+HMAC シークレットは `GH_WEBHOOK_SECRET` 環境変数から読み込まれる（デモ用デフォルト値は `demo-shared-secret`）。

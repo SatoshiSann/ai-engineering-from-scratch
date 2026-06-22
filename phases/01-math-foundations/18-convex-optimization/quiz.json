@@ -2,63 +2,63 @@
   "questions": [
     {
       "stage": "pre",
-      "question": "What is the defining property of a convex function?",
+      "question": "凸関数の定義となる性質は何ですか？",
       "options": [
-        "It has exactly one critical point",
-        "The line segment between any two points on its graph lies above or on the graph",
-        "Its derivative is always positive",
-        "It can only be defined on positive real numbers"
+        "臨界点がちょうど1つ存在する",
+        "グラフ上の任意の2点を結ぶ線分が、グラフの上側またはグラフ上にある",
+        "その導関数は常に正である",
+        "正の実数に対してのみ定義できる"
       ],
       "correct": 1,
-      "explanation": "A function is convex if for any two points x, y and any t in [0,1]: f(tx + (1-t)y) <= t*f(x) + (1-t)*f(y). Geometrically, the chord between any two points on the graph never dips below the graph itself."
+      "explanation": "任意の2点 x, y と 0 <= t <= 1 において、f(tx + (1-t)y) <= t*f(x) + (1-t)*f(y) が成り立つとき、関数は凸です。幾何学的には、グラフ上の任意の2点を結ぶ割線（弦）が、グラフ自体よりも下に入り込まないことを意味します。"
     },
     {
       "stage": "pre",
-      "question": "Which of these ML problems has a convex loss landscape?",
+      "question": "次の機械学習の問題のうち、凸な損失曲面を持つものはどれですか？",
       "options": [
-        "Training a 3-layer neural network with ReLU activations",
-        "Logistic regression with cross-entropy loss",
-        "k-means clustering",
-        "Matrix factorization for recommendation"
+        "ReLU活性化関数を持つ3層ニューラルネットワークの学習",
+        "クロスエントロピー損失を用いたロジスティック回帰",
+        "k-means クラスタリング",
+        "推薦システムのための行列分解"
       ],
       "correct": 1,
-      "explanation": "Logistic regression has a convex loss (log-loss is convex in the weights). Neural networks, k-means, and matrix factorization are all non-convex. For convex problems, any local minimum is the global minimum."
+      "explanation": "ロジスティック回帰の損失（ログ損失）は重みに対して凸です。ニューラルネットワーク、k-means、行列分解はいずれも非凸です。凸問題においては、任意の局所解が大域的最適解となります。"
     },
     {
       "stage": "post",
-      "question": "Newton's method converges to the minimum of f(x) = 5x^2 + 3x + 1 in how many steps?",
+      "question": "ニュートン法を用いて f(x) = 5x^2 + 3x + 1 の最小値を求める際、何ステップで収束しますか？",
       "options": [
-        "1 step (it is exact for quadratic functions)",
-        "About 10 steps",
-        "About 100 steps",
-        "It depends on the learning rate"
+        "1ステップ（二次関数に対しては厳密であるため）",
+        "約10ステップ",
+        "約100ステップ",
+        "学習率に依存する"
       ],
       "correct": 0,
-      "explanation": "Newton's method fits a local quadratic approximation and jumps to its minimum. For an actual quadratic function, the approximation is exact, so Newton's method converges in a single step regardless of the starting point."
+      "explanation": "ニュートン法は局所的な二次近似を行い、その最小点へジャンプします。関数自体が二次関数である場合、その近似は厳密（正確）であるため、ニュートン法は開始点に関わらずわずか1ステップで収束します。"
     },
     {
       "stage": "post",
-      "question": "In the KKT conditions, what does 'complementary slackness' (lambda_i * g_i(x) = 0) mean?",
+      "question": "KKT 条件において、「相補性条件」（lambda_i * g_i(x) = 0）は何を意味しますか？",
       "options": [
-        "All constraints must be active at the optimum",
-        "Either a constraint is active (g_i = 0) or its multiplier is zero (lambda_i = 0) — an inactive constraint has no effect",
-        "The gradients of all constraints must be orthogonal",
-        "The Lagrangian is always zero at the optimum"
+        "最適点においてすべての制約が有効（アクティブ）でなければならない",
+        "制約が有効（g_i = 0）であるか、あるいはその乗数がゼロ（lambda_i = 0）であるか、どちらかである。つまり無効な制約は影響を与えない",
+        "すべての制約の勾配が直交していなければならない",
+        "最適点においてラグランジアンは常にゼロである"
       ],
       "correct": 1,
-      "explanation": "Complementary slackness means each constraint is either binding (g_i = 0, sitting on the boundary) or irrelevant (lambda_i = 0, not affecting the solution). In SVMs, this is why only support vectors (active constraints with lambda_i > 0) determine the decision boundary."
+      "explanation": "相補性条件は、個々の制約が束縛的（g_i = 0、境界上に位置する）か、あるいは無関係（lambda_i = 0、解に影響しない）かのいずれかであることを意味します。SVM において、決定境界を決定するのはサポートベクター（lambda_i > 0 の有効な制約）のみであるのはこのためです。"
     },
     {
       "stage": "post",
-      "question": "Why does SGD find good solutions in non-convex neural network landscapes despite the lack of convexity guarantees?",
+      "question": "凸性の保証がないにもかかわらず、なぜ SGD は非凸なニューラルネットワークの地形において優れた解を見つけることができるのですか？",
       "options": [
-        "Neural networks are secretly convex in high dimensions",
-        "SGD always finds the global minimum",
-        "In high dimensions, most critical points are saddle points (not bad local minima), and SGD noise helps escape them",
-        "The loss function is irrelevant to model performance"
+        "ニューラルネットワークは高次元空間では密かに凸であるから",
+        "SGD は常に大域的最適解を見つけるから",
+        "高次元においてほとんどの停留点は鞍点（悪い局所解ではない）であり、SGD のノイズがそこからの脱出を助けるから",
+        "モデルの性能にとって損失関数は無関係であるから"
       ],
       "correct": 2,
-      "explanation": "In high-dimensional parameter spaces, random critical points are overwhelmingly saddle points. The few local minima that exist tend to have loss values close to the global minimum. SGD's stochastic noise helps escape saddle points, and overparameterization smooths the landscape."
+      "explanation": "高次元のパラメータ空間において、ランダムな停留点は圧倒的に鞍点です。数少ない局所解も、その損失値は大域的最適解に非常に近い傾向があります。SGD の確率的ノイズは鞍点脱出を助け、過剰パラメータ化は地形を滑らかにします。"
     }
   ]
 }

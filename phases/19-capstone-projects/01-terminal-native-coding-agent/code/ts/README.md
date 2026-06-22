@@ -1,36 +1,34 @@
-# Capstone 19/01 — Terminal-Native Coding Agent (TypeScript)
+# Capstone 19/01 — ターミナルネイティブ コーディングエージェント (TypeScript)
 
-Multi-file TypeScript harness for the plan/act/observe loop described in
-`../docs/en.md`. Offline, deterministic, zero network calls.
+`../docs/en.md` で説明されている plan/act/observe ループを実装した、マルチファイル TypeScript ハーネスです。オフライン・決定論的・ネットワーク呼び出しなし。
 
-## Layout
+## レイアウト
 
 ```text
 src/
-  index.ts     entry point; runs a scripted demo and the eval, then exits 0
-  repl.ts      interactive command parser (run / eval / help / quit)
-  harness.ts   the plan-act-observe loop, wired through the hook bus
-  hooks.ts     eight-event hook bus plus a destructive-command guard
-  model.ts     scripted offline LLM that drives the demo
-  tools.ts     read_file + run_shell with zod-validated args
-  plan.ts     PlanState (todo rewrite) + Budget (turn / token / dollar ceilings)
-  eval.ts      tiny pass/fail counter across three offline tasks
-  types.ts     shared shape definitions
+  index.ts     エントリポイント。スクリプト化されたデモと評価を実行し、0 で終了
+  repl.ts      インタラクティブコマンドパーサー（run / eval / help / quit）
+  harness.ts   フックバスを通じて接続された plan-act-observe ループ
+  hooks.ts     8イベントフックバスと破壊的コマンドガード
+  model.ts     デモを駆動するスクリプト化されたオフライン LLM
+  tools.ts     zod バリデーション済み引数を持つ read_file + run_shell
+  plan.ts     PlanState（todo 書き換え）+ Budget（ターン / トークン / ドル上限）
+  eval.ts      3つのオフラインタスクにわたる小さな合否カウンター
+  types.ts     共有型定義
 tests/
   harness.test.ts
   tools.test.ts
 ```
 
-## Run
+## 実行方法
 
 ```bash
 npm install
-npm start                # runs the scripted demo + offline eval, exits 0
-npm start -- --repl      # opens the interactive harness REPL
-npm test                 # node --test runner via tsx
+npm start                # スクリプト化されたデモ + オフライン評価を実行し、0 で終了
+npm start -- --repl      # インタラクティブハーネス REPL を開く
+npm test                 # tsx 経由で node --test ランナーを実行
 npm run typecheck        # tsc --noEmit
 ```
 
-The non-interactive `npm start` path asserts that the eval reports `passed=3
-failed=0` and that the scripted run converges to an all-done plan. Any drift
-fails the run.
+非インタラクティブな `npm start` パスは、評価が `passed=3
+failed=0` を報告すること、およびスクリプト化された実行がすべて完了したプランに収束することをアサートします。いずれかがずれた場合、実行は失敗します。

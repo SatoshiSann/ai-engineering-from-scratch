@@ -1,5 +1,5 @@
-# Phase 18: Ethics, Safety & Alignment
+# フェーズ18: 倫理・安全性・アライメント
 
-> Build AI that helps humanity. Not optional.
+> 人類の役に立つAIを構築する。これは選択肢ではない。
 
-See [ROADMAP.md](../../ROADMAP.md) for the full lesson plan.
+完全なレッスン計画は [ROADMAP.md](../../ROADMAP.md) を参照してください。

@@ -1,5 +1,5 @@
 # Phase 14: Agent Engineering
 
-> The core of modern AI engineering. Build agents from first principles.
+> 現代のAIエンジニアリングの核心。ファーストプリンシプルからエージェントを構築する。
 
 See [ROADMAP.md](../../ROADMAP.md) for the full lesson plan.

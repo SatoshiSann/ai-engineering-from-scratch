@@ -2,63 +2,63 @@
   "questions": [
     {
       "stage": "pre",
-      "question": "What does the Fourier transform do to a signal?",
+      "question": "フーリエ変換は信号に対して何を行いますか？",
       "options": [
-        "Compresses the signal to use less storage",
-        "Decomposes the signal into sine waves of different frequencies, amplitudes, and phases",
-        "Removes noise from the signal",
-        "Converts the signal from analog to digital"
+        "ストレージ容量を節約するために信号を圧縮する",
+        "信号を、異なる周波数・振幅・位相の正弦波（サイン波）の和へと分解する",
+        "信号からノイズを除去する",
+        "信号をアナログからデジタルへと変換する"
       ],
       "correct": 1,
-      "explanation": "The Fourier transform converts a signal from the time domain to the frequency domain. Each frequency coefficient X[k] tells you the amplitude and phase of a sine wave at frequency k. The signal is re-expressed as a sum of these sine waves."
+      "explanation": "フーリエ変換は信号を時間ドメインから周波数ドメインへと変換します。個々の周波数係数 X[k] は、周波数 k の正弦波の振幅と位相を教えてくれます。信号は、これら正弦波の総和として再表現されます。"
     },
     {
       "stage": "pre",
-      "question": "What is the time complexity of the Fast Fourier Transform (FFT) compared to the direct DFT?",
+      "question": "高速フーリエ変換 (FFT) の計算量は、直接の DFT と比較してどうなりますか？",
       "options": [
-        "Both are O(N^2)",
-        "FFT is O(N log N), DFT is O(N^2)",
-        "FFT is O(N), DFT is O(N log N)",
-        "FFT is O(log N), DFT is O(N)"
+        "どちらも O(N^2) である",
+        "FFT は O(N log N)、DFT は O(N^2) である",
+        "FFT は O(N)、DFT は O(N log N) である",
+        "FFT は O(log N)、DFT は O(N) である"
       ],
       "correct": 1,
-      "explanation": "The direct DFT computes N outputs, each summing over N inputs: O(N^2). The Cooley-Tukey FFT splits the signal into even/odd halves recursively, doing O(N) work at each of log2(N) levels, giving O(N log N). For N = 1 million, this is 20 million vs 1 trillion operations."
+      "explanation": "直接の DFT は、N 個の出力それぞれについて N 個の入力を足し合わせるため O(N^2) となります。Cooley-Tukey FFT は信号を偶数/奇数に再帰的に分割し、log2(N) 個のレベルでそれぞれ O(N) のワークを行うため O(N log N) となります。N = 100万の場合、これは 2000万回 vs 1兆回の演算の差になります。"
     },
     {
       "stage": "post",
-      "question": "What does the convolution theorem state?",
+      "question": "畳み込み定理は何を述べていますか？",
       "options": [
-        "Convolution in the time domain equals addition in the frequency domain",
-        "Convolution in the time domain equals pointwise multiplication in the frequency domain",
-        "Convolution always increases the length of a signal",
-        "Convolution and correlation are identical operations"
+        "時間ドメインの畳み込みは、周波数ドメインの加算に等しい",
+        "時間ドメインの畳み込みは、周波数ドメインの要素ごとの乗算に等しい",
+        "畳み込みは常に信号の長さを増加させる",
+        "畳み込みと相関は同一の演算である"
       ],
       "correct": 1,
-      "explanation": "The convolution theorem states that convolution in the time domain equals pointwise multiplication in the frequency domain: x * h = IFFT(FFT(x) . FFT(h)). This is why FFT-based convolution is O(N log N) instead of O(N*M) for large kernels."
+      "explanation": "畳み込み定理は、時間ドメインでの畳み込みが周波数ドメインでの要素ごとの乗算に等しいことを述べています: x * h = IFFT(FFT(x) . FFT(h))。これが、大きなカーネルにおいて FFT ベースの畳み込みが O(N*M) ではなく O(N log N) で済む理由です。"
     },
     {
       "stage": "post",
-      "question": "Why does zero-padding a signal before FFT NOT increase the true frequency resolution?",
+      "question": "FFT の前に信号をゼロパディングしても、真の「周波数分解能」が上がらないのはなぜですか？",
       "options": [
-        "Zero-padding introduces noise that cancels the improvement",
-        "Zero-padding interpolates between existing frequency bins but cannot reveal frequency detail absent from the original samples",
-        "Zero-padding only works for power-of-2 signal lengths",
-        "The FFT algorithm ignores zero-padded samples"
+        "ゼロパディングは改善を打ち消すようなノイズを導入するから",
+        "ゼロパディングは既存の周波数ビンの間を補間するが、元のサンプルに含まれていない周波数の詳細を明らかにすることはできないから",
+        "ゼロパディングは信号長が 2 のべき乗のときにしか機能しないから",
+        "FFT アルゴリズムはゼロパディングされたサンプルを無視するから"
       ],
       "correct": 1,
-      "explanation": "True frequency resolution depends on the observation time T = N/fs. Zero-padding adds more frequency bins (finer grid) but only interpolates the existing spectrum — it gives a smoother-looking result without resolving frequencies closer than 1/T Hz apart."
+      "explanation": "真の周波数分解能は観測時間 T = N/fs に依存します。ゼロパディングによって周波数ビンが増え（グリッドが細かくなり）、見た目は滑らかなスペクトルになりますが、それは既存のスペクトルを補間しているに過ぎず、1/T Hz 以内の微細な周波数差を識別できるようになるわけではありません。"
     },
     {
       "stage": "post",
-      "question": "In the original Transformer's sinusoidal positional encodings, why are different dimension pairs assigned geometrically spaced frequencies?",
+      "question": "オリジナルの Transformer の正弦波位置エンコーディングにおいて、なぜ異なる次元ペアに幾何学的に配置された周波数が割り当てられているのですか？",
       "options": [
-        "It reduces the computational cost of attention",
-        "Each frequency provides a different resolution — high frequencies encode fine position, low frequencies encode coarse position, giving each position a unique fingerprint",
-        "Geometric spacing is required by the FFT algorithm",
-        "It ensures all encoding values are between 0 and 1"
+        "アテンションの計算コストを削減するため",
+        "各周波数が異なる解像度を提供し（高周波は細かい位置を、低周波は粗い位置をエンコード）、各位置に一意な「指紋」を与えるため",
+        "FFT アルゴリズムにおいて幾何学的な間隔が必要だから",
+        "すべてのエンコーディング値を 0 から 1 の間に収めるため"
       ],
       "correct": 1,
-      "explanation": "High-frequency dimensions change rapidly with position (fine resolution), while low-frequency dimensions change slowly (coarse resolution). Together, the multi-frequency encoding gives every position a unique pattern — similar to how Fourier coefficients uniquely identify a signal."
+      "explanation": "高周波の次元は位置とともに急速に変化し（細かい解像度）、低周波の次元はゆっくりと変化します（粗い解像度）。これら多周波数のエンコーディングが組み合わさることで、フーリエ係数が信号を一意に特定するのと同様に、すべての位置に一意なパターンが与えられます。"
     }
   ]
 }

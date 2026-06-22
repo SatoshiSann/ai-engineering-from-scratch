@@ -1,5 +1,5 @@
-# Phase 0: Setup & Tooling
+# Phase 0: セットアップとツール整備
 
-> Get your environment ready for everything that follows.
+> 以降のすべての内容に向けて、環境を整えましょう。
 
-See [ROADMAP.md](../../ROADMAP.md) for the full lesson plan.
+全レッスンプランは [ROADMAP.md](../../ROADMAP.md) を参照してください。

@@ -1,43 +1,39 @@
-# Contributing
+# コントリビューション
 
-Lessons, translations, fixes, outputs — all welcome. One contribution per pull
-request keeps reviews fast and lets contributor counts and credit work
-correctly.
+レッスン、翻訳、バグ修正、成果物 — いずれも歓迎します。プルリクエストは1件につき1つの貢献にまとめると、レビューが迅速になり、コントリビューター数とクレジットが正しく機能します。
 
-## Important: the README and ROADMAP feed the website
+## 重要: README と ROADMAP はウェブサイトのソースです
 
-`site/build.js` parses `README.md`, `ROADMAP.md`, and `glossary/terms.md` to
-generate `site/data.js`. Two patterns must stay intact in any pull request that
-touches those files:
+`site/build.js` は `README.md`、`ROADMAP.md`、`glossary/terms.md` を解析して
+`site/data.js` を生成します。これらのファイルに触れるプルリクエストでは、以下の2つのパターンを必ず維持してください:
 
-- Phase headers in either `### Phase N: Name \`X lessons\`` form or
-  `<details><summary><b>Phase N — Name</b> ... <code>X lessons</code> ... <em>Description</em></summary>` form.
-- Lesson tables with the column shape `| # | Lesson | Type | Lang |` (or
-  `| # | Project | Combines | Lang |` for capstone tables). The `Lang` column
-  accepts plain text (`Python, TypeScript`) or the legacy emoji flags
-  (`🐍 🟦 🦀 🟣 ⚛️`); both are parser-equivalent.
-- ROADMAP status glyphs (`✅`, `🚧`, `⬚`) on phase headers and lesson rows.
-  Do not replace them with text — the parser keys off the exact characters.
+- フェーズヘッダーは `### Phase N: Name \`X lessons\`` の形式か、
+  `<details><summary><b>Phase N — Name</b> ... <code>X lessons</code> ... <em>Description</em></summary>` の形式のいずれかであること。
+- レッスンテーブルは `| # | Lesson | Type | Lang |` の列構成 (または
+  まとめテーブルは `| # | Project | Combines | Lang |`) であること。`Lang` 列は
+  プレーンテキスト (`Python, TypeScript`) またはレガシー絵文字フラグ
+  (`🐍 🟦 🦀 🟣 ⚛️`) のどちらも受け付けます。パーサー上は同等です。
+- ROADMAP のステータスグリフ (`✅`, `🚧`, `⬚`) をフェーズヘッダーとレッスン行に使用すること。
+  テキストに置き換えないでください — パーサーは正確な文字をキーとして使用します。
 
-Run `node site/build.js` after editing those files; `git diff site/data.js`
-should show only the timestamp change if your edit was structural-safe.
+これらのファイルを編集した後は `node site/build.js` を実行してください。編集が構造的に安全であれば、`git diff site/data.js` にはタイムスタンプの変更のみが表示されるはずです。
 
-## Ways to Contribute
+## コントリビューションの方法
 
-### 1. Add a New Lesson
+### 1. 新しいレッスンを追加する
 
-Each lesson lives in `phases/XX-phase-name/NN-lesson-name/` with this structure:
+各レッスンは `phases/XX-phase-name/NN-lesson-name/` に以下の構成で配置します:
 
 ```
 NN-lesson-name/
-├── code/           At least one runnable implementation
-├── notebook/       Jupyter notebook for experimentation (optional)
+├── code/           少なくとも1つの実行可能な実装
+├── notebook/       実験用の Jupyter ノートブック (任意)
 ├── docs/
-│   └── en.md       Lesson documentation (required)
-└── outputs/        Prompts, skills, or agents this lesson produces (if applicable)
+│   └── en.md       レッスンドキュメント (必須)
+└── outputs/        このレッスンが生成するプロンプト、スキル、またはエージェント (該当する場合)
 ```
 
-**Lesson doc format** (`en.md`):
+**レッスンドキュメントの形式** (`en.md`):
 
 ```markdown
 # Lesson Title
@@ -71,30 +67,30 @@ The prompt, skill, agent, or tool this lesson produces.
 3. Challenge exercise
 ```
 
-### 2. Add a Translation
+### 2. 翻訳を追加する
 
-Create a new file in any lesson's `docs/` folder:
+任意のレッスンの `docs/` フォルダに新しいファイルを作成します:
 
 ```
 docs/
-├── en.md    (English — always required)
-├── zh.md    (Chinese)
-├── ja.md    (Japanese)
-├── es.md    (Spanish)
-├── hi.md    (Hindi)
+├── en.md    (英語 — 常に必須)
+├── zh.md    (中国語)
+├── ja.md    (日本語)
+├── es.md    (スペイン語)
+├── hi.md    (ヒンディー語)
 └── ...
 ```
 
-Keep the same structure as the English version. Translate content, not code.
+英語版と同じ構成を維持してください。コードではなくコンテンツを翻訳します。
 
-### 3. Add an Output
+### 3. 成果物を追加する
 
-If a lesson should produce a reusable prompt, skill, agent, or MCP server:
+レッスンが再利用可能なプロンプト、スキル、エージェント、または MCP サーバーを生成する場合:
 
-1. Create it in the lesson's `outputs/` folder
-2. Add a reference in the top-level `outputs/` index
+1. レッスンの `outputs/` フォルダに作成する
+2. トップレベルの `outputs/` インデックスに参照を追加する
 
-**Prompt format:**
+**プロンプトの形式:**
 
 ```markdown
 ---
@@ -107,7 +103,7 @@ lesson: 01
 [System prompt or template here]
 ```
 
-**Skill format:**
+**スキルの形式:**
 
 ```markdown
 ---
@@ -122,42 +118,41 @@ tags: [agents, loops]
 [Skill content here]
 ```
 
-### 4. Fix Bugs or Improve Existing Lessons
+### 4. バグを修正するか既存のレッスンを改善する
 
-- Fix code that doesn't run
-- Improve explanations
-- Add better diagrams
-- Update outdated information
+- 実行できないコードを修正する
+- 説明を改善する
+- より良い図を追加する
+- 古くなった情報を更新する
 
-### 5. Add Exercises or Projects
+### 5. 演習またはプロジェクトを追加する
 
-More exercises and projects are always welcome, especially ones that connect multiple phases.
+演習とプロジェクトは常に歓迎します。特に複数のフェーズをつなぐものは大歓迎です。
 
-## Guidelines
+## ガイドライン
 
-- **Code must run.** Every code file should execute without errors with the listed dependencies.
-- **No comments in code.** Code should be self-explanatory. Use the docs for explanation.
-- **Best language for the job.** Don't force Python where TypeScript or Rust is the better choice.
-- **Build from scratch first.** Always implement the concept from first principles before showing the framework version.
-- **Keep it practical.** Theory serves practice, not the other way around.
-- **No AI slop.** Write like a human. Be direct. Cut filler.
+- **コードは必ず動くこと。** すべてのコードファイルは、記載された依存関係でエラーなく実行できること。
+- **コードにコメントを書かないこと。** コードは自己説明的であるべきです。説明はドキュメントに書いてください。
+- **作業に最適な言語を選ぶこと。** TypeScript や Rust の方が適切な場面で Python を無理に使わないこと。
+- **まずスクラッチで構築すること。** フレームワーク版を示す前に、必ず基本原理から概念を実装すること。
+- **実践的に保つこと。** 理論は実践に奉仕するものであり、その逆ではありません。
+- **AI の粗雑な出力はNG。** 人間らしく書いてください。直接的に。無駄を省いてください。
 
-## Pull Request Process
+## プルリクエストのプロセス
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b add-lesson-phase3-gradient-descent`)
-3. Make your changes
-4. Ensure all code runs
-5. Submit a pull request with a clear description
+1. リポジトリをフォークする
+2. フィーチャーブランチを作成する (`git checkout -b add-lesson-phase3-gradient-descent`)
+3. 変更を加える
+4. すべてのコードが動作することを確認する
+5. 明確な説明を添えてプルリクエストを提出する
 
-## Code of Conduct
+## 行動規範
 
-See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md). Be kind, be helpful, be constructive.
+[CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) を参照してください。親切に、助け合い、建設的に。
 
-## Style
+## スタイル
 
-- Direct prose. Cut filler. Match the manual's tone, not marketing copy.
-- No decorative emojis in headings. Lang column emoji flags are the one
-  exception and only because the parser maps them.
-- Code runs as-is with the dependencies listed in the lesson.
-- Build from scratch first, framework second.
+- 直接的な文章。無駄を省く。マーケティングコピーではなく、マニュアルのトーンに合わせること。
+- 見出しに装飾的な絵文字を使わないこと。Lang 列の絵文字フラグは唯一の例外ですが、それはパーサーがマッピングに使用するためです。
+- コードはレッスンに記載された依存関係でそのまま動作すること。
+- まずスクラッチで構築し、次にフレームワークを使用すること。

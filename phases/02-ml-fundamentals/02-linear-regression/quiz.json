@@ -2,66 +2,66 @@
   {
     "id": "linreg-pre-1",
     "stage": "pre",
-    "question": "What does the learning rate control in gradient descent?",
+    "question": "勾配降下法において、学習率は何を制御しますか？",
     "options": [
-      "The number of features used by the model",
-      "How many epochs the model trains for",
-      "The size of each parameter update step",
-      "The ratio of training to test data"
+      "モデルで使用される特徴量の数",
+      "モデルが訓練を行うエポック数",
+      "パラメータを更新する各ステップの大きさ",
+      "訓練データとテストデータの比率"
     ],
     "correct": 2,
-    "explanation": "The learning rate is a scalar that controls how much weights change per gradient descent step. Too large causes divergence, too small causes slow convergence."
+    "explanation": "学習率は、勾配降下法の 1 ステップで重みをどれだけ変化させるかを制御する定数です。大きすぎると発散し、小さすぎると収束が非常に遅くなります。"
   },
   {
     "id": "linreg-pre-2",
     "stage": "pre",
-    "question": "What does R-squared = 0 mean for a regression model?",
+    "question": "回帰モデルにおいて、決定係数（R-squared）が 0 であることは何を意味しますか？",
     "options": [
-      "The model makes perfect predictions",
-      "The model is no better than always predicting the mean of the target",
-      "The model has negative error",
-      "The model has not been trained yet"
+      "モデルが完璧な予測を行っている",
+      "モデルが「常にターゲットの平均値を予測する」のと同じ程度の性能しかない",
+      "モデルの誤差が負の数値になっている",
+      "モデルがまだ訓練されていない"
     ],
     "correct": 1,
-    "explanation": "R-squared = 0 means the model explains none of the variance in the target. It performs exactly as well as simply predicting the mean every time."
+    "explanation": "R-squared = 0 は、モデルがターゲットの変動をまったく説明できていないことを意味します。常に平均値を予測するのと全く同じ結果しか出せていないということです。"
   },
   {
     "id": "linreg-post-1",
     "stage": "post",
-    "question": "Why is feature scaling important for gradient descent in multiple linear regression?",
+    "question": "重回帰において、勾配降下法を適用する際に特徴量スケーリング（標準化）が重要なのはなぜですか？",
     "options": [
-      "It makes the model more interpretable",
-      "It prevents the cost surface from being elongated, allowing faster convergence",
-      "It reduces the number of features needed",
-      "It guarantees the model will find the global minimum"
+      "モデルの解釈性が向上するため",
+      "コスト関数の面が細長くなるのを防ぎ、収束を速めるため",
+      "必要な特徴量の数を減らすことができるため",
+      "モデルが必ず大局的最小値を見つけられるようにするため"
     ],
     "correct": 1,
-    "explanation": "When features have very different scales, the cost surface becomes elongated. Gradient descent takes many more steps to converge. Standardizing features makes the surface more spherical."
+    "explanation": "特徴量のスケールが大きく異なると、コスト関数の面が細長くなり、勾配降下法が収束するのに非常に多くのステップが必要になります。特徴量を正規化することで、面を球状に近づけ、効率的に収束させることができます。"
   },
   {
     "id": "linreg-post-2",
     "stage": "post",
-    "question": "The normal equation gives optimal weights directly. Why would you prefer gradient descent instead?",
+    "question": "正規方程式は最適な重みを直接導き出しますが、あえて勾配降下法の方を優先することがあるのはなぜですか？",
     "options": [
-      "Gradient descent always gives more accurate results",
-      "The normal equation does not work for linear regression",
-      "Matrix inversion in the normal equation is O(n^3) in features, which is too slow for thousands of features",
-      "Gradient descent requires less memory than storing the data"
+      "勾配降下法の方が必ず精度の高い結果を出すため",
+      "線形回帰には正規方程式が適用できないため",
+      "正規方程式の行列反転は特徴量の3乗（O(n^3)）の計算量がかかり、数万個の特徴量があると非常に遅くなるため",
+      "勾配降下法の方がデータを保存するためのメモリが少なくて済むため"
     ],
     "correct": 2,
-    "explanation": "The normal equation requires inverting X^T * X, which is O(n^3) in the number of features. For large feature counts, gradient descent is more efficient."
+    "explanation": "正規方程式では X^T * X の逆行列を求める必要があり、その計算量は特徴量数の3乗に比例します。特徴量の数が多い大規模なデータでは、勾配降下法の方が効率的です。"
   },
   {
     "id": "linreg-post-3",
     "stage": "post",
-    "question": "A degree-10 polynomial regression model fits training data perfectly (R^2 = 1.0) but has R^2 = 0.3 on test data. What should you do?",
+    "question": "10次の多項式回帰モデルが、訓練データには完璧にフィット（R^2 = 1.0）しましたが、テストデータでは R^2 = 0.3 となりました。どのように対応すべきですか？",
     "options": [
-      "Increase the polynomial degree to 20 for even better training fit",
-      "Reduce model complexity (lower degree) or add regularization (Ridge) to prevent overfitting",
-      "Collect less training data so the model cannot memorize",
-      "Remove the test set and report training R^2 only"
+      "訓練データにさらにフィットさせるため、次数を 20 に増やす",
+      "モデルの複雑さを下げる（次数を下げる）か、正則化（リッジなど）を導入して過学習を防ぐ",
+      "モデルが丸暗記できないように、訓練データの量を減らす",
+      "テストセットを無視して、訓練データの R^2 のみを報告する"
     ],
     "correct": 1,
-    "explanation": "Perfect training fit with poor test fit is overfitting. The fix is to reduce complexity (lower polynomial degree) or add regularization to penalize large weights."
+    "explanation": "訓練データのみ完璧でテストデータで劣るのは「過学習」です。次数の削減や、大きな重みにペナルティを課す正則化の導入が適切な解決策です。"
   }
 ]

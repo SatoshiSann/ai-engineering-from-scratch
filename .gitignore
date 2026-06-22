@@ -63,3 +63,10 @@ catalog.json
 site/sitemap.xml
 site/llms.txt
 site/build-meta.js
+
+# Local agent tooling runtime artifacts (ruflo / claude-flow / swarm)
+.swarm/
+.claude-flow/
+ruvector.db
+*.ruvector.db
+CLOUD.md

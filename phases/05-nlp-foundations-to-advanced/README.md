@@ -1,5 +1,5 @@
-# Phase 5: NLP — Foundations to Advanced
+# Phase 5: NLP — 基礎から応用まで
 
-> Language is the interface to intelligence. Master every layer.
+> 言語は知性へのインターフェースである。あらゆる層を習得せよ。
 
-See [ROADMAP.md](../../ROADMAP.md) for the full lesson plan.
+全レッスン計画については [ROADMAP.md](../../ROADMAP.md) を参照してください。

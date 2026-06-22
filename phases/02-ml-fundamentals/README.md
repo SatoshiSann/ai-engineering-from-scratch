@@ -1,5 +1,5 @@
-# Phase 2: ML Fundamentals
+# フェーズ 2: ML の基礎
 
-> Classical machine learning — still the backbone of most production AI.
+> 古典的な機械学習 — 現在もほとんどの本番 AI の根幹をなす。
 
-See [ROADMAP.md](../../ROADMAP.md) for the full lesson plan.
+全レッスンプランは [ROADMAP.md](../../ROADMAP.md) を参照してください。

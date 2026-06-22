@@ -1,11 +1,8 @@
-# Capstone 04 - Multimodal Document QA (TypeScript)
+# キャップストーン 04 - マルチモーダル文書QA（TypeScript）
 
-Viewer skeleton that returns a page image URL plus a JSON list of cited bounding
-boxes for a document. The HTML response inlines a small canvas-overlay script
-that draws the cited regions on top of the page image. Pairs with the Python
-pipeline in `../main.py`.
+ドキュメントのページ画像URLと引用バウンディングボックスのJSONリストを返すビューアスケルトンです。HTMLレスポンスには、ページ画像上に引用領域を描画する小さなキャンバスオーバーレイスクリプトがインライン化されています。`../main.py` のPythonパイプラインと組み合わせて使用します。
 
-## Layout
+## レイアウト
 
 ```text
 ts/
@@ -23,7 +20,7 @@ ts/
     server.test.ts
 ```
 
-## Run
+## 実行方法
 
 ```bash
 npm install
@@ -33,12 +30,8 @@ npm start          # one self-check pass, exits 0
 npm run serve      # interactive HTTP server on 127.0.0.1:<port>
 ```
 
-The interactive server picks a free port when `PORT` is unset and prints the
-chosen URL on stdout. Visit `/` for the index, `/document/10k-acme-2025` for the
-demo overlay, or set `accept: application/json` to get the structured response.
+インタラクティブサーバーは `PORT` が未設定の場合に空きポートを選択し、選択されたURLをstdoutに出力します。インデックスには `/` を、デモオーバーレイには `/document/10k-acme-2025` を参照してください。また、`accept: application/json` を設定すると構造化レスポンスを取得できます。
 
-## Tests
+## テスト
 
-`node --test` runner via tsx. Tests cover fixture lookup (positive + negative),
-HTML escaping for the five hostile characters, document HTML payload structure,
-and the hono routes (200, 404, content negotiation).
+tsxを使用した `node --test` ランナー。テストはフィクスチャ検索（正常系・異常系）、5つの危険な文字に対するHTMLエスケープ、ドキュメントHTMLペイロード構造、およびhonoルート（200、404、コンテントネゴシエーション）をカバーしています。

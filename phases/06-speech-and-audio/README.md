@@ -1,5 +1,5 @@
-# Phase 6: Speech & Audio
+# フェーズ 6: 音声・オーディオ
 
-> The other half of human communication. Hear, understand, speak.
+> 人間のコミュニケーションのもう一方の側面。聞き、理解し、話す。
 
-See [ROADMAP.md](../../ROADMAP.md) for the full lesson plan.
+完全なレッスン計画は [ROADMAP.md](../../ROADMAP.md) を参照してください。

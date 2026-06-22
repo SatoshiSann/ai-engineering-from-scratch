@@ -1,30 +1,30 @@
-# Code of Conduct
+# 行動規範
 
-## Our Pledge
+## 私たちの誓い
 
-We are committed to making participation in this project a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.
+私たちは、年齢、体型、障害、民族性、性別のアイデンティティと表現、経験レベル、教育、社会経済的地位、国籍、外見、人種、宗教、または性的アイデンティティと性的指向に関わらず、すべての人にとってハラスメントのない参加体験を提供することを誓います。
 
-## Our Standards
+## 私たちの基準
 
-**Positive behavior:**
+**肯定的な行動：**
 
-- Using welcoming and inclusive language
-- Being respectful of differing viewpoints and experiences
-- Gracefully accepting constructive criticism
-- Focusing on what is best for the community
-- Showing empathy towards other community members
+- 歓迎的かつ包括的な言葉を使用すること
+- 異なる意見や経験を尊重すること
+- 建設的な批判を謙虚に受け入れること
+- コミュニティにとって最善のことに集中すること
+- 他のコミュニティメンバーへの共感を示すこと
 
-**Unacceptable behavior:**
+**許容されない行動：**
 
-- Trolling, insulting/derogatory comments, and personal or political attacks
-- Public or private harassment
-- Publishing others' private information without explicit permission
-- Other conduct which could reasonably be considered inappropriate
+- 荒らし行為、侮辱的・軽蔑的なコメント、個人的または政治的な攻撃
+- 公的または私的なハラスメント
+- 明示的な許可なく他者の個人情報を公開すること
+- 不適切とみなされる可能性のあるその他の行為
 
-## Enforcement
+## 執行
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project maintainer at ghumare64@gmail.com. All complaints will be reviewed and investigated.
+虐待的、ハラスメント的、またはその他の許容されない行動が発生した場合は、ghumare64@gmail.com のプロジェクトメンテナーに連絡することで報告できます。すべての苦情はレビューおよび調査されます。
 
-## Attribution
+## 帰属
 
-This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1.
+この行動規範は [Contributor Covenant](https://www.contributor-covenant.org) バージョン 2.1 を参考に作成されました。

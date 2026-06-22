@@ -1,68 +1,68 @@
 # AGENTS.md
 
-Operating manual for contributors and AI agents touching this repo. Read it before opening a PR.
+このリポジトリに関わるコントリビューターおよびAIエージェント向けの操作マニュアルです。PRを作成する前に必ずお読みください。
 
-The repo is a curriculum, not a SaaS app. The lessons are the product. Every rule below keeps 435 lessons coherent over time.
-
----
-
-## Philosophy
-
-435 lessons. 20 phases. Every algorithm built from raw math before a single framework gets imported. You write backprop, the tokenizer, the attention mechanism, and the agent loop by hand in Python, TypeScript, Rust, or Julia. Then you run the same operation through the production library so the framework stops being a black box. The "Build It / Use It" split is the spine. Each lesson ships a reusable artifact you can plug into your daily workflow.
+このリポジトリはカリキュラムであり、SaaSアプリではありません。レッスンが製品です。以下のルールはすべて、435のレッスンを長期にわたって一貫したものに保つためのものです。
 
 ---
 
-## Repo layout
+## 哲学
+
+435レッスン。20フェーズ。すべてのアルゴリズムは、フレームワークを一つもインポートする前に生の数学から構築されます。バックプロパゲーション、トークナイザー、アテンション機構、エージェントループを、Python、TypeScript、Rust、またはJuliaで手書きします。その後、同じ操作を本番ライブラリで実行し、フレームワークがブラックボックスでなくなるようにします。「自分で作る / 使ってみる」の分割が骨格です。各レッスンは、日々のワークフローに組み込める再利用可能な成果物を提供します。
+
+---
+
+## リポジトリ構成
 
 ```
 phases/
   NN-phase-slug/
     NN-lesson-slug/
-      docs/en.md              # lesson explainer
-      code/                   # implementation + tests
-      quiz.json               # 6 questions
-      outputs/                # reusable artifact (skill / prompt / agent / MCP server)
-README.md                     # public face; lesson counts auto-synced
-ROADMAP.md                    # phase/lesson status
-glossary/terms.md             # canonical term definitions
+      docs/en.md              # レッスンの説明
+      code/                   # 実装 + テスト
+      quiz.json               # 6問
+      outputs/                # 再利用可能な成果物（スキル / プロンプト / エージェント / MCPサーバー）
+README.md                     # 公開ページ；レッスン数は自動同期
+ROADMAP.md                    # フェーズ/レッスンのステータス
+glossary/terms.md             # 用語の正規定義
 site/
-  build.js                    # parses README + ROADMAP + glossary -> data.js
-  data.js                     # generated; rebuilt by CI on main push
-scripts/                      # automation
+  build.js                    # README + ROADMAP + glossaryを解析 -> data.js を生成
+  data.js                     # 生成ファイル；mainへのプッシュ時にCIが再ビルド
+scripts/                      # 自動化スクリプト
 .github/workflows/
-  curriculum.yml              # invariant + auto-sync workflow
+  curriculum.yml              # 不変条件チェック + 自動同期ワークフロー
 ```
 
 ---
 
-## Hard rules
+## 絶対ルール
 
-1. **One commit per lesson directory.** Never batch multiple lessons into one commit. A 10-lesson PR has 10 commits.
-2. **Conventional commit subjects** ≤72 chars: `feat(phase-NN/MM): <slug>`. Body explains why, not what.
-3. **Mermaid or SVG only** for diagrams. No ASCII / Unicode box-drawing.
-4. **Every fenced code block needs a language tag.** Use `text`, `json`, `python`, `typescript`, `rust`, `julia`, `bash`, `console`, `mermaid`, `yaml` as appropriate.
-5. **Original implementations only.** Don't cite external curriculum repos in docs, code comments, or commit text. Cite RFCs, official specs, and academic papers when they are the canonical source.
-6. **Dependency allowlist** (see `Dependencies` below). Stdlib-first.
-7. **Never commit generated files**: `catalog.json` is gitignored, `site/data.js` is rebuilt by CI, `package-lock.json` is never tracked.
+1. **レッスンディレクトリごとに1コミット。** 複数のレッスンを1つのコミットにまとめないでください。10レッスンのPRには10コミットが必要です。
+2. **コンベンショナルコミットの件名**は72文字以内: `feat(phase-NN/MM): <slug>`。本文は「何を」ではなく「なぜ」を説明します。
+3. **図はMermaidまたはSVGのみ。** ASCII / Unicodeのボックス描画は使用不可。
+4. **すべてのコードブロックには言語タグが必要です。** 適切に `text`、`json`、`python`、`typescript`、`rust`、`julia`、`bash`、`console`、`mermaid`、`yaml` を使用してください。
+5. **独自の実装のみ。** ドキュメント、コードコメント、コミットテキストに外部カリキュラムリポジトリを引用しないでください。正規のソースである場合は、RFC、公式仕様、学術論文を引用してください。
+6. **依存関係の許可リスト**（下記 `Dependencies` 参照）。標準ライブラリ優先。
+7. **生成ファイルは絶対にコミットしない**: `catalog.json` は .gitignore 対象、`site/data.js` はCIが再ビルド、`package-lock.json` は追跡しない。
 
 ---
 
-## Dependencies
+## 依存関係
 
-| Language   | Allowed                                                                  |
+| 言語       | 使用可能なもの                                                                  |
 |------------|--------------------------------------------------------------------------|
 | Python     | `numpy`, `torch`, `h5py`, `zstandard`, `safetensors`, stdlib              |
-| TypeScript | `hono`, `zod`, `ws` (only when WebSockets needed), `@hono/node-server`, Node 20+ stdlib |
-| Rust       | stdlib only (single-file `rustc --edition 2021`)                          |
-| Julia      | `Random`, `Statistics`, `LinearAlgebra`, `Printf` (Julia stdlib)          |
+| TypeScript | `hono`, `zod`, `ws`（WebSocketが必要な場合のみ）, `@hono/node-server`, Node 20+ stdlib |
+| Rust       | stdlib のみ（シングルファイル `rustc --edition 2021`）                          |
+| Julia      | `Random`, `Statistics`, `LinearAlgebra`, `Printf`（Julia stdlib）          |
 
-If a finding suggests a banned dep, skip it with the reason "stays stdlib-first for educational clarity."
+禁止された依存関係が提案された場合は、「教育的な明確さのために標準ライブラリ優先を維持する」という理由でスキップしてください。
 
 ---
 
-## Lesson contract
+## レッスン規約
 
-### docs/en.md frontmatter
+### docs/en.md フロントマター
 
 ```markdown
 # <Title>
@@ -78,9 +78,9 @@ If a finding suggests a banned dep, skip it with the reason "stays stdlib-first 
 - <4-6 bullet points starting with a verb>
 ```
 
-The `**Languages:**` field must match the languages with a `main.*` file in `code/`.
+`**Languages:**` フィールドは `code/` 内の `main.*` ファイルの言語と一致している必要があります。
 
-### quiz.json schema
+### quiz.json スキーマ
 
 ```json
 {
@@ -97,84 +97,84 @@ The `**Languages:**` field must match the languages with a `main.*` file in `cod
 }
 ```
 
-Exactly 6 questions: 1 pre + 3 check + 2 post. `correct` is zero-indexed. The site renderer only understands this shape — legacy `q/choices/answer` schemas crash silently.
+厳密に6問: pre 1問 + check 3問 + post 2問。`correct` はゼロインデックスです。サイトのレンダラーはこの形式のみを認識します — レガシーの `q/choices/answer` スキーマはサイレントにクラッシュします。
 
 ### code/
 
-- Runs end-to-end and exits 0 on the canonical command for the language.
-- Self-terminating demo. No infinite stdin loops, no hangs on missing API keys.
-- 4-6 line header comment citing the lesson's `docs/en.md` path and any spec or RFC sources.
+- 各言語の標準コマンドでエンドツーエンドに実行され、終了コード0で終了すること。
+- 自己完結型デモ。無限の標準入力ループや、APIキーが不足している場合のハングは不可。
+- レッスンの `docs/en.md` パスおよび仕様やRFCソースを引用する4〜6行のヘッダーコメント。
 
 ### code/tests/
 
-- 5+ unit tests minimum.
-- Runs via the language's stdlib runner (`python3 -m unittest discover`, `npx tsx --test`, Rust/Julia inline).
+- 最低5つのユニットテスト。
+- 各言語の標準ライブラリランナーで実行（`python3 -m unittest discover`、`npx tsx --test`、Rust/Julia インライン）。
 
 ---
 
-## Per-PR validation
+## PR前の検証
 
-Run locally before pushing:
+プッシュ前にローカルで実行:
 
 ```bash
 python3 scripts/audit_lessons.py
-python3 scripts/check_readme_counts.py        # advisory — CI fixes on merge
+python3 scripts/check_readme_counts.py        # 参考情報 — CIがマージ時に修正
 
-# For each lesson touched:
+# 変更した各レッスンについて:
 cd phases/NN-phase/MM-lesson/code
-python3 main.py && python3 -m unittest discover tests -v   # or the lang equivalent
+python3 main.py && python3 -m unittest discover tests -v   # または各言語に対応するコマンド
 ```
 
-CI gates (`.github/workflows/curriculum.yml`):
+CIゲート (`.github/workflows/curriculum.yml`):
 
-| Job                              | Trigger      | Behavior                                              |
+| ジョブ                            | トリガー      | 動作                                              |
 |----------------------------------|--------------|-------------------------------------------------------|
-| `audit`                          | push + PR    | Runs `audit_lessons.py`. Blocking.                    |
-| `readme-counts-sync` (main only) | push to main | Rebuilds catalog + auto-fixes README counts.         |
-| `site-rebuild` (main only)       | push to main | Re-runs `node site/build.js`, commits `site/data.js`. |
-| `readme-counts-drift`            | PR           | Advisory only — main self-heals on merge.             |
+| `audit`                          | push + PR    | `audit_lessons.py` を実行。ブロッキング。                    |
+| `readme-counts-sync`（mainのみ） | mainへのプッシュ | カタログを再ビルドし、READMEのカウントを自動修正。         |
+| `site-rebuild`（mainのみ）       | mainへのプッシュ | `node site/build.js` を再実行し、`site/data.js` をコミット。 |
+| `readme-counts-drift`            | PR           | 参考情報のみ — mainはマージ時に自己修正。             |
 
 ---
 
-## Automation contract
+## 自動化の規約
 
-**CI handles automatically — do not touch in your PR:**
+**CIが自動で処理するもの — PRで変更しないでください:**
 
-| Surface              | Bot                            | When                |
+| 対象                 | ボット                          | タイミング              |
 |----------------------|--------------------------------|---------------------|
-| `catalog.json`       | rebuilt on demand (gitignored) | every CI job        |
-| `README.md` counts   | `readme-counts-sync`           | on push to main     |
-| `site/data.js`       | `site-rebuild`                 | on push to main     |
+| `catalog.json`       | オンデマンドで再ビルド（.gitignore対象） | すべてのCIジョブ        |
+| `README.md` のカウント | `readme-counts-sync`           | mainへのプッシュ時     |
+| `site/data.js`       | `site-rebuild`                 | mainへのプッシュ時     |
 
-**You handle:**
+**あなたが対応するもの:**
 
-| Surface                       | When                                                             |
+| 対象                          | タイミング                                                             |
 |-------------------------------|------------------------------------------------------------------|
-| `README.md` lesson-link rows  | when adding a new lesson — link `[Title](phases/NN-phase/MM-lesson/)` |
-| `ROADMAP.md` status           | when marking a lesson complete or WIP                            |
-| `glossary/terms.md`           | when introducing a term used by more than one lesson             |
+| `README.md` のレッスンリンク行  | 新しいレッスンを追加するとき — `[Title](phases/NN-phase/MM-lesson/)` をリンクする |
+| `ROADMAP.md` のステータス      | レッスンを完了またはWIPとしてマークするとき                            |
+| `glossary/terms.md`           | 複数のレッスンで使用される用語を導入するとき                           |
 
-**Common bug**: if `grep -c 'tree/main/phases/NN-' site/data.js` is 0 after merge, the Phase NN README rows are plain text and missing the `[Title](phases/NN-...)` markdown link. `site/build.js` derives the URL from that link.
+**よくあるバグ**: マージ後に `grep -c 'tree/main/phases/NN-' site/data.js` が0の場合、フェーズNN のREADME行がプレーンテキストになっており、`[Title](phases/NN-...)` というMarkdownリンクが欠けています。`site/build.js` はそのリンクからURLを取得します。
 
 ---
 
-## Conflict resolution
+## コンフリクトの解消
 
 ```bash
 git fetch origin main
 git merge --no-edit origin/main
 
-# Catalog conflict (legacy branches only — catalog.json is gitignored now):
+# カタログのコンフリクト（レガシーブランチのみ — catalog.json は現在 .gitignore 対象）:
 git rm catalog.json
 git commit --no-edit
 
-# README count conflict:
+# READMEカウントのコンフリクト:
 git checkout --theirs README.md
 python3 scripts/build_catalog.py
 python3 scripts/check_readme_counts.py --fix
 git add README.md && git commit --no-edit
 
-# site/data.js conflict:
+# site/data.js のコンフリクト:
 git checkout --theirs site/data.js
 node site/build.js
 git add site/data.js && git commit --no-edit
@@ -182,37 +182,37 @@ git add site/data.js && git commit --no-edit
 git push origin <your-branch>
 ```
 
-Avoid `git push --force` to a branch with open review comments. Force-push detaches them.
+レビューコメントが付いたブランチへの `git push --force` は避けてください。強制プッシュはコメントの関連付けを切り離します。
 
 ---
 
-## New-lesson onboarding
+## 新レッスンのオンボーディング
 
 ```bash
 mkdir -p phases/NN-phase-slug/MM-new-lesson/{docs,code/tests,outputs}
 
-# 1. Write docs/en.md with the frontmatter above.
-# 2. Write code/main.<lang> with the 4-6 line header.
-# 3. Write code/tests/test_main.* with 5+ tests.
-# 4. Write quiz.json with the schema above.
-# 5. (Optional) Add outputs/skill-<slug>.md if the lesson ships a skill.
+# 1. 上記のフロントマターを含む docs/en.md を作成。
+# 2. 4〜6行のヘッダーを含む code/main.<lang> を作成。
+# 3. 5つ以上のテストを含む code/tests/test_main.* を作成。
+# 4. 上記のスキーマに従って quiz.json を作成。
+# 5. （任意）レッスンがスキルを提供する場合は outputs/skill-<slug>.md を追加。
 
-# 6. Add to README.md:
+# 6. README.md に追加:
 #    | MM | [Lesson Title](phases/NN-phase-slug/MM-new-lesson/) | Type | Lang |
 
-# 7. Update ROADMAP.md status row.
+# 7. ROADMAP.md のステータス行を更新。
 
-# 8. Validate locally.
+# 8. ローカルで検証。
 
-# 9. Atomic commit:
+# 9. アトミックコミット:
 git add phases/NN-phase-slug/MM-new-lesson README.md ROADMAP.md
 git commit -m "feat(phase-NN/MM): add <slug>"
 git push -u origin <your-branch>
-gh pr create --title "feat(phase-NN/MM): add <slug>" --body "<5-line summary>"
+gh pr create --title "feat(phase-NN/MM): add <slug>" --body "<5行の概要>"
 ```
 
-`site/data.js` regenerates on merge — leave it for CI.
+`site/data.js` はマージ時に再生成されます — CIに任せてください。
 
 ---
 
-Last reviewed: 2026-05-27.
+最終レビュー: 2026-05-27.

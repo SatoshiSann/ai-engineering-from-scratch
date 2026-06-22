@@ -1,386 +1,386 @@
-# AI Engineering Glossary
+# AI エンジニアリング 用語集
 
 ## A
 
-### Agent
-- **What people say:** "An autonomous AI that thinks and acts on its own"
-- **What it actually means:** A while loop where an LLM decides what tool to call next, executes it, sees the result, and repeats
-- **Why it's called that:** Borrowed from philosophy — an "agent" is anything that can act in the world. In AI, it just means "LLM + tools + loop"
+### Agent（エージェント）
+- **一般的な説明:** 「自律的に考えて行動するAI」
+- **実際の意味:** LLMが次に呼び出すツールを決定し、実行し、結果を確認して繰り返す、whileループのこと
+- **名称の由来:** 哲学からの借用語 — 「エージェント」とは世界に働きかけることができる存在のこと。AIの文脈では「LLM + ツール + ループ」を意味するに過ぎない
 
-### Attention
-- **What people say:** "How the AI focuses on important parts"
-- **What it actually means:** A mechanism where every token computes a weighted sum of all other tokens' values, with weights determined by how relevant they are (via dot product of query and key vectors)
-- **Why it's called that:** The 2017 paper "Attention Is All You Need" named it by analogy to human selective attention
+### Attention（アテンション）
+- **一般的な説明:** 「AIが重要な部分に注目する仕組み」
+- **実際の意味:** すべてのトークンが他のすべてのトークンの値の加重和を計算するメカニズム。重みはクエリベクトルとキーベクトルの内積によって関連度に基づいて決定される
+- **名称の由来:** 2017年の論文「Attention Is All You Need」が人間の選択的注意にたとえて命名した
 
-### Alignment
-- **What people say:** "Making AI safe"
-- **What it actually means:** The technical challenge of making an AI system's behavior match human intentions, values, and preferences, including edge cases the designer didn't anticipate
+### Alignment（アライメント）
+- **一般的な説明:** 「AIを安全にすること」
+- **実際の意味:** AIシステムの振る舞いを人間の意図・価値観・好みに合致させるための技術的課題。設計者が想定していなかったエッジケースも含む
 
-### Autoregressive
-- **What people say:** "The AI generates one word at a time"
-- **What it actually means:** A model that predicts the next token conditioned on all previous tokens, then feeds that prediction back as input for the next step. GPT, LLaMA, and Claude are all autoregressive.
+### Autoregressive（自己回帰）
+- **一般的な説明:** 「AIが1単語ずつ生成する」
+- **実際の意味:** 直前のすべてのトークンを条件として次のトークンを予測し、その予測を次のステップの入力として再度フィードするモデル。GPT、LLaMA、Claudeはすべて自己回帰モデルである
 
-### Activation Function
-- **What people say:** "The nonlinear thing between layers"
-- **What it actually means:** A function applied after each linear layer that introduces nonlinearity. Without it, stacking any number of linear layers collapses to a single linear transformation. ReLU, GELU, and SiLU are the most common. The choice directly affects whether gradients flow during training.
+### Activation Function（活性化関数）
+- **一般的な説明:** 「層の間にある非線形な処理」
+- **実際の意味:** 各線形層の後に適用される関数で、非線形性を導入する。これがなければ、どれだけ線形層を重ねても単一の線形変換に収束してしまう。ReLU、GELU、SiLUが最もよく使われる。どれを選ぶかは、学習中の勾配の流れに直接影響する
 
-### Adam (Optimizer)
-- **What people say:** "The default optimizer"
-- **What it actually means:** Adaptive Moment Estimation. Combines momentum (first moment) with adaptive learning rates per parameter (second moment). Has bias correction for early steps. Works well across most tasks without much tuning.
+### Adam（オプティマイザ）
+- **一般的な説明:** 「デフォルトのオプティマイザ」
+- **実際の意味:** Adaptive Moment Estimation（適応モーメント推定）。モメンタム（一次モーメント）とパラメータごとの適応学習率（二次モーメント）を組み合わせたもの。初期ステップに対するバイアス補正あり。ほとんどのタスクでチューニングなしに良い結果を出す
 
 ### AdamW
-- **What people say:** "Adam but better"
-- **What it actually means:** Adam with decoupled weight decay. In standard Adam, L2 regularization gets scaled by the adaptive learning rate per parameter, which is not what you want. AdamW applies weight decay directly to the weights, independent of the gradient statistics. The default optimizer for training transformers.
+- **一般的な説明:** 「Adamの改良版」
+- **実際の意味:** 重み減衰を分離したAdam。標準的なAdamではL2正則化が各パラメータの適応学習率でスケーリングされてしまうが、それは望ましくない。AdamWは勾配の統計量とは独立して、直接重みに対して重み減衰を適用する。Transformerの学習におけるデフォルトのオプティマイザ
 
-### Autograd
-- **What people say:** "Automatic gradients"
-- **What it actually means:** A system that records operations on tensors and automatically computes gradients via reverse-mode differentiation. PyTorch's autograd builds a computation graph on-the-fly (dynamic graph), while JAX uses function transformations (grad). This is what makes backpropagation practical -- you write the forward pass, and the framework computes all the derivatives.
+### Autograd（自動微分）
+- **一般的な説明:** 「自動で勾配を計算する仕組み」
+- **実際の意味:** テンソルへの演算を記録し、逆モード微分によって自動的に勾配を計算するシステム。PyTorchのautogradは動的にグラフを構築し（動的グラフ）、JAXは関数変換（grad）を使用する。これにより逆伝播が実用的になる — 順伝播を書くだけで、フレームワークがすべての微分を計算してくれる
 
 ## B
 
-### Batch Size
-- **What people say:** "How many examples at once"
-- **What it actually means:** The number of training examples processed in one forward/backward pass before updating weights. Larger batches give more stable gradient estimates but use more memory. Typical values: 32-512 for training, larger for inference. Batch size interacts with learning rate -- double the batch, double the LR (linear scaling rule).
+### Batch Size（バッチサイズ）
+- **一般的な説明:** 「一度に処理するサンプル数」
+- **実際の意味:** 重みを更新する前に1回の順伝播/逆伝播で処理される学習サンプル数。バッチサイズが大きいほど勾配の推定が安定するが、メモリ消費も増える。典型的な値: 学習時は32〜512、推論時はより大きな値。バッチサイズは学習率と相互作用する — バッチサイズを2倍にしたら学習率も2倍にする（線形スケーリング則）
 
-### Backpropagation
-- **What people say:** "How neural networks learn"
-- **What it actually means:** An algorithm that computes how much each weight contributed to the error by applying the chain rule backward through the network, then adjusts weights proportionally
-- **Why it's called that:** Errors propagate backward from output to input, layer by layer
+### Backpropagation（誤差逆伝播法）
+- **一般的な説明:** 「ニューラルネットワークの学習方法」
+- **実際の意味:** 連鎖律をネットワークの出力から入力へと逆向きに適用することで、各重みがどれだけ誤差に寄与したかを計算し、その割合に応じて重みを調整するアルゴリズム
+- **名称の由来:** 誤差が出力から入力へ、層ごとに逆向きに伝播していくことから
 
 ## C
 
-### Context Window
-- **What people say:** "How much the AI can remember"
-- **What it actually means:** The maximum number of tokens (input + output) that fit in a single API call. Not memory — it's a fixed-size buffer that resets every call
+### Context Window（コンテキストウィンドウ）
+- **一般的な説明:** 「AIが記憶できる量」
+- **実際の意味:** 1回のAPIコールに収まるトークン（入力＋出力）の最大数。記憶ではない — 毎回のコールでリセットされる固定サイズのバッファである
 
-### Chain of Thought (CoT)
-- **What people say:** "Making the AI think step by step"
-- **What it actually means:** A prompting technique where you ask the model to show its reasoning steps, which improves accuracy on multi-step problems because each step conditions the next token generation
+### Chain of Thought（思考の連鎖 / CoT）
+- **一般的な説明:** 「AIにステップごとに考えさせる手法」
+- **実際の意味:** モデルに推論のステップを示すよう求めるプロンプティング手法。各ステップが次のトークン生成を条件付けるため、複数ステップの問題での精度が向上する
 
-### CNN (Convolutional Neural Network)
-- **What people say:** "Image AI"
-- **What it actually means:** A neural network that uses convolution operations (sliding filters over the input) to detect local patterns. Stacking convolutions detects increasingly complex features: edges, textures, objects.
+### CNN（畳み込みニューラルネットワーク）
+- **一般的な説明:** 「画像AI」
+- **実際の意味:** 畳み込み演算（入力にフィルタをスライドさせる）を使って局所的なパターンを検出するニューラルネットワーク。畳み込みを重ねることで、エッジ、テクスチャ、物体といった複雑な特徴を段階的に検出する
 
 ### CUDA
-- **What people say:** "GPU programming"
-- **What it actually means:** NVIDIA's parallel computing platform. Lets you run matrix operations on thousands of GPU cores simultaneously. PyTorch and TensorFlow use CUDA under the hood.
+- **一般的な説明:** 「GPUプログラミング」
+- **実際の意味:** NVIDIAの並列計算プラットフォーム。数千のGPUコア上で行列演算を同時実行できる。PyTorchとTensorFlowは内部でCUDAを使用している
 
-### Chunking
-- **What people say:** "Splitting documents into pieces"
-- **What it actually means:** Breaking text into segments before embedding for retrieval. Chunk size determines the granularity of search results. Too small: loses context. Too large: dilutes relevance. Common strategies: fixed-size with overlap, sentence-based, or semantic splitting. Typical chunk size: 256-512 tokens with 10-20% overlap.
+### Chunking（チャンキング）
+- **一般的な説明:** 「文書を分割すること」
+- **実際の意味:** 検索のために埋め込みを行う前にテキストをセグメントに分割すること。チャンクサイズによって検索結果の粒度が決まる。小さすぎるとコンテキストが失われる。大きすぎると関連性が希薄になる。一般的な手法: 重複ありの固定サイズ、文単位、意味単位での分割。典型的なチャンクサイズ: 10〜20%の重複を持つ256〜512トークン
 
-### Contrastive Learning
-- **What people say:** "Learning by comparison"
-- **What it actually means:** Training by pulling similar pairs closer and pushing dissimilar pairs apart in embedding space. CLIP uses this: matching image-text pairs vs non-matching ones.
+### Contrastive Learning（対照学習）
+- **一般的な説明:** 「比較によって学習する手法」
+- **実際の意味:** 埋め込み空間で類似ペアを近づけ、非類似ペアを遠ざけることで学習する手法。CLIPはこれを使用: 対応する画像とテキストのペアと、対応しないペアを対比させる
 
-### Cosine Similarity
-- **What people say:** "How similar two vectors are"
-- **What it actually means:** The cosine of the angle between two vectors: dot(a, b) / (||a|| * ||b||). Ranges from -1 (opposite) to 1 (identical direction). Ignores magnitude, only cares about direction. The standard similarity metric for embeddings and semantic search.
+### Cosine Similarity（コサイン類似度）
+- **一般的な説明:** 「2つのベクトルの類似度」
+- **実際の意味:** 2つのベクトル間の角度のコサイン: dot(a, b) / (||a|| * ||b||)。-1（逆方向）から1（同一方向）の範囲を取る。大きさは無視し、方向のみを考慮する。埋め込みやセマンティック検索における標準的な類似度指標
 
-### Cross-Entropy
-- **What people say:** "The classification loss"
-- **What it actually means:** Measures the difference between two probability distributions. For classification: -sum(y_true * log(y_pred)). For language models: the negative log probability of the correct next token. Lower is better. Perplexity is just exp(cross-entropy).
+### Cross-Entropy（交差エントロピー）
+- **一般的な説明:** 「分類の損失関数」
+- **実際の意味:** 2つの確率分布の差を測る。分類では: -sum(y_true * log(y_pred))。言語モデルでは: 正しい次のトークンの負の対数確率。低いほど良い。パープレキシティは交差エントロピーのexpにすぎない
 
 ## D
 
-### Data Augmentation
-- **What people say:** "Making more training data"
-- **What it actually means:** Creating modified copies of existing data (rotate images, add noise, paraphrase text) to increase training set diversity without collecting new data. Reduces overfitting.
+### Data Augmentation（データ拡張）
+- **一般的な説明:** 「学習データを増やすこと」
+- **実際の意味:** 既存データの変形コピーを作成すること（画像の回転、ノイズの追加、テキストの言い換えなど）で、新たなデータを収集せずに学習セットの多様性を高める。過学習を軽減する
 
-### Decoder
-- **What people say:** "The output part"
-- **What it actually means:** In transformers, a decoder uses causal (masked) self-attention so each position can only attend to earlier positions. GPT is decoder-only. BERT is encoder-only. T5 is encoder-decoder.
+### Decoder（デコーダ）
+- **一般的な説明:** 「出力部分」
+- **実際の意味:** Transformerにおいて、デコーダは因果的（マスク付き）自己アテンションを使用し、各位置がそれより前の位置にのみアテンションできる。GPTはデコーダのみ。BERTはエンコーダのみ。T5はエンコーダ・デコーダ型
 
-### Diffusion Model
-- **What people say:** "AI that generates images from noise"
-- **What it actually means:** A model trained to reverse a gradual noising process — it learns to predict and remove noise, and at generation time starts from pure noise and iteratively denoises
+### Diffusion Model（拡散モデル）
+- **一般的な説明:** 「ノイズから画像を生成するAI」
+- **実際の意味:** 段階的なノイズ付加プロセスを逆転させるように学習されたモデル — ノイズを予測して除去することを学習し、生成時は純粋なノイズから始めて反復的にノイズを除去する
 
-### DPO (Direct Preference Optimization)
-- **What people say:** "A simpler RLHF"
-- **What it actually means:** A training method that skips the reward model entirely — it directly optimizes the language model to prefer the better response in pairs of human preferences
+### DPO（Direct Preference Optimization）
+- **一般的な説明:** 「シンプルなRLHF」
+- **実際の意味:** 報酬モデルを完全にスキップする学習手法 — 人間の好みのペアにおいて、より良い応答を選好するよう言語モデルを直接最適化する
 
-### Dropout
-- **What people say:** "Randomly turning off neurons"
-- **What it actually means:** During training, randomly set a fraction of activations to zero. Forces the network to not rely on any single neuron. Turned off during inference. Simple but effective regularization.
+### Dropout（ドロップアウト）
+- **一般的な説明:** 「ランダムにニューロンをオフにする」
+- **実際の意味:** 学習中、活性化の一定割合をランダムにゼロに設定する。ネットワークが特定のニューロンに依存しないよう強制する。推論時はオフにする。シンプルだが効果的な正則化手法
 
 ## E
 
-### Eigenvalue
-- **What people say:** "Some math thing for PCA"
-- **What it actually means:** For a matrix A, an eigenvalue lambda satisfies Av = lambda*v for some vector v. It tells you how much the matrix scales vectors in that direction. Large eigenvalues = directions of high variance in your data.
+### Eigenvalue（固有値）
+- **一般的な説明:** 「PCAに使う数学的なもの」
+- **実際の意味:** 行列Aに対して、固有値lambdaはあるベクトルvについてAv = lambda*vを満たす。行列がその方向のベクトルをどれだけスケーリングするかを示す。大きな固有値 = データの分散が大きい方向
 
-### Embedding
-- **What people say:** "Some AI magic that turns words into numbers"
-- **What it actually means:** A learned mapping from discrete items (words, images, users) to dense vectors in continuous space, where similar items end up close together
-- **Why it's called that:** The items are "embedded" in a geometric space where distance has meaning
+### Embedding（埋め込み）
+- **一般的な説明:** 「単語を数値に変換するAIの魔法」
+- **実際の意味:** 離散的なアイテム（単語、画像、ユーザー）を連続空間の密なベクトルにマッピングする学習済み写像。類似したアイテムが近い位置に配置される
+- **名称の由来:** アイテムが距離に意味を持つ幾何学的空間に「埋め込まれる」ことから
 
-### Encoder
-- **What people say:** "The input part"
-- **What it actually means:** In transformers, an encoder uses bidirectional self-attention so each position can attend to all positions. BERT is encoder-only. Good for understanding tasks (classification, NER) but not generation.
+### Encoder（エンコーダ）
+- **一般的な説明:** 「入力部分」
+- **実際の意味:** Transformerにおいて、エンコーダは双方向の自己アテンションを使用し、各位置がすべての位置にアテンションできる。BERTはエンコーダのみ。理解タスク（分類、固有表現認識）には適しているが、生成には向かない
 
-### Epoch
-- **What people say:** "One pass through the data"
-- **What it actually means:** Exactly that. One complete pass through every example in the training set. Multiple epochs = seeing the data multiple times. More epochs can improve learning but risks overfitting.
+### Epoch（エポック）
+- **一般的な説明:** 「データを1回通すこと」
+- **実際の意味:** まさにそのとおり。学習セットのすべてのサンプルを1回通過させること。複数エポック = データを複数回見ること。エポック数が多いほど学習が改善する可能性があるが、過学習のリスクもある
 
 ## F
 
-### Feature
-- **What people say:** "A column in your data"
-- **What it actually means:** An individual measurable property of the data. In classical ML, you engineer features by hand. In deep learning, the network learns features automatically from raw data.
+### Feature（特徴量）
+- **一般的な説明:** 「データの列」
+- **実際の意味:** データの個々の測定可能な属性。古典的なMLでは手動で特徴量を設計する。深層学習では、ネットワークが生データから自動的に特徴量を学習する
 
-### Few-Shot
-- **What people say:** "Give the AI some examples first"
-- **What it actually means:** Including a small number of input-output examples in the prompt before asking the model to perform a task. Typically 3-5 examples. The model pattern-matches on these examples to understand the desired format and behavior. Contrast with zero-shot (no examples) and fine-tuning (thousands of examples baked into weights).
+### Few-Shot（フューショット）
+- **一般的な説明:** 「AIに先にいくつか例を見せる」
+- **実際の意味:** モデルにタスクを実行させる前に、少数の入出力例をプロンプトに含める手法。通常3〜5個の例。モデルはこれらの例でパターンマッチングを行い、望ましい形式や振る舞いを把握する。ゼロショット（例なし）やファインチューニング（重みに焼き付けた数千の例）と対比される
 
-### Fine-tuning
-- **What people say:** "Training the AI on your data"
-- **What it actually means:** Starting with a pre-trained model's weights and continuing training on a smaller, task-specific dataset. Only updates existing weights, doesn't add new knowledge from scratch
+### Fine-tuning（ファインチューニング）
+- **一般的な説明:** 「自分のデータでAIを学習させること」
+- **実際の意味:** 事前学習済みモデルの重みを出発点として、より小さなタスク固有のデータセットで学習を継続すること。既存の重みを更新するだけで、ゼロから新しい知識を追加するわけではない
 
-### Function Calling
-- **What people say:** "AI that can use tools"
-- **What it actually means:** A structured way for LLMs to request execution of external functions. You define tools with JSON Schema descriptions, the model outputs a structured JSON object specifying which function to call with what arguments, your code executes it, and the result goes back to the model. Not the same as agents -- function calling is the mechanism, agents are the loop.
+### Function Calling（関数呼び出し）
+- **一般的な説明:** 「ツールを使えるAI」
+- **実際の意味:** LLMが外部関数の実行を要求するための構造化された方法。JSON Schemaの説明でツールを定義し、モデルはどの関数をどの引数で呼び出すかを指定する構造化JSONオブジェクトを出力し、あなたのコードがそれを実行して結果をモデルに返す。エージェントとは異なる — 関数呼び出しはメカニズムであり、エージェントはループである
 
 ## G
 
-### Guardrails
-- **What people say:** "Safety filters for AI"
-- **What it actually means:** Input/output validation layers around an LLM that detect and block harmful content, prompt injection attempts, PII leakage, or off-topic responses. Typically a pipeline: input filter -> LLM -> output filter. Can be rule-based (regex, keyword lists) or model-based (classifier that scores safety).
+### Guardrails（ガードレール）
+- **一般的な説明:** 「AIの安全フィルタ」
+- **実際の意味:** LLMの周囲に設けた入出力検証レイヤー。有害なコンテンツ、プロンプトインジェクション、個人情報の漏洩、オフトピックな応答を検出してブロックする。典型的なパイプライン: 入力フィルタ → LLM → 出力フィルタ。ルールベース（正規表現、キーワードリスト）またはモデルベース（安全性スコアを付けるClassifier）が使われる
 
 ### GPT
-- **What people say:** "ChatGPT" or "The AI"
-- **What it actually means:** Generative Pre-trained Transformer — a specific architecture that predicts the next token using a decoder-only transformer trained on large text corpora
-- **Why it's called that:** Generative (produces text), Pre-trained (trained once on large data, then adapted), Transformer (the architecture)
+- **一般的な説明:** 「ChatGPT」または「そのAI」
+- **実際の意味:** Generative Pre-trained Transformer — デコーダのみのTransformerを使い、大規模なテキストコーパスで学習させて次のトークンを予測する特定のアーキテクチャ
+- **名称の由来:** Generative（テキストを生成する）、Pre-trained（大規模データで事前学習後に適用）、Transformer（アーキテクチャ）
 
-### GAN (Generative Adversarial Network)
-- **What people say:** "Two AIs fighting each other"
-- **What it actually means:** A generator network tries to create realistic data while a discriminator network tries to tell real from fake. They train together: the generator gets better at fooling the discriminator, and the discriminator gets better at detecting fakes.
+### GAN（敵対的生成ネットワーク）
+- **一般的な説明:** 「2つのAIが戦い合う」
+- **実際の意味:** 生成ネットワークがリアルなデータを作成しようとする一方、識別ネットワークが本物と偽物を見分けようとする。両者は一緒に学習する: 生成器は識別器を騙すのが上手くなり、識別器は偽物を見破るのが上手くなる
 
-### Gradient
-- **What people say:** "The slope"
-- **What it actually means:** A vector of partial derivatives pointing in the direction of steepest increase. In ML, you go opposite to the gradient (gradient descent) to minimize the loss.
+### Gradient（勾配）
+- **一般的な説明:** 「傾き」
+- **実際の意味:** 最も急な増加の方向を示す偏微分のベクトル。MLでは損失を最小化するために勾配と反対方向に進む（勾配降下法）
 
-### Gradient Descent
-- **What people say:** "How AI improves"
-- **What it actually means:** An optimization algorithm that adjusts parameters in the direction that reduces the loss function most steeply, like walking downhill in a high-dimensional landscape
+### Gradient Descent（勾配降下法）
+- **一般的な説明:** 「AIが改善する方法」
+- **実際の意味:** 損失関数を最も急速に減少させる方向にパラメータを調整する最適化アルゴリズム。高次元の地形を下り坂に向かって歩くようなイメージ
 
 ## H
 
-### Hyperparameter
-- **What people say:** "Settings you tune"
-- **What it actually means:** Values set before training that control the training process itself: learning rate, batch size, number of layers, dropout rate. Unlike model parameters (weights), these aren't learned from data.
+### Hyperparameter（ハイパーパラメータ）
+- **一般的な説明:** 「調整する設定値」
+- **実際の意味:** 学習プロセス自体を制御するために学習前に設定する値: 学習率、バッチサイズ、層の数、ドロップアウト率など。モデルのパラメータ（重み）と異なり、データから学習されるものではない
 
-### Hallucination
-- **What people say:** "The AI is lying" or "making things up"
-- **What it actually means:** The model generates plausible-sounding text that isn't grounded in its training data or the given context — it's pattern-completing, not fact-retrieving
+### Hallucination（幻覚）
+- **一般的な説明:** 「AIが嘘をつく」または「でたらめを言う」
+- **実際の意味:** モデルが学習データや与えられたコンテキストに基づかない、もっともらしいテキストを生成すること — 事実を検索しているのではなく、パターン補完をしている
 
 ## I
 
-### Inference
-- **What people say:** "Running the AI"
-- **What it actually means:** Using a trained model to make predictions on new data. No weight updates happen. This is what you do in production: send input, get output.
+### Inference（推論 / 推定）
+- **一般的な説明:** 「AIを動かすこと」
+- **実際の意味:** 学習済みモデルを使って新しいデータに対して予測を行うこと。重みの更新は行われない。本番環境での作業: 入力を送って出力を得る
 
-### Inductive Bias
-- **What people say:** Never heard of it
-- **What it actually means:** The assumptions built into a model's architecture. CNNs assume local patterns matter (convolution). RNNs assume order matters (sequential processing). Transformers assume everything might relate to everything (attention). The right bias helps the model learn faster from less data.
+### Inductive Bias（帰納バイアス）
+- **一般的な説明:** 聞いたことがない
+- **実際の意味:** モデルのアーキテクチャに組み込まれた前提。CNNは局所的なパターンが重要だと仮定する（畳み込み）。RNNは順序が重要だと仮定する（逐次処理）。Transformerはすべてがすべてと関連しうると仮定する（アテンション）。適切なバイアスにより、モデルが少ないデータからより速く学習できる
 
 ### JAX
-- **What people say:** "Google's ML framework"
-- **What it actually means:** A NumPy-compatible library that adds automatic differentiation (grad), JIT compilation (jit), automatic vectorization (vmap), and multi-device parallelism (pmap). Unlike PyTorch's object-oriented style, JAX is purely functional -- no hidden state, no in-place mutation. Used by Google DeepMind for AlphaFold, Gemini, and large-scale research.
+- **一般的な説明:** 「GoogleのMLフレームワーク」
+- **実際の意味:** 自動微分（grad）、JITコンパイル（jit）、自動ベクトル化（vmap）、マルチデバイス並列処理（pmap）を追加したNumPy互換ライブラリ。PyTorchのオブジェクト指向スタイルとは異なり、JAXは純粋関数型 — 隠れた状態なし、インプレース変換なし。Google DeepMindがAlphaFold、Gemini、大規模研究に使用している
 
 ## K
 
-### KV Cache
-- **What people say:** "Makes inference faster"
-- **What it actually means:** During autoregressive generation, caching the key and value matrices from previous tokens so you don't recompute them at each step. Trades memory for speed. Essential for fast LLM inference.
+### KV Cache（KVキャッシュ）
+- **一般的な説明:** 「推論を高速化するもの」
+- **実際の意味:** 自己回帰的な生成において、各ステップで再計算しなくて済むよう、前のトークンからのキーと値の行列をキャッシュすること。メモリと速度をトレードオフする。高速なLLM推論に不可欠
 
 ## L
 
-### Latent Space
-- **What people say:** "The hidden representation"
-- **What it actually means:** A compressed, learned representation space where similar inputs map to nearby points. Autoencoders, VAEs, and diffusion models all work in latent space. It's lower-dimensional than the input but captures the important structure.
+### Latent Space（潜在空間）
+- **一般的な説明:** 「隠れた表現」
+- **実際の意味:** 類似した入力が近傍に配置される、圧縮された学習済みの表現空間。オートエンコーダ、VAE、拡散モデルはすべて潜在空間で動作する。入力よりも低次元だが、重要な構造を捉えている
 
-### Learning Rate
-- **What people say:** "How fast the AI learns"
-- **What it actually means:** A scalar that controls step size during gradient descent. Too high: overshoots the minimum and diverges. Too low: converges too slowly or gets stuck. The single most important hyperparameter.
+### Learning Rate（学習率）
+- **一般的な説明:** 「AIの学習速度」
+- **実際の意味:** 勾配降下法でのステップサイズを制御するスカラー値。高すぎる: 最小値を飛び越えて発散する。低すぎる: 収束が遅すぎるか、局所解にはまる。最も重要なハイパーパラメータ
 
-### LLM (Large Language Model)
-- **What people say:** "AI" or "the brain"
-- **What it actually means:** A transformer-based neural network trained to predict the next token in a sequence, with billions of parameters, trained on internet-scale text data
+### LLM（大規模言語モデル）
+- **一般的な説明:** 「AI」または「頭脳」
+- **実際の意味:** 数十億のパラメータを持ち、インターネット規模のテキストデータで学習された、シーケンスの次のトークンを予測するTransformerベースのニューラルネットワーク
 
-### LoRA (Low-Rank Adaptation)
-- **What people say:** "Efficient fine-tuning"
-- **What it actually means:** Instead of updating all weights, insert small low-rank matrices alongside the original weights. Only these small matrices are trained, reducing memory by 10-100x
+### LoRA（低ランク適応）
+- **一般的な説明:** 「効率的なファインチューニング」
+- **実際の意味:** すべての重みを更新する代わりに、元の重みの隣に小さな低ランク行列を挿入する。これらの小さな行列だけが学習され、メモリを10〜100倍削減できる
 
-### Loss Function
-- **What people say:** "How wrong the AI is"
-- **What it actually means:** A function that measures the gap between predicted and actual output. Training minimizes this function. MSE for regression, cross-entropy for classification, contrastive loss for embeddings. The choice of loss function defines what "good" means to the model.
+### Loss Function（損失関数）
+- **一般的な説明:** 「AIがどれだけ間違っているか」
+- **実際の意味:** 予測値と実際の出力の差を測る関数。学習はこの関数を最小化する。回帰にはMSE、分類には交差エントロピー、埋め込みには対照損失を使用する。損失関数の選択により、モデルにとっての「良さ」が定義される
 
 ## M
 
-### Mixed Precision
-- **What people say:** "Training trick for speed"
-- **What it actually means:** Using float16 for forward pass and most operations (faster, less memory) but keeping float32 for gradient accumulation and weight updates (more precise). Gets 2x speedup with negligible accuracy loss.
+### Mixed Precision（混合精度）
+- **一般的な説明:** 「速度向上のための学習テクニック」
+- **実際の意味:** 順伝播とほとんどの演算にはfloat16（高速、メモリ少）を使用しつつ、勾配の蓄積と重みの更新にはfloat32（高精度）を保持する。精度の損失はわずかながら、約2倍の高速化が得られる
 
-### MoE (Mixture of Experts)
-- **What people say:** "Only part of the model runs"
-- **What it actually means:** A model with many "expert" subnetworks where a routing mechanism sends each input to only a few experts. The full model is huge but each forward pass is cheap because most experts are skipped. Mixtral and GPT-4 use this.
+### MoE（Mixture of Experts / 混合エキスパート）
+- **一般的な説明:** 「モデルの一部しか動かない」
+- **実際の意味:** 多くの「エキスパート」サブネットワークを持つモデルで、ルーティングメカニズムが各入力をごく少数のエキスパートにのみ送る。モデル全体は巨大だが、ほとんどのエキスパートがスキップされるため各順伝播のコストは低い。MixtralとGPT-4はこれを使用している
 
-### MCP (Model Context Protocol)
-- **What people say:** "A way for AI to use tools"
-- **What it actually means:** An open protocol (JSON-RPC over stdio/HTTP) that standardizes how AI applications connect to external data sources and tools, with typed schemas for tools, resources, and prompts
+### MCP（Model Context Protocol）
+- **一般的な説明:** 「AIがツールを使うための方法」
+- **実際の意味:** AIアプリケーションが外部データソースやツールに接続する方法を標準化したオープンプロトコル（stdio/HTTP上のJSON-RPC）。ツール、リソース、プロンプトの型付きスキーマを備える
 
 ## N
 
-### NaN (Not a Number)
-- **What people say:** "Training crashed"
-- **What it actually means:** A floating-point value indicating undefined results (0/0, inf-inf). In training, NaN loss usually means: learning rate too high, exploding gradients, log of zero, or division by zero. Always the first thing to check when training fails.
+### NaN（Not a Number）
+- **一般的な説明:** 「学習がクラッシュした」
+- **実際の意味:** 未定義の結果（0/0、inf-infなど）を示す浮動小数点値。学習中にNaNの損失が出た場合、一般的な原因は: 学習率が高すぎる、勾配が爆発している、ゼロの対数を取っている、ゼロ除算。学習が失敗したとき最初に確認すべきこと
 
-### Normalization
-- **What people say:** "Scaling the data"
-- **What it actually means:** Adjusting values to a standard range. Batch normalization normalizes across a batch. Layer normalization normalizes across features. Both stabilize training and allow higher learning rates.
+### Normalization（正規化）
+- **一般的な説明:** 「データをスケーリングすること」
+- **実際の意味:** 値を標準的な範囲に調整すること。バッチ正規化はバッチ全体で正規化する。レイヤー正規化は特徴量全体で正規化する。どちらも学習を安定させ、より高い学習率を可能にする
 
 ## O
 
-### Overfitting
-- **What people say:** "The model memorized the data"
-- **What it actually means:** The model performs well on training data but poorly on unseen data. It learned the noise, not the signal. Fix with: more data, regularization (dropout, weight decay), early stopping, data augmentation, simpler model.
+### Overfitting（過学習）
+- **一般的な説明:** 「モデルがデータを暗記した」
+- **実際の意味:** モデルが学習データでは良い結果を出すが、未知のデータでは悪い結果になること。シグナルではなくノイズを学習してしまっている。対処法: データを増やす、正則化（ドロップアウト、重み減衰）、早期終了、データ拡張、モデルの単純化
 
-### Optimizer
-- **What people say:** "The thing that updates weights"
-- **What it actually means:** An algorithm that uses gradients to update model parameters. SGD is the simplest. Adam is the most common. Each optimizer has different properties: convergence speed, memory usage, sensitivity to hyperparameters.
+### Optimizer（オプティマイザ）
+- **一般的な説明:** 「重みを更新するもの」
+- **実際の意味:** 勾配を使ってモデルのパラメータを更新するアルゴリズム。SGDが最もシンプル。Adamが最もよく使われる。各オプティマイザは収束速度、メモリ使用量、ハイパーパラメータへの感度といった異なる特性を持つ
 
 ## P
 
-### Parameter
-- **What people say:** "Model size"
-- **What it actually means:** A learnable value in the model, typically a weight or bias. "7B parameters" means 7 billion learnable numbers. Each float32 parameter takes 4 bytes, so 7B parameters = 28GB of memory just for the weights.
+### Parameter（パラメータ）
+- **一般的な説明:** 「モデルのサイズ」
+- **実際の意味:** モデル内の学習可能な値。通常は重みやバイアス。「7Bパラメータ」とは学習可能な70億個の数値を意味する。各float32パラメータは4バイトを占めるため、7Bパラメータ = 重みだけで28GBのメモリが必要
 
-### Perplexity
-- **What people say:** "How confused the model is"
-- **What it actually means:** The exponential of the average cross-entropy loss. Lower is better. A perplexity of 10 means the model is as uncertain as if it were choosing uniformly among 10 tokens at each step.
+### Perplexity（パープレキシティ）
+- **一般的な説明:** 「モデルがどれだけ混乱しているか」
+- **実際の意味:** 平均交差エントロピー損失の指数関数。低いほど良い。パープレキシティが10の場合、各ステップで10個のトークンから一様に選ぶのと同等の不確かさをモデルが持っていることを意味する
 
-### Precision & Recall
-- **What people say:** "Accuracy metrics"
-- **What it actually means:** Precision = of items you flagged, how many were correct. Recall = of all correct items, how many did you find. They trade off: catching every spam email (high recall) means more false alarms (low precision). F1 score is their harmonic mean. Use precision when false positives are costly, recall when false negatives are costly.
+### Precision & Recall（適合率と再現率）
+- **一般的な説明:** 「精度の指標」
+- **実際の意味:** 適合率 = フラグを立てたアイテムのうち正しかったものの割合。再現率 = 正解のアイテム全体のうち見つけられたものの割合。両者はトレードオフの関係: すべてのスパムメールを捕捉する（高再現率）と誤検知が増える（低適合率）。F1スコアは調和平均。偽陽性のコストが高い場合は適合率を、偽陰性のコストが高い場合は再現率を重視する
 
-### Prompt Engineering
-- **What people say:** "Talking to AI the right way"
-- **What it actually means:** Designing the input text to reliably produce desired outputs -- including system prompts, few-shot examples, format instructions, and chain-of-thought triggers
+### Prompt Engineering（プロンプトエンジニアリング）
+- **一般的な説明:** 「AIへの正しい話しかけ方」
+- **実際の意味:** 望ましい出力を安定して得るために入力テキストを設計すること — システムプロンプト、フューショット例、形式指定、思考の連鎖のトリガーなどを含む
 
-### Prompt Injection
-- **What people say:** "Hacking the AI with words"
-- **What it actually means:** An attack where malicious text in the input overrides the system prompt or instructions. Direct injection: user types "Ignore previous instructions." Indirect injection: a retrieved document contains hidden instructions. The LLM equivalent of SQL injection. No complete solution exists -- defense is layers of input validation, output filtering, and privilege separation.
+### Prompt Injection（プロンプトインジェクション）
+- **一般的な説明:** 「言葉でAIをハッキングすること」
+- **実際の意味:** 入力の悪意あるテキストがシステムプロンプトや指示を上書きする攻撃。直接インジェクション: ユーザーが「前の指示を無視して」と入力する。間接インジェクション: 取得した文書に隠れた指示が含まれている。SQLインジェクションのLLM版。完全な解決策は存在しない — 防御は入力検証、出力フィルタリング、権限分離の多層的な組み合わせ
 
 ## Q
 
 ### QLoRA
-- **What people say:** "LoRA but cheaper"
-- **What it actually means:** Quantized LoRA. Keeps the frozen base model weights in 4-bit precision (NF4 format) while training LoRA adapters in 16-bit. Reduces memory by another 3-4x compared to standard LoRA. A 7B model that needs 14GB with LoRA fits in 4-6GB with QLoRA. Quality is within 1% of full fine-tuning on most benchmarks.
+- **一般的な説明:** 「安上がりなLoRA」
+- **実際の意味:** 量子化LoRA。固定されたベースモデルの重みを4ビット精度（NF4形式）で保持しつつ、LoRAアダプタを16ビットで学習する。標準的なLoRAと比較してさらに3〜4倍のメモリ削減。LoRAで14GBが必要な7Bモデルが、QLoRAなら4〜6GBに収まる。ほとんどのベンチマークで品質はフルファインチューニングの1%以内
 
 ## R
 
-### RAG (Retrieval-Augmented Generation)
-- **What people say:** "AI that can search"
-- **What it actually means:** A pattern where you retrieve relevant documents from a knowledge base (using embedding similarity), stuff them into the prompt, and let the LLM answer based on that context
-- **Why it's called that:** Retrieval (find documents) + Augmented (add to prompt) + Generation (LLM writes the answer)
+### RAG（Retrieval-Augmented Generation）
+- **一般的な説明:** 「検索できるAI」
+- **実際の意味:** 知識ベースから関連文書を（埋め込みの類似度を使って）検索し、プロンプトに詰め込み、そのコンテキストに基づいてLLMが回答するパターン
+- **名称の由来:** Retrieval（文書を検索）+ Augmented（プロンプトに追加）+ Generation（LLMが回答を生成）
 
-### RLHF (Reinforcement Learning from Human Feedback)
-- **What people say:** "How they make AI helpful"
-- **What it actually means:** A training pipeline: (1) collect human preferences on model outputs, (2) train a reward model on those preferences, (3) use PPO to optimize the LLM to produce higher-reward outputs
+### RLHF（人間のフィードバックに基づく強化学習）
+- **一般的な説明:** 「AIを役立つものにする方法」
+- **実際の意味:** 学習パイプライン: (1) モデル出力に対する人間の好みを収集、(2) その好みで報酬モデルを学習、(3) PPOを使って高い報酬の出力を生成するようLLMを最適化する
 
-### Quantization
-- **What people say:** "Making the model smaller"
-- **What it actually means:** Reducing the precision of model weights from float32 (4 bytes) to int8 (1 byte) or int4 (0.5 bytes). Trades a small amount of accuracy for 4-8x less memory and faster inference. GPTQ, AWQ, and GGUF are common formats.
+### Quantization（量子化）
+- **一般的な説明:** 「モデルを小さくすること」
+- **実際の意味:** モデルの重みの精度をfloat32（4バイト）からint8（1バイト）またはint4（0.5バイト）に削減すること。わずかな精度の低下と引き換えに、メモリが4〜8倍削減され推論が高速化される。GPTQ、AWQ、GGUFが一般的なフォーマット
 
 ### ReLU
-- **What people say:** "Activation function"
-- **What it actually means:** Rectified Linear Unit: f(x) = max(0, x). The simplest non-linear activation. Fast to compute, doesn't saturate for positive values. Used everywhere because it works and is cheap. Variants: LeakyReLU, GELU, SiLU.
+- **一般的な説明:** 「活性化関数」
+- **実際の意味:** Rectified Linear Unit（正規化線形ユニット）: f(x) = max(0, x)。最もシンプルな非線形活性化関数。計算が速く、正の値では飽和しない。動作が単純でコストが低いため広く使われる。派生形: LeakyReLU、GELU、SiLU
 
 ### ROUGE
-- **What people say:** "Summarization metric"
-- **What it actually means:** Recall-Oriented Understudy for Gisting Evaluation. Measures overlap between generated text and reference text. ROUGE-1 counts unigram matches, ROUGE-2 counts bigram matches, ROUGE-L finds the longest common subsequence. Cheap to compute but only measures surface similarity -- two sentences with the same meaning but different words score poorly.
+- **一般的な説明:** 「要約の評価指標」
+- **実際の意味:** Recall-Oriented Understudy for Gisting Evaluation（要約評価のための再現率重視の代理指標）。生成テキストと参照テキストの重複を測る。ROUGE-1はユニグラムの一致を数え、ROUGE-2はバイグラムの一致を数え、ROUGE-Lは最長共通部分列を見つける。計算コストは低いが表面的な類似度しか測れない — 同じ意味でも表現が異なる2文はスコアが低くなる
 
 ## S
 
-### Semantic Search
-- **What people say:** "Smart search that understands meaning"
-- **What it actually means:** Finding documents by meaning rather than keyword matching. Embed the query and all documents into the same vector space, then return documents whose embeddings are closest to the query embedding. "payment failed" finds "transaction declined" even though they share no words. Powered by embedding models + vector databases.
+### Semantic Search（セマンティック検索）
+- **一般的な説明:** 「意味を理解するスマートな検索」
+- **実際の意味:** キーワードマッチングではなく意味によって文書を見つける検索。クエリとすべての文書を同じベクトル空間に埋め込み、クエリの埋め込みに最も近い埋め込みを持つ文書を返す。「payment failed」は共通の単語がなくても「transaction declined」を見つける。埋め込みモデル + ベクトルデータベースで実現される
 
-### Streaming
-- **What people say:** "Seeing the response appear word by word"
-- **What it actually means:** The LLM sends tokens as they are generated rather than waiting for the complete response. Uses Server-Sent Events (SSE) or WebSocket protocols. Reduces perceived latency from seconds to milliseconds for the first token. Essential for production chat interfaces. Each chunk contains a delta (partial token or word).
+### Streaming（ストリーミング）
+- **一般的な説明:** 「応答が単語ごとに表示される様子」
+- **実際の意味:** LLMが完全な応答を待たずに生成したトークンを逐次送信すること。Server-Sent Events（SSE）またはWebSocketプロトコルを使用する。最初のトークンまでの体感レイテンシを数秒から数ミリ秒に削減する。本番のチャットインターフェイスに不可欠。各チャンクにはデルタ（部分的なトークンまたは単語）が含まれる
 
-### Self-Attention
-- **What people say:** "How the model decides what to focus on"
-- **What it actually means:** Each token computes query, key, and value vectors. Attention weight between two tokens = dot product of their query and key, scaled and softmaxed. Output = weighted sum of value vectors. Lets every token see every other token.
+### Self-Attention（自己アテンション）
+- **一般的な説明:** 「モデルが何に注目するかを決める仕組み」
+- **実際の意味:** 各トークンがクエリ、キー、バリューのベクトルを計算する。2トークン間のアテンション重み = クエリとキーの内積をスケーリングしてsoftmaxを適用したもの。出力 = バリューベクトルの加重和。すべてのトークンが他のすべてのトークンを見ることができる
 
-### SFT (Supervised Fine-Tuning)
-- **What people say:** "Teaching the model to follow instructions"
-- **What it actually means:** Fine-tuning a pre-trained model on (instruction, response) pairs. The model learns to generate the response given the instruction. This is what turns a base model into a chat model.
+### SFT（教師ありファインチューニング）
+- **一般的な説明:** 「指示に従うようモデルを教育すること」
+- **実際の意味:** 事前学習済みモデルを（指示、応答）のペアでファインチューニングすること。モデルは指示に対して応答を生成することを学習する。これがベースモデルをチャットモデルに変える過程
 
 ### Softmax
-- **What people say:** "Turns numbers into probabilities"
-- **What it actually means:** softmax(x_i) = exp(x_i) / sum(exp(x_j)). Transforms a vector of arbitrary real numbers into a probability distribution (all positive, sums to 1). Used in classification heads, attention weights, and anywhere you need probabilities.
+- **一般的な説明:** 「数値を確率に変換する」
+- **実際の意味:** softmax(x_i) = exp(x_i) / sum(exp(x_j))。任意の実数のベクトルを確率分布（すべて正、合計1）に変換する。分類ヘッド、アテンション重み、確率が必要なあらゆる場所で使用される
 
-### Swarm
-- **What people say:** "A bunch of AI agents working together like bees"
-- **What it actually means:** Multiple agents sharing state and coordinating through message passing, with emergent behavior arising from simple individual rules rather than central control
+### Swarm（スワーム）
+- **一般的な説明:** 「蜂のように協力し合うAIエージェントの集団」
+- **実際の意味:** 状態を共有し、メッセージパッシングで協調する複数のエージェント。中央制御ではなく、個々のシンプルなルールから創発的な振る舞いが生まれる
 
 ## T
 
-### System Prompt
-- **What people say:** "The AI's instructions"
-- **What it actually means:** A special message at the start of a conversation that sets the model's behavior, persona, and constraints. Processed before user messages. Not visible to the user in most UIs. Defines what the model should and shouldn't do, its tone, format preferences, and domain focus. Different from user prompts -- system prompts are set by the developer.
+### System Prompt（システムプロンプト）
+- **一般的な説明:** 「AIへの指示」
+- **実際の意味:** 会話の冒頭に置かれる特別なメッセージで、モデルの振る舞い、ペルソナ、制約を設定する。ユーザーメッセージより先に処理される。ほとんどのUIではユーザーには見えない。モデルが何をすべきで何をすべきでないか、トーン、フォーマットの好み、ドメインのフォーカスを定義する。ユーザープロンプトとは異なり、システムプロンプトは開発者が設定する
 
-### Tensor
-- **What people say:** "A multi-dimensional array"
-- **What it actually means:** The fundamental data structure in deep learning frameworks. A 0D tensor is a scalar, 1D is a vector, 2D is a matrix, 3D+ is a tensor. In PyTorch and JAX, tensors track their computation history for automatic differentiation and can live on CPU or GPU. All neural network inputs, outputs, weights, and gradients are tensors.
+### Tensor（テンソル）
+- **一般的な説明:** 「多次元配列」
+- **実際の意味:** 深層学習フレームワークにおける基本的なデータ構造。0次元テンソルはスカラー、1次元はベクトル、2次元は行列、3次元以上がテンソル。PyTorchとJAXのテンソルは計算の履歴を追跡して自動微分を可能にし、CPUまたはGPU上に配置できる。ニューラルネットワークのすべての入力、出力、重み、勾配がテンソルである
 
-### Token
-- **What people say:** "A word"
-- **What it actually means:** A subword unit (typically 3-4 characters in English) produced by a tokenizer like BPE. "unbelievable" might be 3 tokens: "un" + "believ" + "able"
+### Token（トークン）
+- **一般的な説明:** 「単語」
+- **実際の意味:** BPEなどのトークナイザによって生成されるサブワード単位（英語では通常3〜4文字）。「unbelievable」は「un」+「believ」+「able」の3トークンに分割されることがある
 
-### Temperature
-- **What people say:** "Creativity setting"
-- **What it actually means:** A scalar that divides logits before softmax. Temperature=1 is default. Higher = flatter distribution = more random outputs. Lower = sharper distribution = more deterministic. Temperature=0 is argmax (always pick the most likely token).
+### Temperature（温度）
+- **一般的な説明:** 「創造性の設定」
+- **実際の意味:** softmax適用前にロジットを除算するスカラー値。Temperature=1がデフォルト。高いほど = 分布が平坦になる = より多様な出力。低いほど = 分布が鋭くなる = より決定論的な出力。Temperature=0はargmax（常に最も確率の高いトークンを選択）
 
-### Transfer Learning
-- **What people say:** "Using a pre-trained model"
-- **What it actually means:** Taking a model trained on one task and adapting it to a different task. The early layers learn general features (edges, syntax patterns) that transfer. Only the later layers need task-specific training. This is why you can fine-tune BERT for any NLP task.
+### Transfer Learning（転移学習）
+- **一般的な説明:** 「事前学習済みモデルを使うこと」
+- **実際の意味:** あるタスクで学習したモデルを別のタスクに適応させること。初期の層は転用できる汎用的な特徴（エッジ、構文パターン）を学習する。後の層だけがタスク固有の学習を必要とする。これがBERTをあらゆるNLPタスクにファインチューニングできる理由
 
-### Transformer
-- **What people say:** "The architecture behind modern AI"
-- **What it actually means:** A neural network architecture that processes sequences using self-attention (letting every position attend to every other position) instead of recurrence, enabling massive parallelization
-- **Why it's called that:** It transforms input representations into output representations through attention layers
+### Transformer（トランスフォーマー）
+- **一般的な説明:** 「現代AIの基盤となるアーキテクチャ」
+- **実際の意味:** 回帰ではなく自己アテンション（すべての位置が他のすべての位置にアテンションできる）を使ってシーケンスを処理するニューラルネットワークアーキテクチャ。大規模な並列処理を可能にする
+- **名称の由来:** アテンション層を通じて入力表現を出力表現に「変換」することから
 
 ## U
 
-### Underfitting
-- **What people say:** "The model isn't learning"
-- **What it actually means:** The model is too simple to capture the patterns in the data. Training loss stays high. Fix with: more parameters, more layers, longer training, lower regularization, better features.
+### Underfitting（未学習）
+- **一般的な説明:** 「モデルが学習できていない」
+- **実際の意味:** モデルがデータのパターンを捉えるには単純すぎる状態。学習損失が高いまま。対処法: パラメータを増やす、層を増やす、学習を長くする、正則化を弱める、特徴量を改善する
 
 ## V
 
-### VAE (Variational Autoencoder)
-- **What people say:** "A generative model"
-- **What it actually means:** An autoencoder that learns a smooth latent space by forcing the encoder output to follow a Gaussian distribution. You can sample from this distribution and decode to generate new data. The reparameterization trick makes it trainable via backpropagation.
+### VAE（変分オートエンコーダ）
+- **一般的な説明:** 「生成モデル」
+- **実際の意味:** エンコーダの出力をガウス分布に従わせることで、なめらかな潜在空間を学習するオートエンコーダ。この分布からサンプリングしてデコードすることで新しいデータを生成できる。再パラメータ化トリックにより誤差逆伝播での学習が可能になる
 
-### Vector Database
-- **What people say:** "A special database for AI"
-- **What it actually means:** A database optimized for storing vectors (dense arrays of floats) and performing fast approximate nearest-neighbor search. The core operation in similarity search, RAG, and recommendation systems.
+### Vector Database（ベクトルデータベース）
+- **一般的な説明:** 「AI用の特殊なデータベース」
+- **実際の意味:** ベクトル（浮動小数点数の密な配列）の保存と高速な近似最近傍探索に最適化されたデータベース。類似検索、RAG、推薦システムの中核をなす演算
 
 ## W
 
-### Weight
-- **What people say:** "What the model learned"
-- **What it actually means:** A single number in a model's parameter matrix. A linear layer with input size 768 and output size 3072 has 768*3072 = 2,359,296 weights. Training adjusts each weight to minimize the loss function.
+### Weight（重み）
+- **一般的な説明:** 「モデルが学習したもの」
+- **実際の意味:** モデルのパラメータ行列の1つの数値。入力サイズ768・出力サイズ3072の線形層は768×3072 = 2,359,296個の重みを持つ。学習によって各重みが損失関数を最小化するよう調整される
 
-### Weight Decay
-- **What people say:** "Regularization"
-- **What it actually means:** Adding a penalty proportional to the magnitude of weights to the loss function. Equivalent to L2 regularization. Prevents weights from growing too large. Typical value: 0.01-0.1.
+### Weight Decay（重み減衰）
+- **一般的な説明:** 「正則化」
+- **実際の意味:** 重みの大きさに比例するペナルティを損失関数に加えること。L2正則化と等価。重みが過度に大きくなるのを防ぐ。典型的な値: 0.01〜0.1
 
 ## Z
 
-### Zero-Shot
-- **What people say:** "No training needed"
-- **What it actually means:** Using a model on a task it wasn't explicitly trained for, with no task-specific examples in the prompt. The model generalizes from pre-training. Works because large models have seen enough variety to handle new task formats.
+### Zero-Shot（ゼロショット）
+- **一般的な説明:** 「学習不要」
+- **実際の意味:** モデルが明示的に学習されていないタスクに対して、プロンプトにタスク固有の例を含めずに使用すること。モデルは事前学習から汎化する。大規模なモデルは十分な多様性を学習しているため、新しいタスク形式にも対応できる

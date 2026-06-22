@@ -1,39 +1,37 @@
-# Code migration agent dashboard (TypeScript skeleton)
+# コード移行エージェントダッシュボード（TypeScript スケルトン）
 
-Multi-file TypeScript skeleton for the dashboard layer of the code migration
-agent capstone. The agent (Python) runs in a sandbox; this server renders
-progress for the operator.
+コード移行エージェントキャップストーンのダッシュボード層を対象とした、マルチファイルの TypeScript スケルトンです。エージェント（Python）はサンドボックス内で動作し、このサーバーはオペレーター向けに進捗を表示します。
 
-## Layout
+## レイアウト
 
-- `src/index.ts` — entry point, simulates ticks and optionally serves HTTP.
-- `src/server.ts` — Hono routes for `/`, `/dashboard`, `/migrations`, `/migrations/:id`.
-- `src/migrations.ts` — per-file state machine and seed data.
-- `src/cost.ts` — turn count and dollar budget enforcement.
-- `src/types.ts` — shared types.
-- `tests/*.test.ts` — `node --test` style tests via `tsx`.
+- `src/index.ts` — エントリーポイント。ティックをシミュレートし、オプションで HTTP を提供します。
+- `src/server.ts` — `/`、`/dashboard`、`/migrations`、`/migrations/:id` の Hono ルート。
+- `src/migrations.ts` — ファイルごとのステートマシンとシードデータ。
+- `src/cost.ts` — ターン数とドル予算の制限。
+- `src/types.ts` — 共有型定義。
+- `tests/*.test.ts` — `tsx` を使用した `node --test` スタイルのテスト。
 
-## Install
+## インストール
 
 ```bash
 npm install
 ```
 
-## Run
+## 実行
 
 ```bash
-npm start         # offline: simulate 40 ticks and print rollup
-npm run serve     # serve the HTML dashboard on PORT (default 8009)
+npm start         # オフライン: 40 ティックをシミュレートしてサマリーを表示
+npm run serve     # PORT（デフォルト 8009）で HTML ダッシュボードを提供
 ```
 
-## Verify
+## 検証
 
 ```bash
 npm run typecheck
 npm test
 ```
 
-## Spec references
+## 仕様リファレンス
 
-- Source lesson: `phases/19-capstone-projects/09-code-migration-agent/docs/en.md`
-- Recipes: [OpenRewrite](https://docs.openrewrite.org), libcst.
+- ソースレッスン: `phases/19-capstone-projects/09-code-migration-agent/docs/en.md`
+- レシピ: [OpenRewrite](https://docs.openrewrite.org), libcst.

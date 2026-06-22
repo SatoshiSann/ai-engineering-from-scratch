@@ -1,16 +1,16 @@
 # Agent Workbench Pack
 
-Drop-in workbench for any repo that wants reliable agent work.
+エージェント作業を確実に行いたい任意のリポジトリに組み込めるワークベンチです。
 
-## What you get
+## 含まれるもの
 
-- `AGENTS.md` short router into the rest of the pack.
-- `docs/` rules, reliability policy, handoff protocol, reviewer rubric.
-- `schemas/` JSON Schemas for state, board, and scope contract.
-- `scripts/` init, feedback runner, verification gate, handoff generator.
-- `bin/install.sh` idempotent installer.
+- `AGENTS.md` パックの他のファイルへの簡易ルーター。
+- `docs/` ルール、信頼性ポリシー、ハンドオフプロトコル、レビュアールーブリック。
+- `schemas/` 状態、ボード、スコープコントラクト用の JSON Schema。
+- `scripts/` 初期化、フィードバック実行、検証ゲート、ハンドオフ生成スクリプト。
+- `bin/install.sh` 冪等性のあるインストーラー。
 
-## Quickstart
+## クイックスタート
 
 ```
 bin/install.sh
@@ -18,6 +18,6 @@ $EDITOR task_board.json
 python3 scripts/init_agent.py
 ```
 
-## Versioning
+## バージョン管理
 
-The `VERSION` file is the contract. Major bumps require a state migration.
+`VERSION` ファイルがコントラクトです。メジャーバージョンアップ時は状態の移行が必要です。

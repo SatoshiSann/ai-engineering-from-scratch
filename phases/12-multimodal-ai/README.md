@@ -1,5 +1,5 @@
-# Phase 12: Multimodal AI
+# フェーズ12: マルチモーダルAI
 
-> Models that see, hear, read, and reason across modalities.
+> 視覚・聴覚・読解・推論をモダリティを超えて行うモデル。
 
-See [ROADMAP.md](../../ROADMAP.md) for the full lesson plan.
+全レッスン計画は [ROADMAP.md](../../ROADMAP.md) を参照してください。

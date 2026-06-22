@@ -1,5 +1,5 @@
-# Phase 11: LLM Engineering
+# Phase 11: LLM エンジニアリング
 
-> Put LLMs to work in production applications.
+> LLM を本番アプリケーションで活用する。
 
-See [ROADMAP.md](../../ROADMAP.md) for the full lesson plan.
+全レッスン計画は [ROADMAP.md](../../ROADMAP.md) を参照してください。

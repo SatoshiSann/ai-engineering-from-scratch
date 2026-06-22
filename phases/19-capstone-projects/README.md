@@ -1,5 +1,5 @@
-# Phase 19: Capstone Projects
+# Phase 19: 総合プロジェクト
 
-> Prove everything you learned. Build portfolio-grade systems.
+> 学んだすべてを証明する。ポートフォリオ品質のシステムを構築する。
 
-See [ROADMAP.md](../../ROADMAP.md) for the full lesson plan.
+全レッスンプランは [ROADMAP.md](../../ROADMAP.md) を参照。

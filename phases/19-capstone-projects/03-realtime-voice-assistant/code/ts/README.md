@@ -1,18 +1,16 @@
-# Capstone 19/03 — Realtime Voice Assistant (TypeScript)
+# キャップストーン 19/03 — リアルタイム音声アシスタント (TypeScript)
 
-Multi-file TypeScript web-client harness for the streaming voice pipeline
-described in `../docs/en.md`. Offline state-machine simulation plus a live
-WebSocket server backed by the `ws` package.
+`../docs/en.md` で解説されているストリーミング音声パイプラインのための、マルチファイル TypeScript Web クライアントハーネスです。オフラインのステートマシンシミュレーションと、`ws` パッケージをバックエンドとするライブ WebSocket サーバーを含みます。
 
-## Layout
+## 構成
 
 ```text
 src/
-  index.ts        entry point; runs two offline sessions, probes the live ws, exits 0
-  server.ts       hono /healthz + ws upgrade via WebSocketServer
-  orchestrator.ts IDLE -> LISTENING -> WAITING -> THINKING -> SPEAKING with barge-in
-  vad.ts          turn-completion scorer + synthetic 20ms-frame generator
-  protocol.ts     zod-validated frame envelope (event / summary)
+  index.ts        エントリーポイント。2つのオフラインセッションを実行し、ライブ ws を確認後、終了コード 0 で終了
+  server.ts       hono /healthz + WebSocketServer 経由の ws アップグレード
+  orchestrator.ts IDLE -> LISTENING -> WAITING -> THINKING -> SPEAKING (割り込み機能付き)
+  vad.ts          ターン完了スコアラー + 合成 20ms フレームジェネレーター
+  protocol.ts     zod 検証済みフレームエンベロープ (event / summary)
   types.ts        AudioChunk, Metrics, SessionOptions, SessionSummary
 tests/
   vad.test.ts
@@ -20,16 +18,14 @@ tests/
   protocol.test.ts
 ```
 
-## Run
+## 実行方法
 
 ```bash
 npm install
-npm start                # runs two offline sessions + ws self-probe, exits 0
-npm start -- --serve     # keep ws server up; ctrl-c to stop
-npm test                 # node --test runner via tsx
+npm start                # 2つのオフラインセッションを実行 + ws セルフプローブ、終了コード 0 で終了
+npm start -- --serve     # ws サーバーを起動し続ける。停止するには ctrl-c
+npm test                 # tsx 経由の node --test ランナー
 npm run typecheck        # tsc --noEmit
 ```
 
-The non-interactive `npm start` path asserts the clean session reaches
-`first_audio_out`, the barge-in session registers at least one barge-in event,
-and the live WebSocket probe receives a `summary` frame before close.
+非インタラクティブな `npm start` の実行では、クリーンセッションが `first_audio_out` に到達すること、割り込みセッションで少なくとも1つの割り込みイベントが記録されること、ライブ WebSocket プローブがクローズ前に `summary` フレームを受信することを検証します。

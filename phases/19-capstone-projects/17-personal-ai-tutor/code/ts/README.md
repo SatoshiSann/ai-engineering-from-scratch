@@ -1,30 +1,27 @@
-# Lesson 17 - Personal AI Tutor (TypeScript web app)
+# レッスン 17 - パーソナル AI チューター（TypeScript ウェブアプリ）
 
-TypeScript half of the capstone. Python side ships the learner model and
-tutor policy; this project exposes the web-app surface: a curriculum DAG
-walker, a BKT-style learner model, and an FSRS-lite spaced-repetition
-scheduler behind two HTTP routes.
+カプストーンの TypeScript 側。Python 側は学習者モデルとチューターポリシーを提供し、このプロジェクトはウェブアプリの表面部分を担う: カリキュラム DAG ウォーカー、BKT スタイルの学習者モデル、そして2つの HTTP ルートの裏で動く FSRS-lite 間隔反復スケジューラ。
 
-## Layout
+## レイアウト
 
 ```text
 src/
-  index.ts       entry: demo (default) or HTTP server (--serve)
-  server.ts      Hono routes (GET /lesson/next, POST /lesson/:id/submit)
-  curriculum.ts  DAG fixture + Kahn topo sort + next-lesson picker
-  mastery.ts     MasteryStore (per-lesson BKT-ish update)
-  repetition.ts  scheduleNextDue (interval doubling / halving, clamped)
+  index.ts       エントリポイント: デモ（デフォルト）または HTTP サーバー (--serve)
+  server.ts      Hono ルート (GET /lesson/next, POST /lesson/:id/submit)
+  curriculum.ts  DAG フィクスチャ + Kahn トポロジカルソート + 次レッスン選択
+  mastery.ts     MasteryStore (レッスンごとの BKT 風更新)
+  repetition.ts  scheduleNextDue (間隔の倍増・半減、クランプ付き)
   types.ts       Lesson, Mastery, Pick
 tests/
-  curriculum.test.ts  topo order, BKT update, FSRS scheduling
+  curriculum.test.ts  トポロジカル順序、BKT 更新、FSRS スケジューリング
 ```
 
-## Run
+## 実行方法
 
 ```bash
 npm install
 npm run typecheck
 npm test
-npm start            # self-terminating curriculum walk
-npm run serve        # HTTP server on :8090
+npm start            # 自己終了するカリキュラムウォーク
+npm run serve        # :8090 で HTTP サーバーを起動
 ```

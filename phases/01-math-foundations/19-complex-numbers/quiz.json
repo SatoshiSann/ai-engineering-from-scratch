@@ -2,7 +2,7 @@
   "questions": [
     {
       "stage": "pre",
-      "question": "What is the imaginary unit i defined by?",
+      "question": "虚数単位 i はどのように定義されていますか？",
       "options": [
         "i = sqrt(2)",
         "i^2 = -1",
@@ -10,11 +10,11 @@
         "i^2 = 1"
       ],
       "correct": 1,
-      "explanation": "The imaginary unit i is defined by the property i^2 = -1. It extends the real number line into a 2D plane. Geometrically, multiplying by i is a 90-degree rotation — two multiplications (i^2) give a 180-degree rotation, which is -1."
+      "explanation": "虚数単位 i は、i^2 = -1 という性質によって定義されます。これにより実数直線が 2次元の平面へと拡張されます。幾何学的には、i を掛けることは 90度の回転を意味します。つまり 2回の乗算（i^2）は 180度の回転となり、それは -1 を指すことになります。"
     },
     {
       "stage": "pre",
-      "question": "What does Euler's formula e^(i*theta) equal?",
+      "question": "オイラーの公式 e^(i*theta) は何と等しいですか？",
       "options": [
         "theta + i",
         "cos(theta) + i*sin(theta)",
@@ -22,11 +22,11 @@
         "i^theta"
       ],
       "correct": 1,
-      "explanation": "Euler's formula states e^(i*theta) = cos(theta) + i*sin(theta). This connects complex exponentials to trigonometry and shows that e^(i*theta) traces the unit circle as theta varies."
+      "explanation": "オイラーの公式は e^(i*theta) = cos(theta) + i*sin(theta) と定義されます。これは複素指数関数と三角関数を繋ぐものであり、theta が変化するにつれて e^(i*theta) が単位円を描くことを示しています。"
     },
     {
       "stage": "post",
-      "question": "What is the result of (3 + 2i)(1 + 4i)?",
+      "question": "(3 + 2i)(1 + 4i) の計算結果はどうなりますか？",
       "options": [
         "3 + 8i",
         "4 + 6i",
@@ -34,23 +34,23 @@
         "5 + 14i"
       ],
       "correct": 2,
-      "explanation": "Using FOIL: (3)(1) + (3)(4i) + (2i)(1) + (2i)(4i) = 3 + 12i + 2i + 8i^2 = 3 + 14i + 8(-1) = 3 + 14i - 8 = -5 + 14i."
+      "explanation": "分配法則を用いると: (3)(1) + (3)(4i) + (2i)(1) + (2i)(4i) = 3 + 12i + 2i + 8i^2 = 3 + 14i + 8(-1) = 3 + 14i - 8 = -5 + 14i となります。"
     },
     {
       "stage": "post",
-      "question": "Why are complex numbers used in Rotary Position Embedding (RoPE) for transformers?",
+      "question": "トランスフォーマーの Rotary Position Embedding (RoPE) で複素数が使われているのはなぜですか？",
       "options": [
-        "Complex numbers compress the position encoding to use less memory",
-        "Multiplying query/key vectors by complex rotations encodes relative position as a rotation angle",
-        "Complex numbers are required by the attention softmax function",
-        "RoPE uses imaginary numbers to handle negative positions"
+        "複素数によって位置エンコーディングを圧縮し、メモリ消費を抑えるため",
+        "クエリ/キーベクトルに複素回転を掛けることで、相対的な位置関係を回転角としてエンコードできるから",
+        "アテンションの Softmax 関数において複素数が必須だから",
+        "RoPE が負の位置情報を扱うために虚数を使用するから"
       ],
       "correct": 1,
-      "explanation": "RoPE multiplies query and key vectors by complex rotation matrices e^(i*m*theta) where m is the position. The relative position between two tokens becomes a rotation angle, and attention naturally becomes sensitive to relative (not absolute) position through complex multiplication."
+      "explanation": "RoPE は、クエリベクトルとキーベクトルに複素回転行列 e^(i*m*theta)（m は位置）を掛けます。これにより、2つのトークン間の相対的な位置関係が回転角として表現され、アテンションが複素数の乗算を通じて自然に相対位置（絶対位置ではなく）に敏感になります。"
     },
     {
       "stage": "post",
-      "question": "The N-th roots of unity are N equally spaced points on the unit circle. What is their sum?",
+      "question": "1 の N 乗根は単位円上の等間隔な N 個の点です。それらの総和は何になりますか？",
       "options": [
         "N",
         "1",
@@ -58,7 +58,7 @@
         "N/2"
       ],
       "correct": 2,
-      "explanation": "The N roots of unity are e^(2*pi*i*k/N) for k = 0, ..., N-1. They are symmetrically distributed around the unit circle, so their vector sum cancels out to zero. This symmetry property is what makes the DFT invertible."
+      "explanation": "1 の N 乗根は e^(2*pi*i*k/N) (k = 0, ..., N-1) です。これらは単位円上に左右対称に配置されているため、それらのベクトル和は打ち消し合ってゼロになります。この対称の性質こそが、DFT を可逆なものにしています。"
     }
   ]
 }

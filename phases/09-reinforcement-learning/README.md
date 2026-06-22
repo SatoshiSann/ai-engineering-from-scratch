@@ -1,5 +1,5 @@
-# Phase 9: Reinforcement Learning
+# Phase 9: 強化学習
 
-> Agents that learn by doing. The foundation of RLHF.
+> 行動を通じて学ぶエージェント。RLHFの基礎。
 
-See [ROADMAP.md](../../ROADMAP.md) for the full lesson plan.
+全レッスン計画は [ROADMAP.md](../../ROADMAP.md) を参照してください。
